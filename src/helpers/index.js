@@ -25,7 +25,7 @@ export const dataCleanUp = () => {
       monster.entries[0].entries &&
       monster.entries[0].entries[0] &&
       monster.entries[0].entries[0].entries ? 
-      monster.entries[0].entries[0].entries[0] : 'There are many mysteries yet known',
+      monster.entries[0].entries[0].entries[0] : undefined,
       img: `https://5e.tools/img/${
         monster.images &&
         monster.images[0] &&
