@@ -9,12 +9,16 @@ export const useCharacters = () => {
       .firestore()
       .collection('characters')
       .where('userId', '==', '12345')
+      .orderBy('name')
       .get()
       .then((data)=>{
-        const allCharacters = data.docs.map(character => character.data() )
-        setCharacters(allCharacters)
+        const allCharacters = data.docs.map(character => character.data())
+        //allows to pass [characters] into useEffect
+        if (JSON.stringify(allCharacters) !== JSON.stringify(characters)) {
+          setCharacters(allCharacters)
+        }
       })
-  },[])
+  },[characters])
 
   return { characters, setCharacters }
 }

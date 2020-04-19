@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { firebase } from '../firebase'
 
-export const Characters = ({characters}) => {
+export const Characters = ({characters, setCharacters}) => {
   const [addCharacterOverlay, setAddCharacterOverlay] = useState(false)
   const [characterName, setCharacterName] = useState('')
 
@@ -10,11 +10,12 @@ export const Characters = ({characters}) => {
     .firestore()
     .collection('characters')
     .add({
-      archived: 'false',
+      archived: false,
       userId: '12345',
       name: characterName
   }).then(()=> {
     console.log('added character to firebase')
+    setCharacters([...characters])
     clearAddCharacter()
     }
   )
@@ -27,6 +28,7 @@ export const Characters = ({characters}) => {
   return (
     characters && (
       <section>
+        <span>Selected character is: </span>
         <ul>
           {characters.map((character, index) => (
             <li key={index}>
