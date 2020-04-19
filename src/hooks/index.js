@@ -3,6 +3,7 @@ import { firebase } from '../firebase'
 
 export const useCharacters = () => {
   const [characters, setCharacters] = useState([])
+  console.log(characters)
 
   useEffect(() => {
       firebase
@@ -13,7 +14,7 @@ export const useCharacters = () => {
       .get()
       .then((data)=>{
         const allCharacters = data.docs.map(character => character.data())
-        //allows to pass [characters] into useEffect
+        //allows to pass [characters] into useEffect - only setCharacters if there has been a change
         if (JSON.stringify(allCharacters) !== JSON.stringify(characters)) {
           setCharacters(allCharacters)
         }
