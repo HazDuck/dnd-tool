@@ -1,10 +1,7 @@
 import React from 'react'
-import { useCharacters } from '../hooks';
 
-export const Characters = () => {
-  const { characters } = useCharacters()
-  console.log(characters)
+export const Characters = ({characters}) => {
   return (
-    <p>Name:</p>
+    <p>Name: {characters && characters[0] ? characters[0].name : undefined}</p>
   )
 }
