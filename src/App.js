@@ -4,6 +4,7 @@ import { useCharacters } from './hooks'
 
 const App = () => {
   const { characters } = useCharacters()
+  console.log(characters)
   return (
     <div className="App">
       <Characters characters={characters}/>
