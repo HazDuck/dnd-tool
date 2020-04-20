@@ -18,7 +18,7 @@ export const useCharacters = () => {
   //       }))
   //       console.log({allCharacters: allCharacters, characters: characters})
   //       this is currently not working as the order of the keys is chaning between allCharacters vs Characters...dunno why
-  //       if (JSON.stringify(allCharacters) !== JSON.stringify(characters)) {
+  //       if (JSON.stringify(orderObjectKeys(allCharacters)) !== JSON.stringify(orderObjectKeys(characters))) {
   //         setCharacters(allCharacters)
   //       }
   //     })
@@ -27,11 +27,19 @@ export const useCharacters = () => {
   // ])
 
   useEffect(() => {
-    const allCharacters = [{userId: '12345', name: 'Gresh', archived: false}, {userId: '12345', archived: false, name: 'Kennit',}]
+    const allCharacters = [{userId: '12345', name: 'Gresh', archived: false, characterId: 1}, {userId: '12345', name: 'Kennit', archived: false, characterId: 2}]
     if (JSON.stringify(orderObjectKeys(allCharacters)) !== JSON.stringify(orderObjectKeys(characters))) {
       setCharacters(allCharacters)
     } 
   },[characters])
   
   return { characters, setCharacters }
+}
+
+//----------------------------------------------------------//
+
+export const useSelectedCharacter = () => {
+  const [selectedCharacter, setSelectedCharacter] = useState('')
+
+  return { selectedCharacter, setSelectedCharacter }
 }

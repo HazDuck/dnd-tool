@@ -64,22 +64,13 @@ export const generatePushId = (() => {
   }
 })()
 
-// export const orderObjectKeys = (unordered) =>  {
-//   const ordered = unordered.map(
-//     character => Object.keys(character).sort().map(
-//       key => console.log(key)
-//       // key => ordered[key] = unordered[key]
-//     )
-//   )
-// }
-
 export const orderObjectKeys = unorderedCharacters => {
   const orderedCharacters = []
   unorderedCharacters.map(character => {
     const orderedCharacter = {}
     Object.keys(character).sort().map(key => 
       orderedCharacter[key] = character[key])
-      orderedCharacters.push(orderedCharacter)
+      return orderedCharacters.push(orderedCharacter)
     }
   )
   return orderedCharacters
