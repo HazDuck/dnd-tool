@@ -1,5 +1,6 @@
 import { useState, useEffect} from 'react'
 import { firebase } from '../firebase'
+import { orderObjectKeys } from '../helpers'
 
 export const useCharacters = () => {
   const [characters, setCharacters] = useState([])
@@ -26,12 +27,10 @@ export const useCharacters = () => {
   // ])
 
   useEffect(() => {
-    const allCharacters = [{userId: '12345', name: 'Gresh', archived: false}, {userId: '12345', name: 'Kennit', archived: false}]
-    console.log({allCharacters: allCharacters, characters: characters})
-    if (JSON.stringify(allCharacters) !== JSON.stringify(characters)) {
-      console.log('past the if')
+    const allCharacters = [{userId: '12345', name: 'Gresh', archived: false}, {userId: '12345', archived: false, name: 'Kennit',}]
+    if (JSON.stringify(orderObjectKeys(allCharacters)) !== JSON.stringify(orderObjectKeys(characters))) {
       setCharacters(allCharacters)
-    }
+    } 
   },[characters])
   
   return { characters, setCharacters }

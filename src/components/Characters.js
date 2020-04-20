@@ -13,7 +13,9 @@ export const Characters = () => {
         <ul>
           {characters.map((character, index) => (
             <li key={index}>
-              <span>
+              <span
+                
+              >
                 {character.name}
               </span>
               <button>

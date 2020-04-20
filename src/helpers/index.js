@@ -41,25 +41,46 @@ export const dataCleanUp = () => {
 //grabbed the function from interweb
 export const generatePushId = (() => {
   const PUSH_CHARS =
-    '-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz';
+    '-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz'
 
-  const lastRandChars = [];
+  const lastRandChars = []
 
   return function() {
-    let now = new Date().getTime();
+    let now = new Date().getTime()
 
-    const timeStampChars = new Array(8);
+    const timeStampChars = new Array(8)
     for (var i = 7; i >= 0; i--) {
-      timeStampChars[i] = PUSH_CHARS.charAt(now % 64);
-      now = Math.floor(now / 64);
+      timeStampChars[i] = PUSH_CHARS.charAt(now % 64)
+      now = Math.floor(now / 64)
     }
 
-    let id = timeStampChars.join('');
+    let id = timeStampChars.join('')
 
     for (i = 0; i < 12; i++) {
-      id += PUSH_CHARS.charAt(lastRandChars[i]);
+      id += PUSH_CHARS.charAt(lastRandChars[i])
     }
 
     return id;
-  };
-})();
+  }
+})()
+
+// export const orderObjectKeys = (unordered) =>  {
+//   const ordered = unordered.map(
+//     character => Object.keys(character).sort().map(
+//       key => console.log(key)
+//       // key => ordered[key] = unordered[key]
+//     )
+//   )
+// }
+
+export const orderObjectKeys = unorderedCharacters => {
+  const orderedCharacters = []
+  unorderedCharacters.map(character => {
+    const orderedCharacter = {}
+    Object.keys(character).sort().map(key => 
+      orderedCharacter[key] = character[key])
+      orderedCharacters.push(orderedCharacter)
+    }
+  )
+  return orderedCharacters
+}
