@@ -1,13 +1,12 @@
 import React from 'react';
 import { Characters } from './components/Characters'
-import { useCharacters } from './hooks'
+import { ProjectsProvider } from './context'
 
 const App = () => {
-  const { characters, setCharacters } = useCharacters()
   return (
-    <div className="App">
-      <Characters characters={characters} setCharacters={setCharacters}/>
-    </div>
+    <ProjectsProvider>
+      <Characters />
+    </ProjectsProvider>
   );
 }
 

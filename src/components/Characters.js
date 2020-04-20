@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import { AddCharacter } from './AddCharacter';
+import { useCharactersValue } from '../context'
 
-export const Characters = ({characters, setCharacters}) => {
+export const Characters = () => {
   const [addCharacterOverlay, setAddCharacterOverlay] = useState(false)
+  const { characters } = useCharactersValue()
+  
   return (
     characters && (
       <section>
@@ -27,11 +30,8 @@ export const Characters = ({characters, setCharacters}) => {
         </button>
 
         {addCharacterOverlay && 
-          <AddCharacter 
-            characters={characters} 
-            setCharacters={setCharacters} 
-            setAddCharacterOverlay={setAddCharacterOverlay}
-          />}
+          <AddCharacter setAddCharacterOverlay={setAddCharacterOverlay}
+        />}
       </section>
     )
   )

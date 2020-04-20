@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { firebase } from '../firebase'
+import { useCharactersValue } from '../context'
 
-export const AddCharacter = ({setAddCharacterOverlay, setCharacters, characters}) => {
+export const AddCharacter = ({ setAddCharacterOverlay }) => {
   const [characterName, setCharacterName] = useState('')
+  const { characters, setCharacters } = useCharactersValue()
 
   const clearAddCharacter = () => {
     setCharacterName('')
@@ -17,12 +19,13 @@ export const AddCharacter = ({setAddCharacterOverlay, setCharacters, characters}
       archived: false,
       userId: '12345',
       name: characterName
-  }).then(()=> {
-    console.log('added character to firebase')
-    setCharacters([...characters])
-    clearAddCharacter()
-    }
-  )
+    })
+    .then(()=> {
+      console.log('added character to firebase')
+      setCharacters([...characters])
+      clearAddCharacter()
+      }
+    )
   
   return (
     <div>
