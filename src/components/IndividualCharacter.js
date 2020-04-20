@@ -1,20 +1,32 @@
 import React, { useState } from 'react'
-import { useSelectedCharacterValue } from '../context'
+import { useSelectedCharacterValue, useCharactersValue } from '../context'
+import { firebase } from '../firebase'
 
 export const IndividualCharacter = ({character}) => {
   const [deleteCharacterOverlay, setDeleteCharacterOverlay] = useState(false)
   const { setSelectedCharacter } = useSelectedCharacterValue()
+  const { characters, setCharacters } = useCharactersValue()
+
+  const deleteCharacter = (characterId) => (
+    firebase
+    .firestore()
+    .collection('characters')
+    .doc(characterId)
+    .delete()
+    .then(()=> {
+      setCharacters([...characters])
+      console.log('deleted')
+    })
+  )
 
   return (
-    <li key={character.characterId}>
-      <span
-        onClick={()=>{
-          setSelectedCharacter(character)}
-        }
-      >
+    <li>
+      <span onClick={()=>{setSelectedCharacter(character)}}>
         {character.name}
       </span>
-      <button onClick={()=>setDeleteCharacterOverlay(!deleteCharacterOverlay)}>
+      <button onClick={()=>{
+        setDeleteCharacterOverlay(true)}
+      }>
         Delete
       </button>
 
@@ -22,11 +34,14 @@ export const IndividualCharacter = ({character}) => {
         <div>
           <button
             type="button"
-            onClick={()=>console.log('delete!')}
+            onClick={()=>{
+              deleteCharacter(character.characterId)
+              setDeleteCharacterOverlay(false)
+            }}
           >
             Confirm
           </button>
-          <span onClick={()=>console.log('abort delete')}>
+          <span onClick={()=>setDeleteCharacterOverlay(false)}>
             Cancel
           </span>
         </div>

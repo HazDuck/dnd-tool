@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { firebase } from '../firebase'
 import { useCharactersValue } from '../context'
+import { generatePushId } from '../helpers';
 
 export const AddCharacter = ({ setAddCharacterOverlay }) => {
   const [characterName, setCharacterName] = useState('')
@@ -17,7 +18,6 @@ export const AddCharacter = ({ setAddCharacterOverlay }) => {
     .collection('characters')
     .add({
       archived: false,
-      characterId: Math.floor(Math.random() * 100000000000000),
       name: characterName,
       userId: '12345'
     })

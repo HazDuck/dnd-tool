@@ -14,7 +14,9 @@ export const useCharacters = () => {
       .get()
       .then((data)=>{
         const allCharacters = data.docs.map(character => ({
-          ...character.data()
+          ...character.data(),
+          //below used to find doc when it comes to deleting
+          characterId: character.id
         }))
         console.log(characters)
         if (JSON.stringify(orderObjectKeys(allCharacters)) !== JSON.stringify(orderObjectKeys(characters))) {

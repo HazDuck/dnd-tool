@@ -9,7 +9,6 @@ export const Characters = () => {
   const { characters } = useCharactersValue()
   const { selectedCharacter } = useSelectedCharacterValue()
   
-  
   return (
     characters && (
       <section>
