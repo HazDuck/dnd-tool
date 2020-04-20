@@ -17,8 +17,9 @@ export const AddCharacter = ({ setAddCharacterOverlay }) => {
     .collection('characters')
     .add({
       archived: false,
-      userId: '12345',
-      name: characterName
+      characterId: Math.floor(Math.random() * 1000000000),
+      name: characterName,
+      userId: '12345'
     })
     .then(()=> {
       console.log('added character to firebase')

@@ -2,13 +2,13 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 const firebaseConfig = firebase.initializeApp({
-  apiKey: "AIzaSyDJDJd3XvPdiWKb3UbgOoyAmext4L8pw-M",
-    authDomain: "dnd-tool-fb8eb.firebaseapp.com",
-    databaseURL: "https://dnd-tool-fb8eb.firebaseio.com",
-    projectId: "dnd-tool-fb8eb",
-    storageBucket: "dnd-tool-fb8eb.appspot.com",
-    messagingSenderId: "32384205798",
-    appId: "1:32384205798:web:6df0cd3e50cbf551d00c27"
+  apiKey: "AIzaSyDr0RWvBHNF61pPf6Q40dyJUPxd669CTN0",
+    authDomain: "dnd-tool-x.firebaseapp.com",
+    databaseURL: "https://dnd-tool-x.firebaseio.com",
+    projectId: "dnd-tool-x",
+    storageBucket: "dnd-tool-x.appspot.com",
+    messagingSenderId: "1019549274519",
+    appId: "1:1019549274519:web:b7626110a9b42adf2e74d2"
 })
 
 export { firebaseConfig as firebase }
