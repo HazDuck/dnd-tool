@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { AddCharacter } from './AddCharacter';
 import { useCharactersValue, useSelectedCharacterValue } from '../context'
+import { IndividualCharacter } from './IndividualCharacter';
 
 export const Characters = () => {
+
   const [addCharacterOverlay, setAddCharacterOverlay] = useState(false)
   const { characters } = useCharactersValue()
-  const { selectedCharacter, setSelectedCharacter } = useSelectedCharacterValue()
+  const { selectedCharacter } = useSelectedCharacterValue()
+  
   
   return (
     characters && (
@@ -13,18 +16,7 @@ export const Characters = () => {
         <span>Selected character is: {selectedCharacter.name} </span>
         <ul>
           {characters.map((character) => (
-            <li key={character.characterId}>
-              <span
-                onClick={()=>{
-                  setSelectedCharacter(character)}
-                }
-              >
-                {character.name}
-              </span>
-              <button>
-                Delete
-              </button>
-            </li>
+            <IndividualCharacter key={character.characterId} character={character} />
           ))}
         </ul>
         <button

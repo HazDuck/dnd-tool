@@ -17,7 +17,7 @@ export const AddCharacter = ({ setAddCharacterOverlay }) => {
     .collection('characters')
     .add({
       archived: false,
-      characterId: Math.floor(Math.random() * 1000000000),
+      characterId: Math.floor(Math.random() * 100000000000000),
       name: characterName,
       userId: '12345'
     })

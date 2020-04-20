@@ -10,7 +10,7 @@ export const useCharacters = () => {
       .firestore()
       .collection('characters')
       .where('userId', '==', '12345')
-      // .orderBy('name') i got rid of the index so probs delete this and do it without
+      // .where('archived', '==', true)
       .get()
       .then((data)=>{
         const allCharacters = data.docs.map(character => ({
