@@ -1,12 +1,14 @@
 import React from 'react';
-import { Characters } from './components/Characters'
 import { CharactersProvider, SelectedCharacterProvider} from './context'
+import { Sidebar } from './components/Sidebar';
+import { Header } from './components/Header';
 
 const App = () => {
   return (
     <SelectedCharacterProvider>
       <CharactersProvider>
-        <Characters />
+        <Header />
+        <Sidebar />
       </CharactersProvider>
     </SelectedCharacterProvider>
   );
