@@ -40,3 +40,28 @@ export const useSelectedCharacter = () => {
   window.localStorage.setItem('selectedCharacter', JSON.stringify(selectedCharacter))
   return { selectedCharacter, setSelectedCharacter }
 }
+
+//----------------------------------------------------------//
+
+export const useKills = (selectedCharacterId) => {
+  const [kills, setKills] = useState([])
+  
+  useEffect(() => {
+    let data = firebase
+      .firestore()
+      .collection('kills')
+      .where('userId', '==', "12345")
+
+    data = data.onSnapshot(snapshot => {
+      const newKills = snapshot.docs.map(kill => ({
+        killId: kill.id,
+        ...kill.data()
+      }))
+      setKills(newKills.filter(kill => kill.characterId == selectedCharacterId))
+    })
+
+    return () => data()
+  }, [])
+
+  return { kills }
+}

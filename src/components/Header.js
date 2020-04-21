@@ -7,7 +7,8 @@ export const Header = () => {
   return (
     <header>
       <h1>Dnd Tool</h1>
-      <h2>Selected character is: {selectedCharacter.name} </h2>
+      <h2>{selectedCharacter.name}</h2>
+      <h3>Total kills: </h3>
     </header>
   )
 }
