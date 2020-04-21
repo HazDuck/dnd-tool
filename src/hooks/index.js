@@ -10,7 +10,6 @@ export const useCharacters = () => {
       .firestore()
       .collection('characters')
       .where('userId', '==', '12345')
-      // .where('archived', '==', true)
       .get()
       .then((data)=>{
         const allCharacters = data.docs.map(character => ({

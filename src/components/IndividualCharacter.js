@@ -27,7 +27,7 @@ export const IndividualCharacter = ({character}) => {
       <button onClick={()=>{
         setDeleteCharacterOverlay(true)}
       }>
-        Delete
+        x
       </button>
 
       {deleteCharacterOverlay && (

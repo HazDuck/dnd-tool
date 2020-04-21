@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { firebase } from '../firebase'
 import { useCharactersValue } from '../context'
-import { generatePushId } from '../helpers';
 
 export const AddCharacter = ({ setAddCharacterOverlay }) => {
   const [characterName, setCharacterName] = useState('')
