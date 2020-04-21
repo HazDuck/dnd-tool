@@ -57,11 +57,11 @@ export const useKills = (selectedCharacterId) => {
         killId: kill.id,
         ...kill.data()
       }))
-      setKills(newKills.filter(kill => kill.characterId == selectedCharacterId))
+      setKills(newKills.filter(kill => kill.characterId === selectedCharacterId))
     })
 
     return () => data()
-  }, [])
+  }, [selectedCharacterId])
 
   return { kills }
 }

@@ -7,6 +7,12 @@ export const Kills = () => {
   const { kills } = useKills(selectedCharacter.characterId)
   console.log(kills, 'kill data')
   return (
-    <p>Goblins and that</p>
+    kills.length > 0 && (
+      <ul>{kills.map(kill =>
+        <li key={kill.killId}>
+          {kill.notes}
+        </li>)}
+      </ul>
+    )
   )
 }
