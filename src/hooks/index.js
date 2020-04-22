@@ -17,10 +17,8 @@ export const useCharacters = () => {
           //below used to find doc when it comes to deleting
           characterId: character.id
         }))
-        console.log(characters)
         if (JSON.stringify(orderObjectKeys(allCharacters)) !== JSON.stringify(orderObjectKeys(characters))) {
           setCharacters(allCharacters)
-          console.log(characters)
         }
       })
   },[characters])
@@ -50,7 +48,7 @@ export const useKills = (selectedCharacterId) => {
     let data = firebase
       .firestore()
       .collection('kills')
-      .where('userId', '==', "12345")
+      .where('userId', '==', '12345')
 
     data = data.onSnapshot(snapshot => {
       const newKills = snapshot.docs.map(kill => ({

@@ -21,7 +21,6 @@ export const AddCharacter = ({ setAddCharacterOverlay }) => {
       userId: '12345'
     })
     .then(()=> {
-      console.log('added character to firebase')
       setCharacters([...characters])
       clearAddCharacter()
       }

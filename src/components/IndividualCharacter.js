@@ -15,7 +15,6 @@ export const IndividualCharacter = ({character}) => {
     .delete()
     .then(()=> {
       setCharacters([...characters])
-      console.log('deleted')
     })
   )
 

@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react'
-import { useCharacters, useSelectedCharacter, useKills } from '../hooks'
+import { useCharacters, useSelectedCharacter } from '../hooks'
 
 export const CharacterContext = createContext() 
 
