@@ -26,18 +26,13 @@ export const Kills = () => {
   }
 
   useEffect(() => {
-
-  if (!kills.length > 0) {
-    return
-  }
-  
-  
-  if(JSON.stringify(findKills(monsterData, kills)) !== JSON.stringify(killsData)) {
-    setKillsData(findKills(monsterData, kills))
-  }
-  
-},
-[monsterData, kills,killsData])
+    if (!kills.length > 0) {
+      return
+    }
+    if(JSON.stringify(findKills(monsterData, kills)) !== JSON.stringify(killsData)) {
+      setKillsData(findKills(monsterData, kills))
+    }
+  },[monsterData, kills,killsData])
 
   // console.log(killsData, 'killsData')
   return (
