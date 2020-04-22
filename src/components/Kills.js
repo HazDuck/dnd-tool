@@ -34,7 +34,6 @@ export const Kills = () => {
     }
   },[monsterData, kills,killsData])
 
-  // console.log(killsData, 'killsData')
   return (
     killsData.length > 0 && (
       <ul>{killsData.map(kill =>
