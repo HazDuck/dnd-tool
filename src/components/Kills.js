@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useKills } from '../hooks'
 import { useSelectedCharacterValue } from '../context'
 import { dataCleanUp } from '../helpers'
-import { orderObjectKeys } from '../helpers'
 
 export const Kills = () => {
 
@@ -11,9 +10,7 @@ export const Kills = () => {
   const [monsterData, setMonsterData] = useState(dataCleanUp())
   const [killsData, setKillsData] = useState([])
 
-  //this probs needs to be a promise (or just save as variable)
-  //so that once the data has been cleaned and kills have been returned we can 
-  //do the comparision
+  console.log(killsData)
   
   const findKills = (monsterData, kills) => {
     const killsData = []
@@ -25,28 +22,31 @@ export const Kills = () => {
       killsData.push(killedMonster)
       return killsData
     })
-    console.log(killsData)
     return killsData
   }
 
   useEffect(() => {
+
   if (!kills.length > 0) {
     return
   }
-      setKillsData(findKills(monsterData, kills))
-      console.log(killsData)
   
   
-}, [monsterData,
-  // kills,
-  killsData])
+  if(JSON.stringify(findKills(monsterData, kills)) !== JSON.stringify(killsData)) {
+    setKillsData(findKills(monsterData, kills))
+  }
+  
+},
+[monsterData, kills,killsData])
 
   // console.log(killsData, 'killsData')
   return (
     killsData.length > 0 && (
-      <ul>{kills.map(kill =>
+      <ul>{killsData.map(kill =>
         <li key={kill.monsterId}>
-          {kill.notes}
+          {/* <img src={kill.img} alt={`${kill.name}`}/> */}
+          <h4>{kill.name}</h4>
+          <h4>{kill.quantity}</h4>
         </li>)}
       </ul>
     )
