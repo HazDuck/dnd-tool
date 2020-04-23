@@ -30,7 +30,8 @@ export const Kills = () => {
     .collection('kills')
     .doc(killId)
     .get()
-    .then(quantity => quantity.data().quantity)
+    .then(quantity => 
+      quantity.data().quantity)
     .then(quantity => {
       if (quantity <= 0 && value === false) {
         return 
@@ -48,7 +49,7 @@ export const Kills = () => {
     if (!kills.length > 0) {
       return
     }
-    if(JSON.stringify(findKills(monsterData, kills)) !== JSON.stringify(killsData)) {
+    if (JSON.stringify(findKills(monsterData, kills)) !== JSON.stringify(killsData)) {
       setKillsData(findKills(monsterData, kills))
     }
   },[monsterData, kills, killsData])
@@ -57,7 +58,7 @@ export const Kills = () => {
     killsData.length > 0 && (
       <ul>{killsData.map(kill =>
         <li key={kill.monsterId}>
-          {/* <img src={kill.img} alt={`${kill.name}`}/> */}
+          <img style={{width: "100px", height:"auto"}} src={kill.img} alt={`${kill.name}`}/>
           <h4>{kill.name}</h4>
           <p>{kill.description}</p>
           <p>{kill.notes}</p>
