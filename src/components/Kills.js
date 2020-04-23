@@ -5,12 +5,11 @@ import { dataCleanUp } from '../helpers'
 import { firebase } from '../firebase'
 
 export const Kills = () => {
-
   const { selectedCharacter } = useSelectedCharacterValue()
   const { kills } = useKills(selectedCharacter.characterId)
   const [ monsterData ] = useState(dataCleanUp())
   const [killsData, setKillsData] = useState([])
-  
+
   const findKills = (monsterData, kills) => {
     const killsData = []
     kills.map(kill => {
@@ -24,15 +23,26 @@ export const Kills = () => {
     return killsData
   }
 
-
-  const updateKillCount = () => {
-    const killDoc = firebase.firestore().collection('kills').doc('aLrHDGliBm1yL4cLsbeR')
-    killDoc.onSnapshot(snapShot => console.log(snapShot.data().quantity))
-    // killDoc.update({
-    //   quantity: quantity
-    // })
-  }
-  
+  //grab the doc grab the quantity, go back to the doc and inc 
+  const updateKillCount = (killId, value) => 
+    firebase
+    .firestore()
+    .collection('kills')
+    .doc(killId)
+    .get()
+    .then(quantity => quantity.data().quantity)
+    .then(quantity => {
+      if (quantity <= 0 && value === false) {
+        return 
+      }
+      firebase
+      .firestore()
+      .collection('kills')
+      .doc(killId)
+      .update(
+        value ? {quantity : quantity + 1} : {quantity : quantity - 1}
+      )
+    })
   
   useEffect(() => {
     if (!kills.length > 0) {
@@ -49,15 +59,17 @@ export const Kills = () => {
         <li key={kill.monsterId}>
           {/* <img src={kill.img} alt={`${kill.name}`}/> */}
           <h4>{kill.name}</h4>
-          <h4>{kill.description}</h4>
-          <h4>{kill.notes}</h4>
+          <p>{kill.description}</p>
+          <p>{kill.notes}</p>
           <h4>{kill.quantity}</h4>
           <button
             type="button"
-            onClick={()=> updateKillCount()}
-            
+            onClick={()=> updateKillCount(kill.killId, true)}
           >+</button>
-          <button>-</button>
+          <button
+            type="button"
+            onClick={()=> updateKillCount(kill.killId, false)}
+          >-</button>
         </li>)}
       </ul>
     )

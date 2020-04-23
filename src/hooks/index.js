@@ -61,5 +61,6 @@ export const useKills = (selectedCharacterId) => {
     return () => data()
   }, [selectedCharacterId])
 
-  return { kills }
+  return { kills, setKills }
 }
+
