@@ -3,6 +3,7 @@ import { useKills } from '../hooks'
 import { useSelectedCharacterValue } from '../context'
 import { dataCleanUp } from '../helpers'
 import { IndividualKill } from './IndividualKill'
+import { LoadingBar } from './LoadingBar'
 
 export const Kills = () => {
   const { selectedCharacter } = useSelectedCharacterValue()
@@ -15,6 +16,9 @@ export const Kills = () => {
   //map over the monsterData and if the monsterId on firebase matches the monsterData monsterId
   //merge the objects together so we can setKillsData and render whats needed
   const findKills = (monsterData, kills) => {
+    if (kills) {
+      setShowLoading(false)
+    }
     const killsData = []
     kills.map(kill => {
       let killedMonster = monsterData.filter(monster => 
@@ -37,28 +41,30 @@ export const Kills = () => {
   },[monsterData, kills, killsData])
 
   useEffect(() => {
-    console.log(loadingValue)
     if (!showLoading) {
       return
+    }  else if (loadingValue === 100 ) {
+      return 
     }
-    const fillBar = setInterval(() => setLoadingValue(loadingValue + 10), 3000)
+    const fillBar = setInterval(() => setLoadingValue(loadingValue + 10), 1000)
     return () => {
       clearInterval(fillBar)
     }
   }, [showLoading, loadingValue])
 
   return (
-    <div>
-      <p>summoning...</p>
-      {/* <LoadingBar loadingValue={loadingValue}/> */}
-      <progress className="nes-progress" value={showLoading} max="100"></progress>
-    </div>
-    // killsData.length > 0 && (
-    //   <ul>{killsData.map(kill => 
-    //     <li key={kill.monsterId}>
-    //       <IndividualKill kill={kill} selectedCharacter={selectedCharacter}/>
-    //     </li>
-    //   )}</ul>
-    // )
+    showLoading ? 
+      <div>
+        <p>summoning...</p>
+        <LoadingBar loadingValue={loadingValue}/>
+      </div>
+      :
+      killsData.length > 0 && (
+        <ul>{killsData.map(kill => 
+          <li key={kill.monsterId}>
+            <IndividualKill kill={kill} selectedCharacter={selectedCharacter}/>
+          </li>
+      )}</ul>
+    )
   )
 }
