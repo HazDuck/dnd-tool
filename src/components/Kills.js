@@ -9,6 +9,8 @@ export const Kills = () => {
   const { kills } = useKills(selectedCharacter.characterId)
   const [ monsterData ] = useState(dataCleanUp())
   const [killsData, setKillsData] = useState([])
+  const [loadingValue, setLoadingValue] = useState(10)
+  const [showLoading, setShowLoading] = useState(true)
 
   //map over the monsterData and if the monsterId on firebase matches the monsterData monsterId
   //merge the objects together so we can setKillsData and render whats needed
@@ -34,13 +36,29 @@ export const Kills = () => {
     }
   },[monsterData, kills, killsData])
 
+  useEffect(() => {
+    console.log(loadingValue)
+    if (!showLoading) {
+      return
+    }
+    const fillBar = setInterval(() => setLoadingValue(loadingValue + 10), 3000)
+    return () => {
+      clearInterval(fillBar)
+    }
+  }, [showLoading, loadingValue])
+
   return (
-    killsData.length > 0 && (
-      <ul>{killsData.map(kill => 
-        <li key={kill.monsterId}>
-          <IndividualKill kill={kill} selectedCharacter={selectedCharacter}/>
-        </li>
-      )}</ul>
-    )
+    <div>
+      <p>summoning...</p>
+      {/* <LoadingBar loadingValue={loadingValue}/> */}
+      <progress className="nes-progress" value={showLoading} max="100"></progress>
+    </div>
+    // killsData.length > 0 && (
+    //   <ul>{killsData.map(kill => 
+    //     <li key={kill.monsterId}>
+    //       <IndividualKill kill={kill} selectedCharacter={selectedCharacter}/>
+    //     </li>
+    //   )}</ul>
+    // )
   )
 }

@@ -21,6 +21,7 @@ export const IndividualMonster = ({monsterData}) => {
       userId: '12345'
     })
     setNotes('')
+    setQuantity(1)
   }
 
   return (

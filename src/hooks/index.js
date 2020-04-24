@@ -45,6 +45,7 @@ export const useKills = (selectedCharacterId) => {
   const [kills, setKills] = useState([])
   
   useEffect(() => {
+    console.log('getting the characters kills')
     let data = firebase
       .firestore()
       .collection('kills')
@@ -55,11 +56,12 @@ export const useKills = (selectedCharacterId) => {
         killId: kill.id,
         ...kill.data()
       }))
-      setKills(newKills.filter(kill => 
-        kill.characterId === selectedCharacterId))
+        setKills(newKills.filter(kill => 
+          kill.characterId === selectedCharacterId))
     })
-
-    return () => data()
+    return () => {
+      data()
+    }
   }, [selectedCharacterId])
 
   return { kills, setKills }
