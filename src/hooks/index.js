@@ -42,6 +42,7 @@ export const useSelectedCharacter = () => {
 //----------------------------------------------------------//
 
 export const useKills = (selectedCharacterId) => {
+  console.log('kills hook')
   const [kills, setKills] = useState([])
   
   useEffect(() => {
@@ -55,7 +56,8 @@ export const useKills = (selectedCharacterId) => {
         killId: kill.id,
         ...kill.data()
       }))
-      setKills(newKills.filter(kill => kill.characterId === selectedCharacterId))
+      setKills(newKills.filter(kill => 
+        kill.characterId === selectedCharacterId))
     })
 
     return () => data()
