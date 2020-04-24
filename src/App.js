@@ -3,6 +3,7 @@ import { CharactersProvider, SelectedCharacterProvider} from './context'
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
 import { Kills } from './components/Kills'
+import { AddKill } from './components/AddKill';
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
         <Header />
         <Kills />
         <Sidebar />
+        <AddKill />
       </CharactersProvider>
     </SelectedCharacterProvider>
   );

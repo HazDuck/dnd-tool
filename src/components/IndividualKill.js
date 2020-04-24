@@ -30,7 +30,6 @@ export const IndividualKill = ({kill, selectedCharacter}) => {
     })
 
     const deleteKill = killId => {
-      console.log(killId)
       firebase
       .firestore()
       .collection('kills')
@@ -39,7 +38,6 @@ export const IndividualKill = ({kill, selectedCharacter}) => {
       .then(()=> {
         setKills([...kills])
       })
-      console.log(kills)
     }
 
   return (

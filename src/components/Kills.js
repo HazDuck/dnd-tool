@@ -22,12 +22,10 @@ export const Kills = () => {
       killsData.push(killedMonster)
       return killsData
     })
-    console.log(killsData, 'killsdata')
     return killsData
   }
 
   useEffect(() => {
-    console.log('kills component')
     if (!kills.length > 0) {
       return
     }

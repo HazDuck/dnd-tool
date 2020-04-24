@@ -42,7 +42,6 @@ export const useSelectedCharacter = () => {
 //----------------------------------------------------------//
 
 export const useKills = (selectedCharacterId) => {
-  console.log('kills hook')
   const [kills, setKills] = useState([])
   
   useEffect(() => {
