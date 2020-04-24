@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useKills } from '../hooks'
 import { useSelectedCharacterValue } from '../context'
 import { dataCleanUp } from '../helpers'
-import { firebase } from '../firebase'
+import { IndividualKill } from './IndividualKill'
 
 export const Kills = () => {
   const { selectedCharacter } = useSelectedCharacterValue()
@@ -25,29 +25,6 @@ export const Kills = () => {
     return killsData
   }
 
-  //grab the doc grab the quantity, go back to the doc and inc. Pass in value as the true/false for inc or dec.
-  //use get in this rather than a realtime snapshot.
-  const updateKillCount = (killId, value) => 
-    firebase
-    .firestore()
-    .collection('kills')
-    .doc(killId)
-    .get()
-    .then(quantity => 
-      quantity.data().quantity)
-    .then(quantity => {
-      if (quantity <= 0 && value === false) {
-        return 
-      }
-      firebase
-      .firestore()
-      .collection('kills')
-      .doc(killId)
-      .update(
-        value ? {quantity : quantity + 1} : {quantity : quantity - 1}
-      )
-    })
-  
   useEffect(() => {
     if (!kills.length > 0) {
       return
@@ -59,23 +36,11 @@ export const Kills = () => {
 
   return (
     killsData.length > 0 && (
-      <ul>{killsData.map(kill =>
+      <ul>{killsData.map(kill => 
         <li key={kill.monsterId}>
-          <img style={{width: "100px", height:"auto"}} src={kill.img} alt={`${kill.name}`}/>
-          <h4>{kill.name}</h4>
-          <p>{kill.description}</p>
-          <p>{kill.notes}</p>
-          <h4>{kill.quantity}</h4>
-          <button
-            type="button"
-            onClick={()=> updateKillCount(kill.killId, true)}
-          >+</button>
-          <button
-            type="button"
-            onClick={()=> updateKillCount(kill.killId, false)}
-          >-</button>
-        </li>)}
-      </ul>
+          <IndividualKill kill={kill} selectedCharacter={selectedCharacter}/>
+        </li>
+      )}</ul>
     )
   )
 }

@@ -7,7 +7,7 @@ export const IndividualCharacter = ({character}) => {
   const { setSelectedCharacter } = useSelectedCharacterValue()
   const { characters, setCharacters } = useCharactersValue()
 
-  const deleteCharacter = (characterId) => (
+  const deleteCharacter = characterId => (
     firebase
     .firestore()
     .collection('characters')
