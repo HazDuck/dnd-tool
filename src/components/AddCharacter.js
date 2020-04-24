@@ -21,6 +21,7 @@ export const AddCharacter = ({ setAddCharacterOverlay }) => {
       userId: '12345'
     })
     .then(()=> {
+      //trigger firebase by spreading the chars
       setCharacters([...characters])
       clearAddCharacter()
       }

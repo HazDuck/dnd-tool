@@ -10,6 +10,8 @@ export const Kills = () => {
   const [ monsterData ] = useState(dataCleanUp())
   const [killsData, setKillsData] = useState([])
 
+  //map over the monsterData and if the monsterId on firebase matches the monsterData monsterId
+  //merge the objects together so we can setKillsData and render whats needed
   const findKills = (monsterData, kills) => {
     const killsData = []
     kills.map(kill => {
@@ -23,7 +25,8 @@ export const Kills = () => {
     return killsData
   }
 
-  //grab the doc grab the quantity, go back to the doc and inc 
+  //grab the doc grab the quantity, go back to the doc and inc. Pass in value as the true/false for inc or dec.
+  //use get in this rather than a realtime snapshot.
   const updateKillCount = (killId, value) => 
     firebase
     .firestore()

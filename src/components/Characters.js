@@ -4,7 +4,6 @@ import { useCharactersValue } from '../context'
 import { IndividualCharacter } from './IndividualCharacter';
 
 export const Characters = () => {
-
   const [addCharacterOverlay, setAddCharacterOverlay] = useState(false)
   const { characters } = useCharactersValue()
   

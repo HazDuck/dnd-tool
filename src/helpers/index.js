@@ -2,7 +2,6 @@ import { data, dragonDescription } from '../data'
 
 //data from dnd monsters api is passed in and anything unnecassary is stripped out. All dragon types are given the 
 //top level dragon description because they are the coolest. If the description is buried too deep currently just give generic DM style message
-
 export const dataCleanUp = () => {
   const parsedData = JSON.parse(data)
   const cleanedData = parsedData.monsterFluff.map((monster, index) => {
@@ -11,8 +10,8 @@ export const dataCleanUp = () => {
     //****** DRAGON CLEANUP ******
     const excludedDragonTypes = ['Faerie', 'Shadow', 'Half-', 'Turtle']
     const giveGeneralDragonDescription = 
-    monster.name.includes('Dragon') && !excludedDragonTypes.some(dragonType => containsExcludedMonsterType(monster.name, dragonType)) ?
-    true : false
+    monster.name.includes('Dragon') && !excludedDragonTypes.some(dragonType => 
+      containsExcludedMonsterType(monster.name, dragonType)) ? true : false
     
     return monster = {
       monsterId: index,
@@ -64,6 +63,8 @@ export const generatePushId = (() => {
   }
 })()
 
+//when using stringify to compare two objects to see if updating info is required keys order was being changed,
+//this function alphabetizes the key order to a true comparision is possible
 export const orderObjectKeys = unorderedCharacters => {
   const orderedCharacters = []
   unorderedCharacters.map(character => {
