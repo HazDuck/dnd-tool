@@ -35,7 +35,7 @@ export const useSelectedCharacterValue = () => useContext(SelectedCharacterConte
 export const SelectedMonsterContext = createContext() 
 
 export const SelectedMonsterProvider = ({children}) => {
-  const { selectedMonster, setSelectedMonster} = useSelectedMonster()
+  const { selectedMonster, setSelectedMonster } = useSelectedMonster()
 
   return (
     <SelectedMonsterContext.Provider value={{selectedMonster, setSelectedMonster}}>

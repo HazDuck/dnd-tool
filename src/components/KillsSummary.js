@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useKills, useSelectedMonster } from '../hooks'
 import { useSelectedCharacterValue } from '../context'
 import { dataCleanUp } from '../helpers'
+import { Kills } from './Kills'
 
 export const KillsSummary = () => {
   const { selectedCharacter } = useSelectedCharacterValue()
@@ -11,7 +12,7 @@ export const KillsSummary = () => {
   const [loadingValue, setLoadingValue] = useState(10)
   const [showLoading, setShowLoading] = useState(true)
   const [summaryData, setSummaryData] = useState([])
-  const { selectedMonster, setSelectedMonster} = useSelectedMonster()
+  const { selectedMonster, setSelectedMonster} = useSelectedMonster('')
   const [showKillsModal, setShowKillsModal] = useState(false)
 
   //map over the monsterData and if the monsterId on firebase matches the monsterData monsterId
@@ -72,16 +73,15 @@ export const KillsSummary = () => {
           <li 
           onClick={()=> {
             setSelectedMonster(kill.monsterId)
-            setShowKillsModal(!showKillsModal)
-          }
-          }
+            setShowKillsModal(true)
+          }}
           key={kill.monsterId}>
             <h4>{kill.name}</h4>
             <h4>{kill.quantity}</h4>
           </li>
-        )}</ul>
+      )}</ul>
         {showKillsModal && (
-          <p>we do not naw on our kitty</p>
+          <Kills selectedMonster={selectedMonster}/>
         )}
       </div>
     )

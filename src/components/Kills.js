@@ -5,7 +5,7 @@ import { dataCleanUp } from '../helpers'
 import { IndividualKill } from './IndividualKill'
 import { LoadingBar } from './LoadingBar'
 
-export const Kills = () => {
+export const Kills = ({selectedMonster}) => {
   const { selectedCharacter } = useSelectedCharacterValue()
   const { kills } = useKills(selectedCharacter.characterId)
   const [ monsterData ] = useState(dataCleanUp())
@@ -28,7 +28,7 @@ export const Kills = () => {
       killsData.push(killedMonster)
       return killsData
     })
-    return killsData
+    return killsData.filter(kill => kill.monsterId === selectedMonster)
   }
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export const Kills = () => {
     if (JSON.stringify(findKills(monsterData, kills)) !== JSON.stringify(killsData)) {
       setKillsData(findKills(monsterData, kills))
     }
-  },[monsterData, kills, killsData])
+  },[monsterData, kills, killsData, selectedMonster])
 
   useEffect(() => {
     if (!showLoading) {
@@ -52,6 +52,7 @@ export const Kills = () => {
     }
   }, [showLoading, loadingValue])
 
+  console.log(selectedMonster)
   return (
     showLoading ? 
       <div>
@@ -61,7 +62,7 @@ export const Kills = () => {
       :
       killsData.length > 0 && (
         <ul>{killsData.map(kill => 
-          <li key={kill.monsterId}>
+          <li key={kill.killId}>
             <IndividualKill kill={kill} selectedCharacter={selectedCharacter}/>
           </li>
       )}</ul>
