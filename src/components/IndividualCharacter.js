@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { useSelectedCharacterValue, useCharactersValue } from '../context'
+import { useSelectedCharacterValue, useCharactersValue, useSelectedMonsterValue } from '../context'
 import { firebase } from '../firebase'
 
 export const IndividualCharacter = ({character}) => {
   const [deleteCharacterOverlay, setDeleteCharacterOverlay] = useState(false)
   const { setSelectedCharacter } = useSelectedCharacterValue()
   const { characters, setCharacters } = useCharactersValue()
+  const { setSelectedMonster } = useSelectedMonsterValue()
 
   const deleteCharacter = characterId => (
     firebase
@@ -20,7 +21,10 @@ export const IndividualCharacter = ({character}) => {
 
   return (
     <li>
-      <span onClick={()=>{setSelectedCharacter(character)}}>
+      <span onClick={()=>{
+        setSelectedCharacter(character)
+        setSelectedMonster('')
+      }}>
         {character.name}
       </span>
       <button onClick={()=>{
