@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react'
-import { useCharacters, useSelectedCharacter } from '../hooks'
+import { useCharacters, useSelectedCharacter, useSelectedMonster } from '../hooks'
 
 export const CharacterContext = createContext() 
 
@@ -29,3 +29,19 @@ export const SelectedCharacterProvider = ({children}) => {
 }
 
 export const useSelectedCharacterValue = () => useContext(SelectedCharacterContext)
+
+//-----------------------------------------------------------------------//
+
+export const SelectedMonsterContext = createContext() 
+
+export const SelectedMonsterProvider = ({children}) => {
+  const { selectedMonster, setSelectedMonster} = useSelectedMonster()
+
+  return (
+    <SelectedMonsterContext.Provider value={{selectedMonster, setSelectedMonster}}>
+      {children}
+    </SelectedMonsterContext.Provider>
+  )
+}
+
+export const useSelectedMonsterValue = () => useContext(SelectedMonsterContext)

@@ -1,5 +1,5 @@
 import React from 'react';
-import { CharactersProvider, SelectedCharacterProvider} from './context'
+import { CharactersProvider, SelectedCharacterProvider, SelectedMonsterProvider} from './context'
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
 import { Kills } from './components/Kills'
@@ -10,11 +10,13 @@ const App = () => {
   return (
     <SelectedCharacterProvider>
       <CharactersProvider>
-        <Header />
-        <KillsSummary />
-        {/* <Kills /> */}
-        <Sidebar />
-        <AddKill />
+        <SelectedMonsterProvider>
+          <Header />
+          <KillsSummary />
+          {/* <Kills /> */}
+          <Sidebar />
+          <AddKill />
+        </SelectedMonsterProvider>
       </CharactersProvider>
     </SelectedCharacterProvider>
   );

@@ -41,6 +41,15 @@ export const useSelectedCharacter = () => {
 
 //----------------------------------------------------------//
 
+export const useSelectedMonster = () => {
+  //store the selectedCharacter in local storage and parse it so we can extract character name
+  const [selectedMonster, setSelectedMonster] = useState()
+
+  return { selectedMonster, setSelectedMonster }
+}
+
+//----------------------------------------------------------//
+
 export const useKills = (selectedCharacterId) => {
   const [kills, setKills] = useState([])
   
