@@ -4,13 +4,15 @@ import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
 import { Kills } from './components/Kills'
 import { AddKill } from './components/AddKill';
+import { KillsSummary } from './components/KillsSummary'
 
 const App = () => {
   return (
     <SelectedCharacterProvider>
       <CharactersProvider>
         <Header />
-        <Kills />
+        <KillsSummary />
+        {/* <Kills /> */}
         <Sidebar />
         <AddKill />
       </CharactersProvider>
