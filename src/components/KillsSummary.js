@@ -34,26 +34,19 @@ export const KillsSummary = () => {
   const calculateSummaryData = killsData => {
     let summaryData = []
     killsData.map(kill => {
-      let frank = killsData.filter(value => 
-        kill.monsterId === value.monsterId)
-      if (frank.length > 1) {
-        const summaryKillDataMultiple = {
-          name: frank[0].name, 
-          img: frank[0].img, 
-          monsterId: frank[0].monsterId,
-          quantity: frank.reduce()
-          //do dun write the reduce!
-        }
+      if (summaryData.some(monster => monster.monsterId === kill.monsterId)) {
+        const toInc = summaryData.find(monster => monster.monsterId === kill.monsterId)
+        toInc.quantity += kill.quantity
       } else {
-        const summaryKillDataInvidual = { 
-          name: frank[0].name, 
-          img: frank[0].img, 
-          monsterId: frank[0].monsterId,
-          quantity: frank[0].quantity}
-        summaryData.push(summaryKillDataInvidual)
+        const summaryKillDataMultiple = {
+          name: kill.name, 
+          img: kill.img, 
+          monsterId: kill.monsterId,
+          quantity: kill.quantity
+        }
+        summaryData.push(summaryKillDataMultiple)
       }
     })
-    console.log(summaryData)
     return summaryData
   }
   
@@ -74,7 +67,8 @@ export const KillsSummary = () => {
     summaryData.length > 0 && (
         <ul>{summaryData.map(kill => 
           <li key={kill.monsterId}>
-            <p>{kill.name}</p>
+            <h4>{kill.name}</h4>
+            <h4>{kill.quantity}</h4>
           </li>
       )}</ul>
     )
