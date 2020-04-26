@@ -1,45 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { useKills } from '../hooks'
 import { useSelectedCharacterValue } from '../context'
-import { dataCleanUp } from '../helpers'
 import { IndividualKill } from './IndividualKill'
 import { LoadingBar } from './LoadingBar'
 
-export const Kills = ({selectedMonster}) => {
+export const Kills = ({selectedMonster, killsData}) => {
   const { selectedCharacter } = useSelectedCharacterValue()
-  const { kills } = useKills(selectedCharacter.characterId)
-  const [ monsterData ] = useState(dataCleanUp())
-  const [killsData, setKillsData] = useState([])
   const [loadingValue, setLoadingValue] = useState(10)
   const [showLoading, setShowLoading] = useState(true)
-
-  //map over the monsterData and if the monsterId on firebase matches the monsterData monsterId
-  //merge the objects together so we can setKillsData and render whats needed
-  const findKills = (monsterData, kills) => {
-    if (kills) {
-      setShowLoading(false)
-    }
-    const killsData = []
-    kills.map(kill => {
-      let killedMonster = monsterData.filter(monster => 
-        parseInt(kill.monsterId) === parseInt(monster.monsterId)
-      )
-      killedMonster = Object.assign({}, ...killedMonster, {...kill})
-      killsData.push(killedMonster)
-      return killsData
-    })
-    return killsData.filter(kill => kill.monsterId === selectedMonster)
-  }
+  const [filteredKillsData, setFilteredKillsData] = useState([])
 
   useEffect(() => {
-    if (!kills.length > 0) {
+    if (!killsData.length > 0) {
       return
     }
-    if (JSON.stringify(findKills(monsterData, kills)) !== JSON.stringify(killsData)) {
-      setKillsData(findKills(monsterData, kills))
-    }
-  },[monsterData, kills, killsData, selectedMonster])
+    setFilteredKillsData(killsData.filter(kill => kill.monsterId === selectedMonster))
+    setShowLoading(false)
+  }, [killsData, selectedMonster])
 
+  //manages bar updating
   useEffect(() => {
     if (!showLoading) {
       return
@@ -52,7 +30,6 @@ export const Kills = ({selectedMonster}) => {
     }
   }, [showLoading, loadingValue])
 
-  console.log(selectedMonster)
   return (
     showLoading ? 
       <div>
@@ -60,8 +37,8 @@ export const Kills = ({selectedMonster}) => {
         <LoadingBar loadingValue={loadingValue}/>
       </div>
       :
-      killsData.length > 0 && (
-        <ul>{killsData.map(kill => 
+      filteredKillsData.length > 0 && (
+        <ul>{filteredKillsData.map(kill => 
           <li key={kill.killId}>
             <IndividualKill kill={kill} selectedCharacter={selectedCharacter}/>
           </li>

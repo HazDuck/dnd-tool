@@ -3,6 +3,7 @@ import { useKills, useSelectedMonster } from '../hooks'
 import { useSelectedCharacterValue } from '../context'
 import { dataCleanUp } from '../helpers'
 import { Kills } from './Kills'
+import { LoadingBar } from './LoadingBar'
 
 export const KillsSummary = () => {
   const { selectedCharacter } = useSelectedCharacterValue()
@@ -52,7 +53,7 @@ export const KillsSummary = () => {
     })
     return summaryData
   }
-  
+
   useEffect(() => {
     if (!kills.length > 0) {
       return
@@ -60,30 +61,51 @@ export const KillsSummary = () => {
     if (JSON.stringify(findKills(monsterData, kills)) !== JSON.stringify(killsData)) {
       setKillsData(findKills(monsterData, kills))
     }
+    setShowLoading(false)
   },[monsterData, kills, killsData])
-  
+
+  //manages bar updating
+  useEffect(() => {
+    if (!showLoading) {
+      return
+    }  else if (loadingValue === 100 ) {
+      return 
+    }
+    const fillBar = setInterval(() => setLoadingValue(loadingValue + 10), 1000)
+    return () => {
+      clearInterval(fillBar)
+    }
+  }, [showLoading, loadingValue])
+
+  //filter killsData by sleected monster
   useEffect(() => {
     setSummaryData(calculateSummaryData(killsData))
   }, [killsData])
 
   return (
-    summaryData.length > 0 && (
+    showLoading ? 
       <div>
-        <ul>{summaryData.map(kill => 
-          <li 
-          onClick={()=> {
-            setSelectedMonster(kill.monsterId)
-            setShowKillsModal(true)
-          }}
-          key={kill.monsterId}>
-            <h4>{kill.name}</h4>
-            <h4>{kill.quantity}</h4>
-          </li>
-      )}</ul>
-        {showKillsModal && (
-          <Kills selectedMonster={selectedMonster}/>
-        )}
+        <p>summoning...</p>
+        <LoadingBar loadingValue={loadingValue}/>
       </div>
-    )
+      :
+      summaryData.length > 0 && (
+        <div>
+          <ul>{summaryData.map(kill => 
+            <li 
+            onClick={()=> {
+              setSelectedMonster(kill.monsterId)
+              setShowKillsModal(true)
+            }}
+            key={kill.monsterId}>
+              <h4>{kill.name}</h4>
+              <h4>{kill.quantity}</h4>
+            </li>
+          )}</ul>
+          {showKillsModal && (
+            <Kills selectedMonster={selectedMonster} killsData={killsData}/>
+          )}
+        </div>
+      )
   )
 }
