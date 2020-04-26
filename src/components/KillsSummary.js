@@ -103,7 +103,7 @@ export const KillsSummary = () => {
             </li>
           )}</ul>
           {showKillsModal && (
-            <Kills selectedMonster={selectedMonster} killsData={killsData}/>
+            <Kills selectedMonster={selectedMonster} killsData={killsData} setShowKillsModal={setShowKillsModal}/>
           )}
         </div>
       )

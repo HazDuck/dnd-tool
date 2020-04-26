@@ -3,7 +3,7 @@ import { useSelectedCharacterValue } from '../context'
 import { IndividualKill } from './IndividualKill'
 import { LoadingBar } from './LoadingBar'
 
-export const Kills = ({selectedMonster, killsData}) => {
+export const Kills = ({selectedMonster, killsData, setShowKillsModal}) => {
   const { selectedCharacter } = useSelectedCharacterValue()
   const [loadingValue, setLoadingValue] = useState(10)
   const [showLoading, setShowLoading] = useState(true)
@@ -30,6 +30,7 @@ export const Kills = ({selectedMonster, killsData}) => {
     }
   }, [showLoading, loadingValue])
 
+  console.log(filteredKillsData)
   return (
     showLoading ? 
       <div>
@@ -38,11 +39,34 @@ export const Kills = ({selectedMonster, killsData}) => {
       </div>
       :
       filteredKillsData.length > 0 && (
-        <ul>{filteredKillsData.map(kill => 
-          <li key={kill.killId}>
-            <IndividualKill kill={kill} selectedCharacter={selectedCharacter}/>
-          </li>
-      )}</ul>
+        <div>
+          {filteredKillsData.map((kill, index) => {
+            if (index === 0) {
+              return (
+                <div>
+                  <button
+                    onClick={()=>setShowKillsModal(false)}
+                  >
+                    Close
+                  </button>
+                  <div>
+                    <h4>{kill.name}</h4>
+                    <p>{kill.description}</p>
+                    <img style={{width: "100px", height:"auto"}} src={kill.img} alt={`${kill.name}`}/>
+                  </div>
+                  <div key={kill.killId}>
+                    <IndividualKill kill={kill} selectedCharacter={selectedCharacter}/>
+                  </div>
+                </div>
+              )
+            }
+            return (
+              <div key={kill.killId}>
+                <IndividualKill kill={kill} selectedCharacter={selectedCharacter}/>
+              </div>
+            )
+          })}
+        </div>
     )
   )
 }

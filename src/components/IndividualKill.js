@@ -42,9 +42,6 @@ export const IndividualKill = ({kill, selectedCharacter}) => {
 
   return (
     <div>
-      <img style={{width: "100px", height:"auto"}} src={kill.img} alt={`${kill.name}`}/>
-      <h4>{kill.name}</h4>
-      <p>{kill.description}</p>
       <p>{kill.notes}</p>
       <h4>{kill.quantity}</h4>
       <button
