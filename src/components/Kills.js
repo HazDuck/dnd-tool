@@ -9,6 +9,7 @@ export const Kills = ({selectedMonster, killsData, setShowKillsModal}) => {
   const [showLoading, setShowLoading] = useState(true)
   const [filteredKillsData, setFilteredKillsData] = useState([])
 
+//this is where i think the memory leak is 
   useEffect(() => {
     if (!killsData.length > 0) {
       return

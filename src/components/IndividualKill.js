@@ -50,9 +50,7 @@ export const IndividualKill = ({kill, selectedCharacter}) => {
         notes: updatedKillNotes
       })
     
-
   return (
-
     <div>
       <input
         type="text"
