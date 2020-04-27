@@ -84,20 +84,22 @@ export const KillsSummary = () => {
 
   return (
     showLoading ? 
-      <div>
+      <div className="rpgui-container framed">
         <p>summoning...</p>
-        <LoadingBar loadingValue={loadingValue}/>
+        <LoadingBar loadingValue={loadingValue} data-testid="LoadingBarKillsSummary"/>
       </div>
       :
       summaryData.length > 0 && (
-        <div>
+        <div className="rpgui-container framed kills-summary-container" data-testid="KillsSummary">
           <ul>{summaryData.map(kill => 
-            <li 
+            <li
+            className="kill-summary"
             onClick={()=> {
               setSelectedMonster(kill.monsterId)
               setShowKillsModal(true)
             }}
             key={kill.monsterId}>
+              <img style={{width: "100px", height:"auto"}} src={kill.img} alt={`${kill.name}`}/>
               <h4>{kill.name}</h4>
               <h4>{kill.quantity}</h4>
             </li>

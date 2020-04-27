@@ -17,10 +17,17 @@ export const Header = () => {
   }, [kills])
   
   return (
-    <header>
-      <h1>Dnd Tool</h1>
-      <h2>{selectedCharacter.name}</h2>
-      <h3>Total kills: {totalKills}</h3>
+    <header className="header">
+      <img className="header-skelly" src="/images/skelly2.png" alt="skelly"/>
+      <div className="heading-container">
+        <h1>Dnd Tool</h1>
+        <hr className="golden"></hr>
+        <div className="rpgui-container framed-grey">
+          <h2>{selectedCharacter.name}</h2>
+          <h3>Kills: {totalKills}</h3>
+        </div>
+      </div>
+      <img className="header-skelly right" src="/images/skelly2.png" alt="skelly"/>
     </header>
   )
 }

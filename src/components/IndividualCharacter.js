@@ -20,15 +20,16 @@ export const IndividualCharacter = ({character}) => {
   )
 
   return (
-    <li>
-      <span onClick={()=>{
+    <div className="individual-character-container">
+      <span className="character-name" onClick={()=>{
         setSelectedCharacter(character)
         setSelectedMonster('')
       }}>
         {character.name}
       </span>
-      <button onClick={()=>{
-        setDeleteCharacterOverlay(true)}
+      <button 
+        className="rpgui-button"
+        onClick={()=>{setDeleteCharacterOverlay(true)}
       }>
         x
       </button>
@@ -49,6 +50,6 @@ export const IndividualCharacter = ({character}) => {
           </span>
         </div>
       )}
-    </li>
+    </div>
   )
 }

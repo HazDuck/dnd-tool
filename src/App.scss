@@ -1,0 +1,76 @@
+@import './assets/rpgui.css';
+
+body {
+  background: #000
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  .heading-container {
+    flex-grow: 1;
+
+    h1 {
+      font-size: 250%
+    }
+  
+    h2 {
+      font-size: 200%;
+      text-transform: capitalize;
+    }
+
+    .rpgui-container.framed-grey {
+      width: 33%;
+      margin: 0 auto;
+    }
+  }
+
+  .header-skelly {
+    display:inline-block; 
+    width:160px;
+  }
+    
+  .right {
+    transform: scaleX(-1); 
+  }
+
+  hr.golden {
+    width: 70%;
+  }
+}
+
+
+// .constrain {
+//   width: 100%;
+//   max-width: 1232px;
+//   margin: 0 auto;
+//   padding: 0 16px;
+// }
+
+.individual-character-container {
+  display: flex;
+  align-items: center;
+
+  .character-name {
+    width: 100%;
+  }
+
+  .rpgui-button {
+    min-width: 38px;
+    height: 30px;
+    padding: 0
+  }
+}
+
+.main-container {
+  display: flex;
+  .kills-summary-container {
+    width: 100%;
+    .kill-summary {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

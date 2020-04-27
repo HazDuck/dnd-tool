@@ -10,16 +10,16 @@ export const Characters = () => {
   return (
     characters && (
       <section>
-        <ul>
+        <div>
           {characters.map((character) => (
             <IndividualCharacter key={character.characterId} character={character} />
           ))}
-        </ul>
+        </div>
         <button
           type="button"
           onClick={()=>setAddCharacterOverlay(!addCharacterOverlay)}
         >
-          Add new character
+          +
         </button>
 
         {addCharacterOverlay && 

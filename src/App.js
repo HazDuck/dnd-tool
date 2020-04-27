@@ -10,10 +10,16 @@ const App = () => {
     <SelectedCharacterProvider>
       <CharactersProvider>
         <SelectedMonsterProvider>
-          <Header />
-          <KillsSummary />
-          <Sidebar />
-          <AddKill />
+          <div className="rpgui-content">
+            <div className="rpgui-container framed">
+              <Header />
+              <div className="main-container">
+                <Sidebar />
+                <KillsSummary />
+                  {/* <AddKill /> */}
+              </div>
+            </div>
+          </div>
         </SelectedMonsterProvider>
       </CharactersProvider>
     </SelectedCharacterProvider>
