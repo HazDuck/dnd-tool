@@ -30,23 +30,19 @@ export const Kills = ({selectedMonster, killsData, setShowKillsModal}) => {
     }
   }, [showLoading, loadingValue])
 
-  console.log(filteredKillsData)
   return (
     showLoading ? 
       <div>
         <p>summoning...</p>
         <LoadingBar loadingValue={loadingValue}/>
       </div>
-      :
-      filteredKillsData.length > 0 && (
+      : filteredKillsData.length > 0 && (
         <div>
           {filteredKillsData.map((kill, index) => {
             if (index === 0) {
               return (
-                <div>
-                  <button
-                    onClick={()=>setShowKillsModal(false)}
-                  >
+                <div key={kill.killId}>
+                  <button onClick={()=>setShowKillsModal(false)}>
                     Close
                   </button>
                   <div>
@@ -54,7 +50,7 @@ export const Kills = ({selectedMonster, killsData, setShowKillsModal}) => {
                     <p>{kill.description}</p>
                     <img style={{width: "100px", height:"auto"}} src={kill.img} alt={`${kill.name}`}/>
                   </div>
-                  <div key={kill.killId}>
+                  <div>
                     <IndividualKill kill={kill} selectedCharacter={selectedCharacter}/>
                   </div>
                 </div>

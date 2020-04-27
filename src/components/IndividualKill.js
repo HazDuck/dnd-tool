@@ -5,6 +5,7 @@ import { useKills } from '../hooks'
 export const IndividualKill = ({kill, selectedCharacter}) => {
   const [deleteKillOverlay, setDeleteKillOverlay] = useState(false)
   const { kills, setKills } = useKills(selectedCharacter.characterId)
+  const [updatedKillNotes, setUpdatedKillNotes] = useState(kill.notes)
 
   //grab the doc grab the quantity, go back to the doc and inc. Pass in value as the true/false for inc or dec.
   //use get in this rather than a realtime snapshot.
@@ -29,7 +30,7 @@ export const IndividualKill = ({kill, selectedCharacter}) => {
       )
     })
 
-    const deleteKill = killId => {
+    const deleteKill = killId => 
       firebase
       .firestore()
       .collection('kills')
@@ -38,12 +39,31 @@ export const IndividualKill = ({kill, selectedCharacter}) => {
       .then(()=> {
         setKills([...kills])
       })
-    }
+    
+
+    const updateKillNotes = (killId, updatedKillNotes) => 
+      firebase
+      .firestore()
+      .collection('kills')
+      .doc(killId)
+      .update({
+        notes: updatedKillNotes
+      })
+    
 
   return (
+
     <div>
-      <p>{kill.notes}</p>
-      <h4>{kill.quantity}</h4>
+      <input
+        type="text"
+        value={updatedKillNotes}
+        onChange={(e)=>setUpdatedKillNotes(e.target.value)}
+      />
+      <button
+        onClick={()=>updateKillNotes(kill.killId, updatedKillNotes)}
+      >Update</button>
+      <p>{kill.date}</p>
+      <p>{kill.quantity}</p>
       <button
         type="button"
         onClick={()=> updateKillCount(kill.killId, true)}
@@ -63,7 +83,6 @@ export const IndividualKill = ({kill, selectedCharacter}) => {
             type="button"
             onClick={()=>{
               deleteKill(kill.killId)
-              // setDeleteKillOverlay(false)
             }}
           >
             Confirm
