@@ -93,35 +93,31 @@ export const KillsSummary = () => {
     setSummaryData(calculateSummaryData(killsData))
   }, [killsData])
 
-  const pixelateImages = () => {
-    const canvas = document.getElementById('canvas')
+  const pixelateImages = (canvas) => {
     const ctx = canvas.getContext('2d')
     const img = new Image()
+    console.log(ctx, img)
     ctx.mozImageSmoothingEnabled = false;
     ctx.webkitImageSmoothingEnabled = false;
     ctx.imageSmoothingEnabled = false;
-
     img.src = 'https://5e.tools/img/bestiary/MM/Goblin.jpg';
-    img.onload = function() {
-      pixelate(canvas, ctx, img);
-    };
-
+    setTimeout(()=> pixelate(canvas, ctx, img), 200)
   }
 
   const pixelate = (canvas, ctx, img) => {
-    const size = .5
+    const size = .6
     const w = canvas.width * size
     const h = canvas.height * size
     ctx.drawImage(img, 0, 0, w, h);
     ctx.drawImage(canvas, 0, 0, w, h, 0, 0, canvas.width, canvas.height);
   }
 
-  // useEffect(() => {
-  //   if (summaryData.length > 0) {
-  //     return 
-  //   }
-  //   pixlateImages()
-  // }, [summaryData])
+  useEffect(() => {
+    if (!document.getElementById('canvas')) {
+      return 
+    }
+    pixelateImages(document.getElementById('canvas'))
+  })
 
   return (
     showLoading ? 
@@ -144,13 +140,10 @@ export const KillsSummary = () => {
               setShowKillsModal(true)
             }}
             key={kill.monsterId}>
-              {/* <div className="rpgui-container framed monster-image-container">
-                <img src={kill.img} alt={`${kill.name}`}/>
-              </div> */}
-              <canvas id="canvas"></canvas>
-              <button
-                onClick={()=>pixelateImages()}
-              ></button>
+              <div className="rpgui-container framed monster-image-container">
+                <canvas id="canvas"></canvas>
+                {/* <img src={kill.img} alt={`${kill.name}`}/> */}
+              </div>
               <h4>{kill.name}</h4>
               <h4>{kill.quantity}</h4>
             </div>
