@@ -27,7 +27,7 @@ export const IndividualCharacter = ({ character, selectedCharacter }) => {
           setSelectedMonster('')
         }}>
           {character.name}
-          {character.characterId == selectedCharacter.characterId ? <div class="rpgui-icon sword"></div> : ''}
+          {character.characterId == selectedCharacter.characterId ? <div className="rpgui-icon sword"></div> : ''}
         </span>
         <button 
           className="rpgui-button small-button"

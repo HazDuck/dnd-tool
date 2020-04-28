@@ -104,6 +104,7 @@ $base-margin: 8px;
           height: 250px;
           object-fit: contain;
           border: 10px #FFF solid;
+          image-rendering: pixelated;
         }
       }
     }
