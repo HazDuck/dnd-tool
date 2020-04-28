@@ -4,6 +4,7 @@ import { useSelectedCharacterValue } from '../context'
 import { dataCleanUp } from '../helpers'
 import { Kills } from './Kills'
 import { LoadingBar } from './LoadingBar'
+import { ConsoleWriter } from 'istanbul-lib-report';
 
 export const KillsSummary = () => {
   const { selectedCharacter } = useSelectedCharacterValue()
@@ -92,6 +93,36 @@ export const KillsSummary = () => {
     setSummaryData(calculateSummaryData(killsData))
   }, [killsData])
 
+  const pixelateImages = () => {
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+    const img = new Image()
+    ctx.mozImageSmoothingEnabled = false;
+    ctx.webkitImageSmoothingEnabled = false;
+    ctx.imageSmoothingEnabled = false;
+
+    img.src = 'https://5e.tools/img/bestiary/MM/Goblin.jpg';
+    img.onload = function() {
+      pixelate(canvas, ctx, img);
+    };
+
+  }
+
+  const pixelate = (canvas, ctx, img) => {
+    const size = .5
+    const w = canvas.width * size
+    const h = canvas.height * size
+    ctx.drawImage(img, 0, 0, w, h);
+    ctx.drawImage(canvas, 0, 0, w, h, 0, 0, canvas.width, canvas.height);
+  }
+
+  // useEffect(() => {
+  //   if (summaryData.length > 0) {
+  //     return 
+  //   }
+  //   pixlateImages()
+  // }, [summaryData])
+
   return (
     showLoading ? 
       <div className="rpgui-container framed">
@@ -113,9 +144,13 @@ export const KillsSummary = () => {
               setShowKillsModal(true)
             }}
             key={kill.monsterId}>
-              <div className="rpgui-container framed monster-image-container">
+              {/* <div className="rpgui-container framed monster-image-container">
                 <img src={kill.img} alt={`${kill.name}`}/>
-              </div>
+              </div> */}
+              <canvas id="canvas"></canvas>
+              <button
+                onClick={()=>pixelateImages()}
+              ></button>
               <h4>{kill.name}</h4>
               <h4>{kill.quantity}</h4>
             </div>
