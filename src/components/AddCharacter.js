@@ -28,24 +28,28 @@ export const AddCharacter = ({ setAddCharacterOverlay }) => {
     )
   
   return (
-    <div>
+    <div className='add-character-container'>
       <input
         type="text"
         placeholder="Name"
         value={characterName}
         onChange={e=>setCharacterName(e.target.value)}
       />
-      <button
-        type="button"
-        onClick={()=>addCharacter(characterName)}
-      >
-        Confirm
-      </button>
-      <span
-        onClick={()=>clearAddCharacter()}
-      >
-        Cancel
-      </span>
+      <div>
+        <button
+          type="button"
+          className="rpgui-button"
+          onClick={()=>addCharacter(characterName)}
+        >
+          Confirm
+        </button>
+        <span
+          onClick={()=>clearAddCharacter()}
+          className="rpgui-cursor-point cancel-button"
+        >
+          Cancel
+        </span>
+      </div>
     </div>
   )
 }

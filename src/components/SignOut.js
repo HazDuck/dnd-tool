@@ -1,5 +1,5 @@
 import React from 'react';
 
 export const SignOut = () => (
-  <span>Sign Out (TBC)</span>
+  <button className="rpgui-button">Sign Out</button>
 ) 

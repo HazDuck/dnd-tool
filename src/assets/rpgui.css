@@ -72,7 +72,11 @@ inside your html file.
   display: inline-block;
   /* padding */
   padding-left: 35px;
-  padding-right: 35px; }
+  padding-right: 35px; 
+  color: white;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  margin-bottom: 8px;
+}
 
 /* button hover */
 .rpgui-button.hover,
@@ -111,7 +115,9 @@ inside your html file.
   padding-top: 5px;
   padding-left: 35px;
   padding-right: 35px;
-  overflow: visible; }
+  overflow: visible; 
+  line-height: 45px;
+}
 
 /* button hover */
 .rpgui-button.golden.hover,
@@ -548,7 +554,9 @@ ul.rpgui-dropdown-imp {
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.5); }
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.5); 
+  margin-bottom: 8px;
+}
 
 /* textarea extra rules */
 .rpgui-content textarea {
@@ -660,7 +668,7 @@ ul.rpgui-list-imp {
   font-weight: 1;
   text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
   font-size: 1.15em;
-  text-decoration: underline;
+  
   /* center text */
   text-align: center;
   /* padding */

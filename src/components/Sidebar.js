@@ -3,7 +3,7 @@ import { Characters } from './Characters';
 import { SignOut } from './SignOut'
 
 export const Sidebar = () => (
-  <aside className="rpgui-container framed-golden">
+  <aside className="rpgui-container framed-golden side-bar">
     <Characters />
     <SignOut />
   </aside>

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelectedCharacterValue, useCharactersValue, useSelectedMonsterValue } from '../context'
 import { firebase } from '../firebase'
 
-export const IndividualCharacter = ({character}) => {
+export const IndividualCharacter = ({ character, selectedCharacter }) => {
   const [deleteCharacterOverlay, setDeleteCharacterOverlay] = useState(false)
   const { setSelectedCharacter } = useSelectedCharacterValue()
   const { characters, setCharacters } = useCharactersValue()
@@ -19,33 +19,42 @@ export const IndividualCharacter = ({character}) => {
     })
   )
 
+  console.log(character.name, character.characterId == selectedCharacter.characterId)
+  // console.log(character.characterId == selectedCharacter.characterId)
+
   return (
     <div className="individual-character-container">
-      <span className="character-name" onClick={()=>{
-        setSelectedCharacter(character)
-        setSelectedMonster('')
-      }}>
-        {character.name}
-      </span>
-      <button 
-        className="rpgui-button"
-        onClick={()=>{setDeleteCharacterOverlay(true)}
-      }>
-        x
-      </button>
+      <div className="individual-character-container-inner">
+        <span className="character-name rpgui-cursor-point"  onClick={()=>{
+          setSelectedCharacter(character)
+          setSelectedMonster('')
+        }}>
+          {character.name}
+          {character.characterId == selectedCharacter.characterId ? <div class="rpgui-icon sword"></div> : ''}
+        </span>
+        <button 
+          className="rpgui-button small-button"
+          onClick={()=>{setDeleteCharacterOverlay(true)}
+        }>
+          x
+        </button>
+      </div>
 
       {deleteCharacterOverlay && (
         <div>
           <button
             type="button"
+            className="rpgui-button"
             onClick={()=>{
               deleteCharacter(character.characterId)
               setDeleteCharacterOverlay(false)
             }}
           >
-            Confirm
+            Delete
           </button>
-          <span onClick={()=>setDeleteCharacterOverlay(false)}>
+          <span 
+            className="cancel-button rpgui-cursor-point"
+            onClick={()=>setDeleteCharacterOverlay(false)}>
             Cancel
           </span>
         </div>

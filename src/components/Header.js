@@ -22,7 +22,8 @@ export const Header = () => {
       <div className="heading-container">
         <h1>Dnd Tool</h1>
         <hr className="golden"></hr>
-        <div className="rpgui-container framed-grey">
+        <h3>- Remember what you done killed -</h3>
+        <div className="rpgui-container framed-golden-2 selected-character">
           <h2>{selectedCharacter.name}</h2>
           <h3>Kills: {totalKills}</h3>
         </div>
