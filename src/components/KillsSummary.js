@@ -15,6 +15,16 @@ export const KillsSummary = () => {
   const [summaryData, setSummaryData] = useState([])
   const { selectedMonster, setSelectedMonster} = useSelectedMonster('')
   const [showKillsModal, setShowKillsModal] = useState(false)
+  const [totalKills, setTotalKills] = useState('')
+
+  const calculateTotalKills = kills => kills.reduce((total, kill) => total + parseInt(kill.quantity), 0)
+
+  useEffect(() => {
+    if (!kills.length > 0) {
+      return
+    }
+    setTotalKills(calculateTotalKills(kills))
+  }, [kills])
 
   //map over the monsterData and if the monsterId on firebase matches the monsterData monsterId
   //merge the objects together so we can setKillsData and pass to the IndividualKill component
@@ -91,8 +101,12 @@ export const KillsSummary = () => {
       :
       summaryData.length > 0 && (
         <div className="rpgui-container framed kills-summary-container" data-testid="KillsSummary">
-          <ul>{summaryData.map(kill => 
-            <li
+          <div className="rpgui-container framed-golden-2 selected-character">
+            <h2>{selectedCharacter.name}</h2>
+            <h3>Kills: {totalKills}</h3>
+          </div>
+          <div>{summaryData.map(kill => 
+            <div
             className="kill-summary"
             onClick={()=> {
               setSelectedMonster(kill.monsterId)
@@ -104,8 +118,8 @@ export const KillsSummary = () => {
               </div>
               <h4>{kill.name}</h4>
               <h4>{kill.quantity}</h4>
-            </li>
-          )}</ul>
+            </div>
+          )}</div>
           {showKillsModal && (
             <Kills selectedMonster={selectedMonster} killsData={killsData} setShowKillsModal={setShowKillsModal}/>
           )}

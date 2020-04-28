@@ -3,6 +3,7 @@
 body {
   background: #000
 }
+
 $base-margin: 8px;
 
 .header {
@@ -33,7 +34,6 @@ $base-margin: 8px;
     display: inline-block; 
     width: 160px;
     height: 150px;
-    margin-top: 29px;
   }
     
   .right {
@@ -96,10 +96,13 @@ $base-margin: 8px;
 
       .monster-image-container {
         padding: 0;
+        background: #FFF;
+        border-radius: 20px;
 
         img {
-          width: 100px;
-          height: auto;
+          width: 250px;
+          height: 250px;
+          object-fit: contain;
           border: 10px #FFF solid;
         }
       }
