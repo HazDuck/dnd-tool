@@ -40,7 +40,6 @@ export const IndividualKill = ({kill, selectedCharacter}) => {
         setKills([...kills])
       })
     
-
     const updateKillNotes = (killId, updatedKillNotes) => 
       firebase
       .firestore()

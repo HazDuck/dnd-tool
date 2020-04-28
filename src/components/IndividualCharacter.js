@@ -19,9 +19,6 @@ export const IndividualCharacter = ({ character, selectedCharacter }) => {
     })
   )
 
-  console.log(character.name, character.characterId == selectedCharacter.characterId)
-  // console.log(character.characterId == selectedCharacter.characterId)
-
   return (
     <div className="individual-character-container">
       <div className="individual-character-container-inner">

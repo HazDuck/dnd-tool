@@ -99,8 +99,8 @@ export const KillsSummary = () => {
               setShowKillsModal(true)
             }}
             key={kill.monsterId}>
-              <div className="rpgui-container framed">
-                <img style={{width: "100px", height:"auto"}} src={kill.img} alt={`${kill.name}`}/>
+              <div className="rpgui-container framed monster-image-container">
+                <img src={kill.img} alt={`${kill.name}`}/>
               </div>
               <h4>{kill.name}</h4>
               <h4>{kill.quantity}</h4>

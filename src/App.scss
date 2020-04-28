@@ -24,7 +24,8 @@ $base-margin: 8px;
 
     .selected-character {
       width: 66%;
-      margin: 0 auto;
+      margin: $base-margin auto;
+      padding:$base-margin;
     }
   }
 
@@ -32,6 +33,7 @@ $base-margin: 8px;
     display: inline-block; 
     width: 160px;
     height: 150px;
+    margin-top: 29px;
   }
     
   .right {
@@ -40,6 +42,7 @@ $base-margin: 8px;
 
   hr.golden {
     width: 70%;
+    margin-bottom: $base-margin*2;
   }
 }
 
@@ -90,6 +93,16 @@ $base-margin: 8px;
     .kill-summary {
       display: flex;
       align-items: center;
+
+      .monster-image-container {
+        padding: 0;
+
+        img {
+          width: 100px;
+          height: auto;
+          border: 10px #FFF solid;
+        }
+      }
     }
   }
 }
