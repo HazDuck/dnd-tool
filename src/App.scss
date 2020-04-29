@@ -89,10 +89,26 @@ $base-margin: 8px;
 
   .kills-summary-container {
     width: 100%;
-
+    
     .kill-summary {
+      margin: $base-margin 0;
       display: flex;
       align-items: center;
+
+      .kill-summary-info {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 $base-margin*2;
+
+        div {
+          flex-grow: 1;
+          width: 33%;
+          // overflow: hidden;
+          // text-overflow: ellipsis; 
+        }
+      }
 
       .monster-image-container {
         padding: 0;
@@ -100,8 +116,8 @@ $base-margin: 8px;
         border-radius: 20px;
 
         canvas {
-          width: 250px;
-          height: 300px;
+          width: 200px;
+          height: 275px;
           // object-fit: contain;
           border: 10px #FFF solid;
         }

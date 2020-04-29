@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useKills, useSelectedMonster } from '../hooks'
 import { useSelectedCharacterValue } from '../context'
-import { dataCleanUp } from '../helpers'
+import { dataCleanUp, pixelateImages } from '../helpers'
 import { Kills } from './Kills'
 import { LoadingBar } from './LoadingBar'
-import { ConsoleWriter } from 'istanbul-lib-report';
 
 export const KillsSummary = () => {
   const { selectedCharacter } = useSelectedCharacterValue()
@@ -57,7 +56,8 @@ export const KillsSummary = () => {
           name: kill.name, 
           img: kill.img, 
           monsterId: kill.monsterId,
-          quantity: kill.quantity
+          quantity: kill.quantity,
+          description: kill.description
         }
         summaryData.push(summaryKillDataMultiple)
       }
@@ -65,6 +65,7 @@ export const KillsSummary = () => {
     return summaryData
   }
 
+  //update killsdata
   useEffect(() => {
     if (!kills.length > 0) {
       return
@@ -93,30 +94,12 @@ export const KillsSummary = () => {
     setSummaryData(calculateSummaryData(killsData))
   }, [killsData])
 
-  const pixelateImages = (canvas) => {
-    const ctx = canvas.getContext('2d')
-    const img = new Image()
-    console.log(ctx, img)
-    ctx.mozImageSmoothingEnabled = false;
-    ctx.webkitImageSmoothingEnabled = false;
-    ctx.imageSmoothingEnabled = false;
-    img.src = 'https://5e.tools/img/bestiary/MM/Goblin.jpg';
-    setTimeout(()=> pixelate(canvas, ctx, img), 200)
-  }
-
-  const pixelate = (canvas, ctx, img) => {
-    const size = .6
-    const w = canvas.width * size
-    const h = canvas.height * size
-    ctx.drawImage(img, 0, 0, w, h);
-    ctx.drawImage(canvas, 0, 0, w, h, 0, 0, canvas.width, canvas.height);
-  }
-
+  //pixelate monster images
   useEffect(() => {
-    if (!document.getElementById('canvas')) {
+    if (document.querySelectorAll('[data-monster-image]').length == 0) {
       return 
     }
-    pixelateImages(document.getElementById('canvas'))
+    pixelateImages(document.querySelectorAll('[data-monster-image]'))
   })
 
   return (
@@ -130,26 +113,40 @@ export const KillsSummary = () => {
         <div className="rpgui-container framed kills-summary-container" data-testid="KillsSummary">
           <div className="rpgui-container framed-golden-2 selected-character">
             <h2>{selectedCharacter.name}</h2>
-            <h3>Kills: {totalKills}</h3>
+            <h3>Total kills: {totalKills}</h3>
           </div>
-          <div>{summaryData.map(kill => 
-            <div
-            className="kill-summary"
-            onClick={()=> {
-              setSelectedMonster(kill.monsterId)
-              setShowKillsModal(true)
-            }}
-            key={kill.monsterId}>
-              <div className="rpgui-container framed monster-image-container">
-                <canvas id="canvas"></canvas>
-                {/* <img src={kill.img} alt={`${kill.name}`}/> */}
+          <div>
+            {summaryData.map((kill) => 
+              <div
+                className="kill-summary rpgui-cursor-point"
+                onClick={()=> {
+                  setSelectedMonster(kill.monsterId)
+                  setShowKillsModal(true)
+                }}
+                key={kill.monsterId}>
+                <div className="rpgui-container framed monster-image-container">
+                  <canvas data-monster-image={kill.img}></canvas>
+                  {/* <img src={kill.img} alt={`${kill.name}`}/> */}
+                </div>
+                <div className="kill-summary-info">
+                  <div>
+                    <h2>{kill.name}</h2>
+                  </div>
+                  <div>
+                    <h2>Kills: {kill.quantity}</h2>
+                  </div>
+                  <div>
+                    <h2>{kill.description}</h2>
+                  </div>
+                </div>
               </div>
-              <h4>{kill.name}</h4>
-              <h4>{kill.quantity}</h4>
-            </div>
-          )}</div>
+            )}
+          </div>
           {showKillsModal && (
-            <Kills selectedMonster={selectedMonster} killsData={killsData} setShowKillsModal={setShowKillsModal}/>
+            <Kills 
+            selectedMonster={selectedMonster} 
+            killsData={killsData} 
+            setShowKillsModal={setShowKillsModal}/>
           )}
         </div>
       )
