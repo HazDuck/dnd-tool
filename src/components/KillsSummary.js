@@ -118,11 +118,7 @@ export const KillsSummary = () => {
           <div>
             {summaryData.map((kill) => 
               <div
-                className="kill-summary rpgui-cursor-point"
-                onClick={()=> {
-                  setSelectedMonster(kill.monsterId)
-                  setShowKillsModal(true)
-                }}
+                className="kill-summary"
                 key={kill.monsterId}>
                 <div className="rpgui-container framed monster-image-container">
                   <canvas data-monster-image={kill.img}></canvas>
@@ -136,7 +132,13 @@ export const KillsSummary = () => {
                     <h2>Kills: {kill.quantity}</h2>
                   </div>
                   <div>
-                    <h2>{kill.description}</h2>
+                    <button
+                      className="rpgui-button golden"
+                      onClick={()=> {
+                        setSelectedMonster(kill.monsterId)
+                        setShowKillsModal(true)
+                      }}
+                    >Show encounters</button>
                   </div>
                 </div>
               </div>
