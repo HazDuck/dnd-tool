@@ -42,14 +42,18 @@ export const Kills = ({selectedMonster, killsData, setShowKillsModal}) => {
           {filteredKillsData.map((kill, index) => {
             if (index === 0) {
               return (
-                <div key={kill.killId}>
+                <div className="kill-container" key={kill.killId}>
                   <button onClick={()=>setShowKillsModal(false)}>
                     Close
                   </button>
-                  <div>
-                    <h4>{kill.name}</h4>
-                    <p>{kill.description}</p>
-                    <img style={{width: "100px", height:"auto"}} src={kill.img} alt={`${kill.name}`}/>
+                  <div className="kill-monster-info">
+                    <div className="rpgui-container framed monster-image-container">
+                      <img src={kill.img} alt={`${kill.name}`}/>
+                    </div>
+                    <div className="rpgui-container framed-grey monster-text-container">
+                      <h4>{kill.name}</h4>
+                      <p>{kill.description}</p>
+                    </div>
                   </div>
                   <div>
                     <IndividualKill kill={kill} selectedCharacter={selectedCharacter}/>

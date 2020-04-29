@@ -15,6 +15,7 @@ export const KillsSummary = () => {
   const [summaryData, setSummaryData] = useState([])
   const { selectedMonster, setSelectedMonster} = useSelectedMonster('')
   const [showKillsModal, setShowKillsModal] = useState(false)
+  const [showKillsSummary, setShowKillsSummary] = useState(true)
   const [totalKills, setTotalKills] = useState('')
 
   const calculateTotalKills = kills => kills.reduce((total, kill) => total + parseInt(kill.quantity), 0)
@@ -89,7 +90,7 @@ export const KillsSummary = () => {
     }
   }, [showLoading, loadingValue])
 
-  //filter killsData by sleected monster
+  //filter killsData by selected monster
   useEffect(() => {
     setSummaryData(calculateSummaryData(killsData))
   }, [killsData])
@@ -112,38 +113,43 @@ export const KillsSummary = () => {
       summaryData.length > 0 && (
         <div className="rpgui-container framed kills-summary-container" data-testid="KillsSummary">
           <div className="rpgui-container framed-golden-2 selected-character">
-            <h2>{selectedCharacter.name}</h2>
-            <h3>Total kills: {totalKills}</h3>
+            <img src="/images/evil-wizard.png" alt="evil wizard"/>
+            <div>
+              <h2>{selectedCharacter.name}</h2>
+              <h3>Total kills: {totalKills}</h3>
+            </div>
           </div>
-          <div>
-            {summaryData.map((kill) => 
-              <div
-                className="kill-summary"
-                key={kill.monsterId}>
-                <div className="rpgui-container framed monster-image-container">
-                  <canvas data-monster-image={kill.img}></canvas>
-                  {/* <img src={kill.img} alt={`${kill.name}`}/> */}
+          {showKillsSummary && (
+            <div>
+              {summaryData.map((kill) => 
+                <div
+                  className="kill-summary"
+                  key={kill.monsterId}>
+                  <div className="rpgui-container framed monster-image-container">
+                    <canvas data-monster-image={kill.img}></canvas>
+                  </div>
+                  <div className="kill-summary-info">
+                    <div>
+                      <h2>{kill.name}</h2>
+                    </div>
+                    <div>
+                      <h2>Kills: {kill.quantity}</h2>
+                    </div>
+                    <div>
+                      <button
+                        className="rpgui-button golden"
+                        onClick={()=> {
+                          setSelectedMonster(kill.monsterId)
+                          setShowKillsSummary(false)
+                          setShowKillsModal(true)
+                        }}
+                      >Show encounters</button>
+                    </div>
+                  </div>
                 </div>
-                <div className="kill-summary-info">
-                  <div>
-                    <h2>{kill.name}</h2>
-                  </div>
-                  <div>
-                    <h2>Kills: {kill.quantity}</h2>
-                  </div>
-                  <div>
-                    <button
-                      className="rpgui-button golden"
-                      onClick={()=> {
-                        setSelectedMonster(kill.monsterId)
-                        setShowKillsModal(true)
-                      }}
-                    >Show encounters</button>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          )}
           {showKillsModal && (
             <Kills 
             selectedMonster={selectedMonster} 

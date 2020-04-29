@@ -22,12 +22,6 @@ $base-margin: 8px;
       font-size: 200%;
       text-transform: capitalize;
     }
-
-    .selected-character {
-      width: 66%;
-      margin: $base-margin auto;
-      padding:$base-margin;
-    }
   }
 
   .header-skelly {
@@ -87,6 +81,24 @@ $base-margin: 8px;
 .main-container {
   display: flex;
 
+  .selected-character {
+    margin: $base-margin auto;
+    padding:$base-margin;
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 75px;
+      height: auto;
+      margin: 0 $base-margin*4
+    }
+
+    h2 {
+      text-align: left;
+      font-size: 168%;
+    }
+  }
+
   .kills-summary-container {
     width: 100%;
     
@@ -105,8 +117,6 @@ $base-margin: 8px;
         div {
           flex-grow: 1;
           width: 33%;
-          // overflow: hidden;
-          // text-overflow: ellipsis; 
         }
       }
 
@@ -121,6 +131,31 @@ $base-margin: 8px;
           // object-fit: contain;
           border: 10px #FFF solid;
         }
+      }
+    }
+  }
+
+  .kill-container {
+    .kill-monster-info {
+      display: flex;
+      justify-content: space-between;
+
+      .monster-image-container {
+        padding: 0;
+        background: #FFF;
+        border-radius: 20px;
+        margin-right: $base-margin*2;
+
+        img {
+          width: 250px;
+          height: 275px;
+          // object-fit: contain;
+          border: 10px #FFF solid;
+        }
+      }
+
+      .monster-text-container {
+
       }
     }
   }
