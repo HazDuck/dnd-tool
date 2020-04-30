@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelectedCharacterValue } from '../context'
 import { firebase } from '../firebase'
 
-export const IndividualMonster = ({monsterData}) => {
+export const IndividualMonster = ({monster, setSearchResults, setShowKillsSummary, setShowAddKill}) => {
 
   const { selectedCharacter } = useSelectedCharacterValue()
   const [quantity, setQuantity] = useState(1)
@@ -13,7 +13,7 @@ export const IndividualMonster = ({monsterData}) => {
     .firestore()
     .collection('kills')
     .add({
-      monsterId: monsterData.monsterId,
+      monsterId: monster.monsterId,
       characterId: selectedCharacter,
       date: '24/04/2020',
       quantity: quantity,
@@ -25,27 +25,37 @@ export const IndividualMonster = ({monsterData}) => {
   }
 
   return (
-    <li>
-      <h4>{monsterData.name}</h4>
-      <span>{quantity}</span>
-      <button 
-        type="button"
-        onClick={()=>setQuantity(quantity + 1)}
-      >+</button>
-      <button
-        type="button" 
-        onClick={()=>setQuantity(quantity - 1)}
-      >-</button>
-      <input
+    <div>
+      <h4>{monster.name}</h4>
+      <img src={monster.img} style={{"width": "250px", "height": "275px"}} alt={monster.name}/>
+      <div>
+        <button
+          className="rpgui-button small-button"
+          type="button"
+          onClick={()=>setQuantity(quantity + 1)}
+        >+</button>
+        <span>{quantity}</span>
+        <button
+          className="rpgui-button small-button"
+          type="button" 
+          onClick={()=>setQuantity(quantity - 1)}
+        >-</button>
+      </div>
+      <textarea
         type="text"
         placeholder="Kill notes"
         value={notes}
         onChange={e=>setNotes(e.target.value)}
       />
       <button
-      onClick={()=>addKill(selectedCharacter.characterId)}
+        className="rpgui-button"
+        onClick={()=> {
+        addKill(selectedCharacter.characterId)
+        setSearchResults([])
+        setShowKillsSummary(true)
+        setShowAddKill(false)
+      }}
       >Add</button>
-    </li>
+    </div>
   )
-  
 }

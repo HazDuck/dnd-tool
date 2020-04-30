@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import { dataCleanUp } from '../helpers'
 import { IndividualMonster } from './IndividualMonster'
 
-export const AddKill = () => {
+export const AddKill = ({ setShowKillsSummary, setShowAddKill }) => {
   const [ monsterData ] = useState(dataCleanUp())
   const [searchValue, setSearchValue] = useState('')
+  const [searchResults, setSearchResults] = useState([])
 
   const search = (monsterData, searchValue) => {
     const searchResults = monsterData.filter(monster =>
       monster.name.toLowerCase().includes(searchValue.toLowerCase())
     )
-    console.log(searchResults)
-    return searchResults
+    setSearchResults(searchResults)
   }
+
+  console.log(searchResults)
 
   return (
     <div>
@@ -28,10 +30,16 @@ export const AddKill = () => {
         onClick={()=> search(monsterData, searchValue)}
       >Search
       </button>
-      {monsterData.length > 0 && (
-        <ul>
-          <IndividualMonster monsterData={monsterData[0]}/>
-        </ul>
+      {searchResults.length > 0 && (
+        searchResults.map(monster => (
+          <IndividualMonster 
+            setShowKillsSummary={setShowKillsSummary} 
+            key={monster.monsterId} 
+            monster={monster} 
+            setSearchResults={setSearchResults}
+            setShowAddKill={setShowAddKill}
+            /> 
+        ))
       )}
     </div>
   )

@@ -173,7 +173,10 @@ export const KillsSummary = () => {
             />
           )}
           {showAddKill && (
-            <AddKill />
+            <AddKill 
+              setShowKillsSummary={setShowKillsSummary}
+              setShowAddKill={setShowAddKill}
+            />
           )}
         </div>
       )
