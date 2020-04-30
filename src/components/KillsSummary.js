@@ -162,7 +162,9 @@ export const KillsSummary = () => {
             <Kills 
             selectedMonster={selectedMonster} 
             killsData={killsData} 
-            setShowKillsModal={setShowKillsModal}/>
+            setShowKillsModal={setShowKillsModal}
+            setShowKillsSummary={setShowKillsSummary}
+            />
           )}
         </div>
       )

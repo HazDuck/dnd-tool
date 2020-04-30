@@ -3,7 +3,7 @@ import { useSelectedCharacterValue } from '../context'
 import { IndividualKill } from './IndividualKill'
 import { LoadingBar } from './LoadingBar'
 
-export const Kills = ({selectedMonster, killsData, setShowKillsModal}) => {
+export const Kills = ({selectedMonster, killsData, setShowKillsModal, setShowKillsSummary}) => {
   const { selectedCharacter } = useSelectedCharacterValue()
   const [loadingValue, setLoadingValue] = useState(10)
   const [showLoading, setShowLoading] = useState(true)
@@ -46,7 +46,10 @@ export const Kills = ({selectedMonster, killsData, setShowKillsModal}) => {
                   <div className="close-kills-button-container">
                     <button 
                       className="rpgui-button"
-                      onClick={()=>setShowKillsModal(false)}>
+                      onClick={()=> {
+                        setShowKillsModal(false)
+                        setShowKillsSummary(true)
+                      }}>
                       Back to summary
                     </button>
                   </div>
