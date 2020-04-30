@@ -7,6 +7,7 @@ import {
 } from '../helpers'
 import { Kills } from './Kills'
 import { LoadingBar } from './LoadingBar'
+import { AddKill } from './AddKill'
 
 export const KillsSummary = () => {
   const { selectedCharacter } = useSelectedCharacterValue()
@@ -19,6 +20,7 @@ export const KillsSummary = () => {
   const { selectedMonster, setSelectedMonster} = useSelectedMonster('')
   const [showKillsModal, setShowKillsModal] = useState(false)
   const [showKillsSummary, setShowKillsSummary] = useState(true)
+  const [showAddKill, setShowAddKill] = useState(false)
   const [totalKills, setTotalKills] = useState('')
 
   const calculateTotalKills = kills => kills.reduce((total, kill) => total + parseInt(kill.quantity), 0)
@@ -124,6 +126,10 @@ export const KillsSummary = () => {
               </div>
               <button
                 className="rpgui-button"
+                onClick={()=>{
+                  setShowAddKill(!showAddKill)
+                  setShowKillsSummary(!showKillsSummary)
+                }}
               >Add kill</button>
             </div>
           </div>
@@ -165,6 +171,9 @@ export const KillsSummary = () => {
             setShowKillsModal={setShowKillsModal}
             setShowKillsSummary={setShowKillsSummary}
             />
+          )}
+          {showAddKill && (
+            <AddKill />
           )}
         </div>
       )
