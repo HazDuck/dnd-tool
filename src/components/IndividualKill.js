@@ -90,7 +90,7 @@ export const IndividualKill = ({kill, selectedCharacter}) => {
               >
                 Confirm
               </button>
-              <p className="cancel"
+              <p className="cancel rpgui-cursor-point"
                 onClick={()=>{
                   setDeleteKillOverlay(false)
                 }}>

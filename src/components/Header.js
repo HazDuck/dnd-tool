@@ -11,7 +11,6 @@ export const Header = () => {
         <hr className="golden"></hr>
         <h3>- Keeping track of who's killed what across the Realms... -</h3>
       </div>
-      {/* <img className="header-image right" src="/images/skelly2.png" alt="skelly"/> */}
     </header>
   )
 }

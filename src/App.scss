@@ -134,10 +134,10 @@ $base-margin: 8px;
         background: #FFF;
         border-radius: 20px;
 
-        canvas {
+        img {
           width: 250px;
           height: 275px;
-          // object-fit: contain;
+          object-fit: contain;
           border: 10px #FFF solid;
         }
       }

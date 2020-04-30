@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useKills, useSelectedMonster } from '../hooks'
 import { useSelectedCharacterValue } from '../context'
-import { dataCleanUp, pixelateImages } from '../helpers'
+import { 
+  dataCleanUp
+  // pixelateImages 
+} from '../helpers'
 import { Kills } from './Kills'
 import { LoadingBar } from './LoadingBar'
 
@@ -95,13 +98,13 @@ export const KillsSummary = () => {
     setSummaryData(calculateSummaryData(killsData))
   }, [killsData])
 
-  //pixelate monster images
-  useEffect(() => {
-    if (document.querySelectorAll('[data-monster-image]').length == 0) {
-      return 
-    }
-    pixelateImages(document.querySelectorAll('[data-monster-image]'))
-  })
+  // //pixelate monster images
+  // useEffect(() => {
+  //   if (document.querySelectorAll('[data-monster-image]').length == 0) {
+  //     return 
+  //   }
+  //   pixelateImages(document.querySelectorAll('[data-monster-image]'))
+  // })
 
   return (
     showLoading ? 
@@ -113,7 +116,7 @@ export const KillsSummary = () => {
       summaryData.length > 0 && (
         <div className="rpgui-container framed kills-summary-container" data-testid="KillsSummary">
           <div className="rpgui-container framed-golden-2 selected-character">
-            <img src="/images/evil-wizard.png" alt="evil wizard"/>
+          {/* characterselected sprite goes here */}
             <div className="selected-character-inner">
               <div>
                 <h2>{selectedCharacter.name}</h2>
@@ -131,7 +134,7 @@ export const KillsSummary = () => {
                   className="kill-summary"
                   key={kill.monsterId}>
                   <div className="rpgui-container framed monster-image-container">
-                    <canvas data-monster-image={kill.img}></canvas>
+                    <img src={kill.img} alt={`${kill.name}`}/>
                   </div>
                   <div className="kill-summary-info">
                     <div>
