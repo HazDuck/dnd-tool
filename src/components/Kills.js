@@ -43,9 +43,13 @@ export const Kills = ({selectedMonster, killsData, setShowKillsModal}) => {
             if (index === 0) {
               return (
                 <div className="kill-container" key={kill.killId}>
-                  <button onClick={()=>setShowKillsModal(false)}>
-                    Close
-                  </button>
+                  <div className="close-kills-button-container">
+                    <button 
+                      className="rpgui-button"
+                      onClick={()=>setShowKillsModal(false)}>
+                      Back to summary
+                    </button>
+                  </div>
                   <div className="kill-monster-info">
                     <div className="rpgui-container framed monster-image-container">
                       <img src={kill.img} alt={`${kill.name}`}/>

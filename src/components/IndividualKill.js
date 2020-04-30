@@ -50,47 +50,62 @@ export const IndividualKill = ({kill, selectedCharacter}) => {
       })
     
   return (
-    <div>
-      <input
-        type="text"
-        value={updatedKillNotes}
-        onChange={(e)=>setUpdatedKillNotes(e.target.value)}
-      />
-      <button
-        onClick={()=>updateKillNotes(kill.killId, updatedKillNotes)}
-      >Update</button>
+    <div className="individual-kill-container rpgui-container">
       <p>{kill.date}</p>
-      <p>{kill.quantity}</p>
-      <button
-        type="button"
-        onClick={()=> updateKillCount(kill.killId, true)}
-      >+</button>
-      <button
-        type="button"
-        onClick={()=> updateKillCount(kill.killId, false)}
-      >-</button>
-      <button
-        onClick={()=>setDeleteKillOverlay(true)}
-      >
-        x
-      </button>
-      {deleteKillOverlay && (
-        <div>
+      <div className="description-container">
+        <textarea
+          type="text"
+          value={updatedKillNotes}
+          onChange={(e)=>setUpdatedKillNotes(e.target.value)}
+          className="rpgui-container framed-golden"
+        />
+        <div className="button-container-outer">
+          <div className="button-container">
+            <button
+              className="rpgui-button small-button"
+              type="button"
+              onClick={()=> updateKillCount(kill.killId, true)}
+            >+</button>
+            <p>{kill.quantity}</p>
+            <button
+              className="rpgui-button small-button"
+              type="button"
+              onClick={()=> updateKillCount(kill.killId, false)}
+            >-</button>
+          </div>
           <button
-            type="button"
-            onClick={()=>{
-              deleteKill(kill.killId)
-            }}
+            className="rpgui-button"
+            onClick={()=>setDeleteKillOverlay(true)}
           >
-            Confirm
+            Delete
           </button>
-          <span onClick={()=>{
-            setDeleteKillOverlay(false)
-          }}>
-            Cancel
-          </span>
+          {deleteKillOverlay && (
+            <div>
+              <button
+                className="rpgui-button confirm"
+                type="button"
+                onClick={()=>{
+                  deleteKill(kill.killId)
+                }}
+              >
+                Confirm
+              </button>
+              <p className="cancel"
+                onClick={()=>{
+                  setDeleteKillOverlay(false)
+                }}>
+                Cancel
+              </p>
+            </div>
+          )}
         </div>
-      )}
+      </div>
+      <div className="individual-kill-container-inner">
+        <button
+          className="rpgui-button"
+          onClick={()=>updateKillNotes(kill.killId, updatedKillNotes)}
+        >Update Notes</button>
+      </div> 
     </div>
   )
 }

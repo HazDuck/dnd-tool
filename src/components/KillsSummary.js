@@ -114,9 +114,14 @@ export const KillsSummary = () => {
         <div className="rpgui-container framed kills-summary-container" data-testid="KillsSummary">
           <div className="rpgui-container framed-golden-2 selected-character">
             <img src="/images/evil-wizard.png" alt="evil wizard"/>
-            <div>
-              <h2>{selectedCharacter.name}</h2>
-              <h3>Total kills: {totalKills}</h3>
+            <div className="selected-character-inner">
+              <div>
+                <h2>{selectedCharacter.name}</h2>
+                <h3>Total kills: {totalKills}</h3>
+              </div>
+              <button
+                className="rpgui-button"
+              >Add kill</button>
             </div>
           </div>
           {showKillsSummary && (
@@ -143,7 +148,7 @@ export const KillsSummary = () => {
                           setShowKillsSummary(false)
                           setShowKillsModal(true)
                         }}
-                      >Show encounters</button>
+                      >Show full details</button>
                     </div>
                   </div>
                 </div>
