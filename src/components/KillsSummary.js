@@ -27,8 +27,6 @@ export const KillsSummary = () => {
     showAddKill, 
     setShowAddKill } = useDisplayStateContextValue()
 
-    console.log({showKillsModal, showKillsSummary, showAddKill})
-
   const calculateTotalKills = kills => kills.reduce((total, kill) => total + parseInt(kill.quantity), 0)
 
   useEffect(() => {
