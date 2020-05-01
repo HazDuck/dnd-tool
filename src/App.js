@@ -1,28 +1,28 @@
 import React from 'react';
-import { CharactersProvider, SelectedCharacterProvider, SelectedMonsterProvider} from './context'
+import { CharactersProvider, SelectedCharacterProvider, SelectedMonsterProvider, DisplayStateProvider} from './context'
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
-import { AddKill } from './components/AddKill';
 import { KillsSummary } from './components/KillsSummary'
 
 const App = () => {
   return (
-    <SelectedCharacterProvider>
-      <CharactersProvider>
-        <SelectedMonsterProvider>
-          <div className="rpgui-content">
-            <div className="rpgui-container framed">
-              <Header />
-              <div className="main-container">
-                <Sidebar />
-                <KillsSummary />
-                  {/* <AddKill /> */}
+    <DisplayStateProvider>
+      <SelectedCharacterProvider>
+        <CharactersProvider>
+          <SelectedMonsterProvider>
+            <div className="rpgui-content">
+              <div className="rpgui-container framed">
+                <Header />
+                <div className="main-container">
+                  <Sidebar />
+                  <KillsSummary />
+                </div>
               </div>
             </div>
-          </div>
-        </SelectedMonsterProvider>
-      </CharactersProvider>
-    </SelectedCharacterProvider>
+          </SelectedMonsterProvider>
+        </CharactersProvider>
+      </SelectedCharacterProvider>
+    </DisplayStateProvider>
   );
 }
 

@@ -4,6 +4,7 @@ import {
   useSelectedCharacter, 
   useSelectedMonster, 
   useDisplayState } from '../hooks'
+
 export const CharacterContext = createContext() 
 export const CharactersProvider = ({children}) => {
   const { characters, setCharacters } = useCharacters()
@@ -14,7 +15,9 @@ export const CharactersProvider = ({children}) => {
   )
 }
 export const useCharactersValue = () => useContext(CharacterContext)
+
 //-----------------------------------------------------------------------//
+
 export const SelectedCharacterContext = createContext() 
 export const SelectedCharacterProvider = ({children}) => {
   const { selectedCharacter, setSelectedCharacter } = useSelectedCharacter()
@@ -25,7 +28,9 @@ export const SelectedCharacterProvider = ({children}) => {
   )
 }
 export const useSelectedCharacterValue = () => useContext(SelectedCharacterContext)
+
 //-----------------------------------------------------------------------//
+
 export const SelectedMonsterContext = createContext() 
 export const SelectedMonsterProvider = ({children}) => {
   const { selectedMonster, setSelectedMonster } = useSelectedMonster()
@@ -36,7 +41,9 @@ export const SelectedMonsterProvider = ({children}) => {
   )
 }
 export const useSelectedMonsterValue = () => useContext(SelectedMonsterContext)
+
 //-----------------------------------------------------------------------//
+
 export const DisplayStateContext = createContext() 
 export const DisplayStateProvider = ({children}) => {
   const { 
