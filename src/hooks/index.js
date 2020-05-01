@@ -75,3 +75,14 @@ export const useKills = (selectedCharacterId) => {
   return { kills, setKills }
 }
 
+//----------------------------------------------------------//
+
+export const useDisplayState = () => {
+  
+  const [showKillsModal, setShowKillsModal] = useState()
+  const [showKillsSummary, setShowKillsSummary] = useState()
+  const [showAddKill, setSelectedMsetShowAddKillonster] = useState()
+
+  return { showKillsModal, setShowKillsModal, showKillsSummary, setShowKillsSummary, showAddKill, setSelectedMsetShowAddKillonster }
+}
+

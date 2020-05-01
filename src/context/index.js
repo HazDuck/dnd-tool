@@ -1,11 +1,12 @@
 import React, { createContext, useContext } from 'react'
-import { useCharacters, useSelectedCharacter, useSelectedMonster } from '../hooks'
-
+import { 
+  useCharacters, 
+  useSelectedCharacter, 
+  useSelectedMonster, 
+  useDisplayState } from '../hooks'
 export const CharacterContext = createContext() 
-
 export const CharactersProvider = ({children}) => {
   const { characters, setCharacters } = useCharacters()
-
   return (
     <CharacterContext.Provider value={{characters, setCharacters}}>
       {children}
@@ -13,35 +14,50 @@ export const CharactersProvider = ({children}) => {
   )
 }
 export const useCharactersValue = () => useContext(CharacterContext)
-
 //-----------------------------------------------------------------------//
-
 export const SelectedCharacterContext = createContext() 
-
 export const SelectedCharacterProvider = ({children}) => {
   const { selectedCharacter, setSelectedCharacter } = useSelectedCharacter()
-
   return (
     <SelectedCharacterContext.Provider value={{selectedCharacter, setSelectedCharacter}}>
       {children}
     </SelectedCharacterContext.Provider>
   )
 }
-
 export const useSelectedCharacterValue = () => useContext(SelectedCharacterContext)
-
 //-----------------------------------------------------------------------//
-
 export const SelectedMonsterContext = createContext() 
-
 export const SelectedMonsterProvider = ({children}) => {
   const { selectedMonster, setSelectedMonster } = useSelectedMonster()
-
   return (
     <SelectedMonsterContext.Provider value={{selectedMonster, setSelectedMonster}}>
       {children}
     </SelectedMonsterContext.Provider>
   )
 }
-
 export const useSelectedMonsterValue = () => useContext(SelectedMonsterContext)
+//-----------------------------------------------------------------------//
+export const DisplayStateContext = createContext() 
+export const DisplayStateProvider = ({children}) => {
+  const { 
+    showKillsModal, 
+    setShowKillsModal, 
+    showKillsSummary, 
+    setShowKillsSummary, 
+    showAddKill, 
+    setShowAddKill 
+  } = useDisplayState()
+  return (
+    <DisplayStateContext.Provider value={{
+      showKillsModal, 
+      setShowKillsModal, 
+      showKillsSummary, 
+      setShowKillsSummary, 
+      showAddKill, 
+      setShowAddKill
+      }}>
+      {children}
+    </DisplayStateContext.Provider>
+  )
+}
+export const useDisplayStateContextValue = () => useContext(DisplayStateContext)
