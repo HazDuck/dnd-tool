@@ -27,6 +27,8 @@ export const KillsSummary = () => {
     showAddKill, 
     setShowAddKill } = useDisplayStateContextValue()
 
+    console.log({showKillsModal, showKillsSummary, showAddKill})
+
   const calculateTotalKills = kills => kills.reduce((total, kill) => total + parseInt(kill.quantity), 0)
 
   useEffect(() => {
@@ -131,8 +133,15 @@ export const KillsSummary = () => {
               <button
                 className="rpgui-button"
                 onClick={()=>{
-                  setShowAddKill(!showAddKill)
-                  setShowKillsSummary(!showKillsSummary)
+                  if (!showKillsSummary && !showAddKill && showKillsModal) {
+                    setShowKillsModal(false)
+                    setShowKillsSummary(false)
+                    setShowAddKill(true)
+                  } else {
+                    setShowAddKill(!showAddKill)
+                    setShowKillsSummary(!showKillsSummary)
+                    setShowKillsModal(false)
+                  }
                 }}
               >Add kill</button>
             </div>

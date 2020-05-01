@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { dataCleanUp } from '../helpers'
 import { IndividualMonster } from './IndividualMonster'
+import { useDisplayStateContextValue } from '../context'
+
 
 export const AddKill = () => {
   const [ monsterData ] = useState(dataCleanUp())
   const [searchValue, setSearchValue] = useState('')
   const [searchResults, setSearchResults] = useState([])
+  const { setShowAddKill, setShowKillsSummary } = useDisplayStateContextValue()
 
   const search = (monsterData, searchValue) => {
     const searchResults = monsterData.filter(monster =>
@@ -14,10 +17,18 @@ export const AddKill = () => {
     setSearchResults(searchResults)
   }
 
-  console.log(searchResults)
-
   return (
-    <div>
+    <div className="add-kill">
+      <div className="close-kills-button-container">
+        <button 
+          className="rpgui-button"
+          onClick={()=> {
+            setShowAddKill(false)
+            setShowKillsSummary(true)
+          }}>
+          Back to summary
+        </button>
+      </div>
       <h2>Add kill</h2>
       <input
         type="text"

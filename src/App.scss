@@ -211,4 +211,12 @@ $base-margin: 8px;
 
     }
   }
+
+  .add-kill {
+    .close-kills-button-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
 }
