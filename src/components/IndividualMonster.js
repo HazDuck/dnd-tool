@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { useSelectedCharacterValue } from '../context'
+import { useSelectedCharacterValue, useDisplayStateContextValue } from '../context'
 import { firebase } from '../firebase'
 
-export const IndividualMonster = ({monster, setSearchResults, setShowKillsSummary, setShowAddKill}) => {
+
+export const IndividualMonster = ({ monster, setSearchResults }) => {
 
   const { selectedCharacter } = useSelectedCharacterValue()
   const [quantity, setQuantity] = useState(1)
   const [notes, setNotes] = useState('')
+  const {setShowKillsSummary, setShowAddKill } = useDisplayStateContextValue()
 
   const addKill = (selectedCharacter) => {
     firebase

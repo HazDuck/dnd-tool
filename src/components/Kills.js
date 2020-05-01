@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useSelectedCharacterValue } from '../context'
+import { useSelectedCharacterValue, useDisplayStateContextValue } from '../context'
 import { IndividualKill } from './IndividualKill'
 import { LoadingBar } from './LoadingBar'
 
-export const Kills = ({selectedMonster, killsData, setShowKillsModal, setShowKillsSummary}) => {
+export const Kills = ({ selectedMonster, killsData }) => {
   const { selectedCharacter } = useSelectedCharacterValue()
   const [loadingValue, setLoadingValue] = useState(10)
   const [showLoading, setShowLoading] = useState(true)
   const [filteredKillsData, setFilteredKillsData] = useState([])
+  const { setShowKillsModal, setShowKillsSummary } = useDisplayStateContextValue()
 
 //this is where i think the memory leak is 
   useEffect(() => {

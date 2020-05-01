@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useKills, useSelectedMonster } from '../hooks'
-import { useSelectedCharacterValue } from '../context'
+import { useSelectedCharacterValue, useDisplayStateContextValue } from '../context'
 import { 
   dataCleanUp
   // pixelateImages 
@@ -18,10 +18,14 @@ export const KillsSummary = () => {
   const [showLoading, setShowLoading] = useState(true)
   const [summaryData, setSummaryData] = useState([])
   const { selectedMonster, setSelectedMonster} = useSelectedMonster('')
-  const [showKillsModal, setShowKillsModal] = useState(false)
-  const [showKillsSummary, setShowKillsSummary] = useState(true)
-  const [showAddKill, setShowAddKill] = useState(false)
   const [totalKills, setTotalKills] = useState('')
+  const { 
+    showKillsModal, 
+    setShowKillsModal, 
+    showKillsSummary, 
+    setShowKillsSummary, 
+    showAddKill, 
+    setShowAddKill } = useDisplayStateContextValue()
 
   const calculateTotalKills = kills => kills.reduce((total, kill) => total + parseInt(kill.quantity), 0)
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { dataCleanUp } from '../helpers'
 import { IndividualMonster } from './IndividualMonster'
 
-export const AddKill = ({ setShowKillsSummary, setShowAddKill }) => {
+export const AddKill = () => {
   const [ monsterData ] = useState(dataCleanUp())
   const [searchValue, setSearchValue] = useState('')
   const [searchResults, setSearchResults] = useState([])
@@ -33,12 +33,10 @@ export const AddKill = ({ setShowKillsSummary, setShowAddKill }) => {
       {searchResults.length > 0 && (
         searchResults.map(monster => (
           <IndividualMonster 
-            setShowKillsSummary={setShowKillsSummary} 
             key={monster.monsterId} 
             monster={monster} 
             setSearchResults={setSearchResults}
-            setShowAddKill={setShowAddKill}
-            /> 
+          /> 
         ))
       )}
     </div>
