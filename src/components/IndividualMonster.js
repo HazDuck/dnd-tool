@@ -10,6 +10,13 @@ export const IndividualMonster = ({ monster, setSearchResults }) => {
   const [notes, setNotes] = useState('')
   const {setShowKillsSummary, setShowAddKill } = useDisplayStateContextValue()
 
+  const timeDate = () => {
+    const today = new Date();
+    const date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear()
+    const time = today.getHours() + ":" + today.getMinutes()
+    return date+' '+time;
+  }
+
   const addKill = (selectedCharacter) => {
     firebase
     .firestore()
@@ -17,7 +24,7 @@ export const IndividualMonster = ({ monster, setSearchResults }) => {
     .add({
       monsterId: monster.monsterId,
       characterId: selectedCharacter,
-      date: '24/04/2020',
+      date: timeDate(),
       quantity: quantity,
       notes: notes,
       userId: '12345'
