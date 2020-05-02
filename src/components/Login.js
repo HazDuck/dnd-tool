@@ -10,7 +10,11 @@ export const Login = () => {
     firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
-    .then(cred => console.log(cred.user))
+    .then(cred => {
+      console.log(cred.user)
+      setEmail('')
+      setPassword('')
+    })
   }
 
   return (
