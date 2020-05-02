@@ -19,7 +19,7 @@ const App = () => {
                   <div className="main-container">
                     <Sidebar />
                     <Auth />
-                    {/* <KillsSummary /> */}
+                    <KillsSummary />
                   </div>
                 </div>
               </div>

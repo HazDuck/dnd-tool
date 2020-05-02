@@ -5,13 +5,14 @@ import { userStatus } from '../auth'
 import { useUserValue } from '../context'
 
 export const Auth = () => {
-
   const { user, setUser} = useUserValue()
 
   return (
-    <>
-      <Signup />
-      <Login />
-    </>
+    !user && (
+      <>
+        <Signup />
+        <Login />
+      </>
+    )
   )
 }

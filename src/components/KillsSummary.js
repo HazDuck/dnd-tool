@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useKills, useSelectedMonster } from '../hooks'
-import { useSelectedCharacterValue, useDisplayStateContextValue } from '../context'
+import { useSelectedCharacterValue, useDisplayStateContextValue, useUserValue } from '../context'
 import { 
   dataCleanUp
   // pixelateImages 
@@ -26,6 +26,7 @@ export const KillsSummary = () => {
     setShowKillsSummary, 
     showAddKill, 
     setShowAddKill } = useDisplayStateContextValue()
+    const { user, setUser} = useUserValue()
 
   const calculateTotalKills = kills => kills.reduce((total, kill) => total + parseInt(kill.quantity), 0)
 
@@ -113,83 +114,85 @@ export const KillsSummary = () => {
   // })
 
   return (
-    showLoading ? 
-      <div className="rpgui-container framed">
-        <p>summoning...</p>
-        <LoadingBar loadingValue={loadingValue} data-testid="LoadingBarKillsSummary"/>
-      </div>
-      :
-      summaryData.length > 0 && (
-        <div className="rpgui-container framed kills-summary-container" data-testid="KillsSummary">
-          <div className="rpgui-container framed-golden-2 selected-character">
-          {/* characterselected sprite goes here */}
-            <div className="selected-character-inner">
-              <div>
-                <h2>{selectedCharacter.name}</h2>
-                <h3>Total kills: {totalKills}</h3>
-              </div>
-              <button
-                className="rpgui-button"
-                onClick={()=>{
-                  if (!showKillsSummary && !showAddKill && showKillsModal) {
-                    setShowKillsModal(false)
-                    setShowKillsSummary(false)
-                    setShowAddKill(true)
-                  } else {
-                    setShowAddKill(!showAddKill)
-                    setShowKillsSummary(!showKillsSummary)
-                    setShowKillsModal(false)
-                  }
-                }}
-              >Add kill</button>
-            </div>
-          </div>
-          {showKillsSummary && (
-            <div>
-              {summaryData.map((kill) => 
-                <div
-                  className="kill-summary"
-                  key={kill.monsterId}>
-                  <div className="rpgui-container framed monster-image-container">
-                    <img src={kill.img} alt={`${kill.name}`}/>
-                  </div>
-                  <div className="kill-summary-info">
-                    <div>
-                      <h2>{kill.name}</h2>
-                    </div>
-                    <div>
-                      <h2>Kills: {kill.quantity}</h2>
-                    </div>
-                    <div>
-                      <button
-                        className="rpgui-button golden"
-                        onClick={()=> {
-                          setSelectedMonster(kill.monsterId)
-                          setShowKillsSummary(false)
-                          setShowKillsModal(true)
-                        }}
-                      >Show full details</button>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-          {showKillsModal && (
-            <Kills 
-            selectedMonster={selectedMonster} 
-            killsData={killsData} 
-            setShowKillsModal={setShowKillsModal}
-            setShowKillsSummary={setShowKillsSummary}
-            />
-          )}
-          {showAddKill && (
-            <AddKill 
-              setShowKillsSummary={setShowKillsSummary}
-              setShowAddKill={setShowAddKill}
-            />
-          )}
+    user && (
+      showLoading ? 
+        <div className="rpgui-container framed">
+          <p>summoning...</p>
+          <LoadingBar loadingValue={loadingValue} data-testid="LoadingBarKillsSummary"/>
         </div>
-      )
+        :
+        summaryData.length > 0 && (
+          <div className="rpgui-container framed kills-summary-container" data-testid="KillsSummary">
+            <div className="rpgui-container framed-golden-2 selected-character">
+            {/* characterselected sprite goes here */}
+              <div className="selected-character-inner">
+                <div>
+                  <h2>{selectedCharacter.name}</h2>
+                  <h3>Total kills: {totalKills}</h3>
+                </div>
+                <button
+                  className="rpgui-button"
+                  onClick={()=>{
+                    if (!showKillsSummary && !showAddKill && showKillsModal) {
+                      setShowKillsModal(false)
+                      setShowKillsSummary(false)
+                      setShowAddKill(true)
+                    } else {
+                      setShowAddKill(!showAddKill)
+                      setShowKillsSummary(!showKillsSummary)
+                      setShowKillsModal(false)
+                    }
+                  }}
+                >Add kill</button>
+              </div>
+            </div>
+            {showKillsSummary && (
+              <div>
+                {summaryData.map((kill) => 
+                  <div
+                    className="kill-summary"
+                    key={kill.monsterId}>
+                    <div className="rpgui-container framed monster-image-container">
+                      <img src={kill.img} alt={`${kill.name}`}/>
+                    </div>
+                    <div className="kill-summary-info">
+                      <div>
+                        <h2>{kill.name}</h2>
+                      </div>
+                      <div>
+                        <h2>Kills: {kill.quantity}</h2>
+                      </div>
+                      <div>
+                        <button
+                          className="rpgui-button golden"
+                          onClick={()=> {
+                            setSelectedMonster(kill.monsterId)
+                            setShowKillsSummary(false)
+                            setShowKillsModal(true)
+                          }}
+                        >Show full details</button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+            {showKillsModal && (
+              <Kills 
+              selectedMonster={selectedMonster} 
+              killsData={killsData} 
+              setShowKillsModal={setShowKillsModal}
+              setShowKillsSummary={setShowKillsSummary}
+              />
+            )}
+            {showAddKill && (
+              <AddKill 
+                setShowKillsSummary={setShowKillsSummary}
+                setShowAddKill={setShowAddKill}
+              />
+            )}
+          </div>
+        )
+    )
   )
 }
