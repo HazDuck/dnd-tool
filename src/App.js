@@ -3,6 +3,7 @@ import { CharactersProvider, SelectedCharacterProvider, SelectedMonsterProvider,
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
 import { KillsSummary } from './components/KillsSummary'
+import { Signup } from './components/Signup'
 
 const App = () => {
   return (
@@ -14,8 +15,9 @@ const App = () => {
               <div className="rpgui-container framed">
                 <Header />
                 <div className="main-container">
-                  <Sidebar />
-                  <KillsSummary />
+                  <Signup />
+                  {/* <Sidebar />
+                  <KillsSummary /> */}
                 </div>
               </div>
             </div>
