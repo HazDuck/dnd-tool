@@ -11,7 +11,6 @@ export const Signup = () => {
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then(cred => {
-      console.log(cred.user)
       setEmail('')
       setPassword('')
     })

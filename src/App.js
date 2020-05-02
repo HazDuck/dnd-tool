@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { CharactersProvider, SelectedCharacterProvider, SelectedMonsterProvider, DisplayStateProvider} from './context'
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
 import { KillsSummary } from './components/KillsSummary'
 import { Signup } from './components/Signup'
 import { Login } from './components/Login'
+import { userStatus } from './auth'
 
 const App = () => {
+
+  useEffect(() => {
+    userStatus()
+  })
+  
   return (
     <DisplayStateProvider>
       <SelectedCharacterProvider>
