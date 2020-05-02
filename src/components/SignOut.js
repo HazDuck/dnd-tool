@@ -8,8 +8,6 @@ export const SignOut = () => {
     firebase
     .auth()
     .signOut()
-    .then(() =>
-      console.log('user signed out'))
   )
 
   return (

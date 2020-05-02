@@ -1,38 +1,33 @@
-import React, { useEffect } from 'react';
-import { CharactersProvider, SelectedCharacterProvider, SelectedMonsterProvider, DisplayStateProvider} from './context'
+import React from 'react';
+import { CharactersProvider, SelectedCharacterProvider, SelectedMonsterProvider, DisplayStateProvider, UserProvider } from './context'
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
 import { KillsSummary } from './components/KillsSummary'
-import { Signup } from './components/Signup'
-import { Login } from './components/Login'
-import { userStatus } from './auth'
+import { Auth } from './components/Auth'
 
 const App = () => {
 
-  useEffect(() => {
-    userStatus()
-  })
-  
   return (
-    <DisplayStateProvider>
-      <SelectedCharacterProvider>
-        <CharactersProvider>
-          <SelectedMonsterProvider>
-            <div className="rpgui-content">
-              <div className="rpgui-container framed">
-                <Header />
-                <div className="main-container">
-                  <Sidebar />
-                  <Signup />
-                  <Login />
-                  {/* <KillsSummary /> */}
+    <UserProvider>
+      <DisplayStateProvider>
+        <SelectedCharacterProvider>
+          <CharactersProvider>
+            <SelectedMonsterProvider>
+              <div className="rpgui-content">
+                <div className="rpgui-container framed">
+                  <Header />
+                  <div className="main-container">
+                    <Sidebar />
+                    <Auth />
+                    {/* <KillsSummary /> */}
+                  </div>
                 </div>
               </div>
-            </div>
-          </SelectedMonsterProvider>
-        </CharactersProvider>
-      </SelectedCharacterProvider>
-    </DisplayStateProvider>
+            </SelectedMonsterProvider>
+          </CharactersProvider>
+        </SelectedCharacterProvider>
+      </DisplayStateProvider>
+    </UserProvider>
   );
 }
 

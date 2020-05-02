@@ -83,6 +83,29 @@ export const useDisplayState = () => {
   const [showKillsSummary, setShowKillsSummary] = useState(true)
   const [showAddKill, setShowAddKill] = useState(false)
 
-  return { showKillsModal, setShowKillsModal, showKillsSummary, setShowKillsSummary, showAddKill, setShowAddKill }
+  return { 
+    showKillsModal, 
+    setShowKillsModal, 
+    showKillsSummary, 
+    setShowKillsSummary, 
+    showAddKill, 
+    setShowAddKill 
+  }
+}
+
+//----------------------------------------------------------//
+
+export const useUser = () => {
+  const [user, setUser] = useState('')
+
+  useEffect(() => {
+    firebase
+      .auth()
+      .onAuthStateChanged(user => {
+        setUser(user)
+      })
+  })
+
+  return { user, setUser }
 }
 

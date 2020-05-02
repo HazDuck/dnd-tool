@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { firebase } from '../firebase';
 import 'firebase/auth';
+import { useUserValue } from '../context' 
 
 export const Login = () => {
   const [email, setEmail] = useState('')
