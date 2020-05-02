@@ -4,12 +4,23 @@ import { orderObjectKeys } from '../helpers'
 
 export const useCharacters = () => {
   const [characters, setCharacters] = useState([])
+  const [user, setUser] = useState('')
 
   useEffect(() => {
       firebase
+        .auth()
+        .onAuthStateChanged(user => {
+          setUser(user)
+        })
+
+      if (!user) {
+        return
+      }
+
+      firebase
       .firestore()
       .collection('characters')
-      .where('userId', '==', '12345')
+      .where('userId', '==', user.uid)
       .get()
       .then((data)=>{
         const allCharacters = data.docs.map(character => ({
@@ -21,7 +32,7 @@ export const useCharacters = () => {
           setCharacters(allCharacters)
         }
       })
-  },[characters])
+  },[characters, user])
   
   return { characters, setCharacters }
 }

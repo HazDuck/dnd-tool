@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { firebase } from '../firebase'
-import { useCharactersValue } from '../context'
+import { useCharactersValue, useUserValue } from '../context'
 
 export const AddCharacter = ({ setAddCharacterOverlay }) => {
+  const { user, setUser} = useUserValue()
   const [characterName, setCharacterName] = useState('')
   const { characters, setCharacters } = useCharactersValue()
 
@@ -18,7 +19,7 @@ export const AddCharacter = ({ setAddCharacterOverlay }) => {
     .add({
       archived: false,
       name: characterName,
-      userId: '12345'
+      userId: user.uid
     })
     .then(()=> {
       //trigger firebase by spreading the chars

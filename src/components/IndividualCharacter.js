@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { useSelectedCharacterValue, useCharactersValue, useSelectedMonsterValue } from '../context'
+import { useSelectedCharacterValue, useCharactersValue, useSelectedMonsterValue, useUserValue } from '../context'
 import { firebase } from '../firebase'
 
 export const IndividualCharacter = ({ character, selectedCharacter }) => {
+  const { user, setUser} = useUserValue()
   const [deleteCharacterOverlay, setDeleteCharacterOverlay] = useState(false)
   const { setSelectedCharacter } = useSelectedCharacterValue()
   const { characters, setCharacters } = useCharactersValue()

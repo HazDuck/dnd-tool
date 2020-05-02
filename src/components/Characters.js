@@ -7,6 +7,7 @@ export const Characters = () => {
   const [addCharacterOverlay, setAddCharacterOverlay] = useState(false)
   const { characters } = useCharactersValue()
   const { selectedCharacter } = useSelectedCharacterValue()  
+
   return (
     characters && (
       <section>

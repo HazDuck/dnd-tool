@@ -7,7 +7,7 @@ import {
   useUser} from '../hooks'
 
 export const CharacterContext = createContext() 
-export const CharactersProvider = ({children}) => {
+export const CharactersProvider = ({ children }) => {
   const { characters, setCharacters } = useCharacters()
   return (
     <CharacterContext.Provider value={{characters, setCharacters}}>
@@ -20,7 +20,7 @@ export const useCharactersValue = () => useContext(CharacterContext)
 //-----------------------------------------------------------------------//
 
 export const SelectedCharacterContext = createContext() 
-export const SelectedCharacterProvider = ({children}) => {
+export const SelectedCharacterProvider = ({ children }) => {
   const { selectedCharacter, setSelectedCharacter } = useSelectedCharacter()
   return (
     <SelectedCharacterContext.Provider value={{selectedCharacter, setSelectedCharacter}}>
@@ -46,7 +46,7 @@ export const useSelectedMonsterValue = () => useContext(SelectedMonsterContext)
 //-----------------------------------------------------------------------//
 
 export const DisplayStateContext = createContext() 
-export const DisplayStateProvider = ({children}) => {
+export const DisplayStateProvider = ({ children }) => {
   const { 
     showKillsModal, 
     setShowKillsModal, 
@@ -73,7 +73,7 @@ export const useDisplayStateContextValue = () => useContext(DisplayStateContext)
 //-----------------------------------------------------------------------//
 
 export const UserContext = createContext() 
-export const UserProvider = ({children}) => {
+export const UserProvider = ({ children }) => {
   const { user, setUser } = useUser()
   return (
     <UserContext.Provider value={{ user, setUser }}>
