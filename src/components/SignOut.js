@@ -1,8 +1,10 @@
 import React from 'react'
 import { firebase } from '../firebase';
+import { useSelectedCharacterValue } from '../context'
 import 'firebase/auth';
 
 export const SignOut = () => {
+  const { setSelectedCharacter, selectedCharacter } = useSelectedCharacterValue()
 
   const signOut = () => (
     firebase
@@ -12,7 +14,10 @@ export const SignOut = () => {
 
   return (
     <button
-      onClick={()=>signOut()}
+      onClick={()=> {
+        signOut()
+        setSelectedCharacter('')
+      }}
       className="rpgui-button">
     Sign Out</button>
   )
