@@ -39,14 +39,20 @@ export const useCharacters = () => {
 
 //----------------------------------------------------------//
 
+// export const useSelectedCharacter = () => {
+//   //store the selectedCharacter in local storage and parse it so we can extract character name
+//   const [selectedCharacter, setSelectedCharacter] = useState(()=>{
+//     const characterString = window.localStorage.getItem('selectedCharacter')
+//     return JSON.parse(characterString)
+//   })
+//   window.localStorage.clear()
+//   window.localStorage.setItem('selectedCharacter', JSON.stringify(selectedCharacter))
+//   return { selectedCharacter, setSelectedCharacter }
+// }
+
 export const useSelectedCharacter = () => {
-  //store the selectedCharacter in local storage and parse it so we can extract character name
-  const [selectedCharacter, setSelectedCharacter] = useState(()=>{
-    const characterString = window.localStorage.getItem('selectedCharacter')
-    return JSON.parse(characterString)
-  })
-  window.localStorage.clear()
-  window.localStorage.setItem('selectedCharacter', JSON.stringify(selectedCharacter))
+  const [selectedCharacter, setSelectedCharacter] = useState('')
+
   return { selectedCharacter, setSelectedCharacter }
 }
 
