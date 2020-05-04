@@ -4,7 +4,7 @@ import { useSelectedCharacterValue } from '../context'
 import 'firebase/auth';
 
 export const SignOut = () => {
-  const { setSelectedCharacter, selectedCharacter } = useSelectedCharacterValue()
+  const { setSelectedCharacter } = useSelectedCharacterValue()
 
   const signOut = () => (
     firebase

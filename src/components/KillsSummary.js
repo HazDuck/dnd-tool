@@ -31,9 +31,6 @@ export const KillsSummary = () => {
   const calculateTotalKills = kills => kills.reduce((total, kill) => total + parseInt(kill.quantity), 0)
 
   useEffect(() => {
-    if (!kills.length > 0) {
-      return
-    }
     setTotalKills(calculateTotalKills(kills))
   }, [kills])
 
