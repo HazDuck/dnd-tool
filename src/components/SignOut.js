@@ -10,6 +10,7 @@ export const SignOut = () => {
     firebase
     .auth()
     .signOut()
+    .catch(error => console.log(error))
   )
 
   return (

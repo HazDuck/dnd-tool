@@ -6,6 +6,7 @@ import { useUserValue } from '../context'
 export const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
 
   const loginIn = () => {
     firebase
@@ -15,10 +16,13 @@ export const Login = () => {
       setEmail('')
       setPassword('')
     })
+    .catch(error => setErrorMessage(error.message)
+    )
   }
 
   return (
     <div className='login-container'>
+      <h2>Login</h2>
       <input
         type="text"
         placeholder="Email"
@@ -33,6 +37,7 @@ export const Login = () => {
         onChange={e=>setPassword(e.target.value)}
         required
       />
+      <p>{errorMessage}</p>
       <button
         type="button"
         className="rpgui-button"

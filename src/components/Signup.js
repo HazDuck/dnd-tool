@@ -5,6 +5,7 @@ import 'firebase/auth';
 export const Signup = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
 
   const authenticate = () => {
     firebase
@@ -14,10 +15,12 @@ export const Signup = () => {
       setEmail('')
       setPassword('')
     })
+    .catch(error => setErrorMessage(error.message))
   }
 
   return (
     <div className='login-container'>
+      <h2>Signup</h2>
       <input
         type="text"
         placeholder="Email"
@@ -32,6 +35,7 @@ export const Signup = () => {
         onChange={e=>setPassword(e.target.value)}
         required
       />
+      <p>{errorMessage}</p>
       <button
         type="button"
         className="rpgui-button"
