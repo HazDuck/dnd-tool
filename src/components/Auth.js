@@ -5,7 +5,9 @@ import { useUserValue } from '../context'
 
 export const Auth = () => {
   const { user, setUser} = useUserValue()
-  const [showSignup, setShowSignUp] = useState(true)
+  const [showSignup, setShowSignUp] = useState(false)
+
+  console.log(user)
   return (
     !user && (
       <div>
@@ -25,7 +27,7 @@ export const Auth = () => {
           <button 
           onClick={()=>setShowSignUp(!showSignup)}
           className="rpgui-button"
-          >Signup</button>
+          >Sign up</button>
         </>
         }
       </div>

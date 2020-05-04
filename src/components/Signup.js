@@ -20,7 +20,7 @@ export const Signup = () => {
 
   return (
     <div className='login-container'>
-      <h2>Signup</h2>
+      <h2>Sign up</h2>
       <input
         type="text"
         placeholder="Email"
@@ -40,7 +40,7 @@ export const Signup = () => {
         type="button"
         className="rpgui-button"
         onClick={()=> authenticate()}
-      >Signup</button>
+      >Sign up</button>
     </div>
   )
 }
