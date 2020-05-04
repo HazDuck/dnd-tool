@@ -6,7 +6,7 @@ import {
   // pixelateImages 
 } from '../helpers'
 import { Kills } from './Kills'
-import { LoadingBar } from './LoadingBar'
+// import { LoadingBar } from './LoadingBar'
 import { AddKill } from './AddKill'
 
 export const KillsSummary = () => {
@@ -15,8 +15,8 @@ export const KillsSummary = () => {
   const { kills } = useKills(selectedCharacter.characterId)
   const [ monsterData ] = useState(dataCleanUp())
   const [killsData, setKillsData] = useState([])
-  const [loadingValue, setLoadingValue] = useState(10)
-  const [showLoading, setShowLoading] = useState(true)
+  // const [loadingValue, setLoadingValue] = useState(10)
+  // const [showLoading, setShowLoading] = useState(true)
   const [summaryData, setSummaryData] = useState([])
   const { selectedMonster, setSelectedMonster} = useSelectedMonster('')
   const [totalKills, setTotalKills] = useState('')
@@ -40,7 +40,7 @@ export const KillsSummary = () => {
   //merge the objects together so we can setKillsData and pass to the IndividualKill component
   const findKills = (monsterData, kills) => {
     if (kills) {
-      setShowLoading(false)
+      // setShowLoading(false)
     }
     const killsData = []
     kills.map(kill => {
@@ -83,21 +83,21 @@ export const KillsSummary = () => {
     if (JSON.stringify(findKills(monsterData, kills)) !== JSON.stringify(killsData)) {
       setKillsData(findKills(monsterData, kills))
     }
-    setShowLoading(false)
+    // setShowLoading(false)
   },[monsterData, kills, killsData])
 
   //manages bar updating
-  useEffect(() => {
-    if (!showLoading) {
-      return
-    }  else if (loadingValue === 100 ) {
-      return 
-    }
-    const fillBar = setInterval(() => setLoadingValue(loadingValue + 10), 1000)
-    return () => {
-      clearInterval(fillBar)
-    }
-  }, [showLoading, loadingValue])
+  // useEffect(() => {
+  //   if (!showLoading) {
+  //     return
+  //   }  else if (loadingValue === 100 ) {
+  //     return 
+  //   }
+  //   const fillBar = setInterval(() => setLoadingValue(loadingValue + 10), 1000)
+  //   return () => {
+  //     clearInterval(fillBar)
+  //   }
+  // }, [showLoading, loadingValue])
 
   //filter killsData by selected monster
   useEffect(() => {
@@ -114,12 +114,12 @@ export const KillsSummary = () => {
 
   return (
     user && (
-      showLoading ? 
-        <div className="rpgui-container framed">
-          <p>summoning...</p>
-          <LoadingBar loadingValue={loadingValue} data-testid="LoadingBarKillsSummary"/>
-        </div>
-        :
+      // showLoading ? 
+      //   <div className="rpgui-container framed">
+      //     <p>summoning...</p>
+      //     <LoadingBar loadingValue={loadingValue} data-testid="LoadingBarKillsSummary"/>
+      //   </div>
+      //   :
         <div className="rpgui-container framed kills-summary-container" data-testid="KillsSummary">
           <div className="rpgui-container framed-golden-2 selected-character">
           {/* characterselected sprite goes here */}
