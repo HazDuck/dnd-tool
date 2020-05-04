@@ -35,6 +35,7 @@ export const AddCharacter = ({ setAddCharacterOverlay }) => {
         placeholder="Name"
         value={characterName}
         onChange={e=>setCharacterName(e.target.value)}
+        required
       />
       <div>
         <button
