@@ -11,6 +11,7 @@ import { AddKill } from './AddKill'
 
 export const KillsSummary = () => {
   const { selectedCharacter } = useSelectedCharacterValue()
+  const { user, setUser} = useUserValue()
   const { kills } = useKills(selectedCharacter.characterId)
   const [ monsterData ] = useState(dataCleanUp())
   const [killsData, setKillsData] = useState([])
@@ -26,7 +27,6 @@ export const KillsSummary = () => {
     setShowKillsSummary, 
     showAddKill, 
     setShowAddKill } = useDisplayStateContextValue()
-  const { user, setUser} = useUserValue()
 
   const calculateTotalKills = kills => kills.reduce((total, kill) => total + parseInt(kill.quantity), 0)
 

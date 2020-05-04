@@ -1,9 +1,8 @@
 import React from 'react';
 import { CharactersProvider, SelectedCharacterProvider, SelectedMonsterProvider, DisplayStateProvider, UserProvider } from './context'
-import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
-import { KillsSummary } from './components/KillsSummary'
 import { Auth } from './components/Auth'
+import { Content } from './components/Content'
 
 const App = () => {
 
@@ -17,9 +16,8 @@ const App = () => {
                 <div className="rpgui-container framed">
                   <Header />
                   <div className="main-container">
-                    <Sidebar />
                     <Auth />
-                    <KillsSummary />
+                    <Content />
                   </div>
                 </div>
               </div>
