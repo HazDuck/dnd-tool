@@ -8,6 +8,7 @@ export const AddKill = () => {
   const [ monsterData ] = useState(dataCleanUp())
   const [searchValue, setSearchValue] = useState('')
   const [searchResults, setSearchResults] = useState([])
+  const [showSearchMessage, setShowSearchMessage] = useState(false)
   const { setShowAddKill, setShowKillsSummary } = useDisplayStateContextValue()
 
   const search = (monsterData, searchValue) => {
@@ -15,6 +16,9 @@ export const AddKill = () => {
       monster.name.toLowerCase().includes(searchValue.toLowerCase())
     )
     setSearchResults(searchResults)
+    if (searchResults.length < 1) {
+      setShowSearchMessage(true)
+    }
   }
 
   return (
@@ -41,7 +45,7 @@ export const AddKill = () => {
         onClick={()=> search(monsterData, searchValue)}
       >Search
       </button>
-      {searchResults.length > 0 && (
+      {searchResults.length > 0 ? (
         searchResults.map(monster => (
           <IndividualMonster 
             key={monster.monsterId} 
@@ -49,6 +53,10 @@ export const AddKill = () => {
             setSearchResults={setSearchResults}
           /> 
         ))
+      )
+      :
+      showSearchMessage && (
+        <p>I have no record of such a beast...</p>
       )}
     </div>
   )
