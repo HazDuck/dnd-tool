@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { firebase } from '../firebase';
 import 'firebase/auth';
-import { useUserValue } from '../context' 
+import { useUserValue, useCharactersValue } from '../context' 
 
 export const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
+  const { characters, setCharacters } = useCharactersValue()
 
   const loginIn = () => {
     firebase
@@ -41,7 +42,10 @@ export const Login = () => {
       <button
         type="button"
         className="rpgui-button"
-        onClick={()=> loginIn()}
+        onClick={()=> {
+          setCharacters([])
+          loginIn()}
+        }
       >Login</button>
     </div>
   )

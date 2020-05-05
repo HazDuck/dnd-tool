@@ -1,12 +1,10 @@
 import React from 'react'
 import { firebase } from '../firebase';
-import { useSelectedCharacterValue, useCharactersValue } from '../context'
+import { useSelectedCharacterValue } from '../context'
 import 'firebase/auth';
 
 export const SignOut = () => {
   const { setSelectedCharacter } = useSelectedCharacterValue()
-  const { characters, setCharacters } = useCharactersValue()
-
 
   const signOut = () => (
     firebase
@@ -15,12 +13,9 @@ export const SignOut = () => {
     .catch(error => console.log(error))
   )
 
-  console.log(characters, 'characters')
-
   return (
     <button
       onClick={()=> {
-        // setCharacters([])
         setSelectedCharacter('')
         signOut()
       }}
