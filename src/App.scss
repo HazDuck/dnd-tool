@@ -213,6 +213,8 @@ $base-margin: 8px;
   }
 
   .individual-monster {
+    margin-bottom: $base-margin*3;
+
     .individual-monster-inner {
       display: flex;
     }
@@ -233,11 +235,20 @@ $base-margin: 8px;
 
     .contents-container {
       width: 100%;
+
+      textarea {
+        height: 183px;
+        border: #FFF solid 2px;
+      }
       
       .buttons-container {
         display: flex;
         align-items: center;
         justify-content: space-between;
+
+        span {
+          margin: 0 10px 0 10px;
+        }
       }
     }
   }
