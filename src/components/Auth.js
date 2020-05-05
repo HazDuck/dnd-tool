@@ -7,10 +7,9 @@ export const Auth = () => {
   const { user, setUser} = useUserValue()
   const [showSignup, setShowSignUp] = useState(false)
 
-  console.log(user)
   return (
     !user && (
-      <div>
+      <div className="auth-container">
         {showSignup ? 
         <>
           <Signup /> 

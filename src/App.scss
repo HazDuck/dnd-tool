@@ -19,7 +19,7 @@ $base-margin: 8px;
   align-items: center;
 
   .heading-container {
-    margin-left: 8%;
+    margin: 0 auto; 
 
     h1 {
       font-size: 250%
@@ -49,6 +49,11 @@ $base-margin: 8px;
     width: 70%;
     margin-bottom: $base-margin*2;
   }
+}
+
+.auth-container {
+  margin: $base-margin*10 auto;
+
 }
 
 .side-bar {
@@ -189,10 +194,7 @@ $base-margin: 8px;
       .button-container {
         display: flex;
         align-items: center;
-        
-        p {
-          margin: 0 21px;
-        }
+        justify-content: space-between;
       }
       
       .confirm {
