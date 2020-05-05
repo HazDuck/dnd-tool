@@ -94,6 +94,7 @@ export const useDisplayState = () => {
   const [showKillsModal, setShowKillsModal] = useState(false)
   const [showKillsSummary, setShowKillsSummary] = useState(true)
   const [showAddKill, setShowAddKill] = useState(false)
+  const [showSidebar, setShowSidebar] = useState(true)
 
   return { 
     showKillsModal, 
@@ -101,7 +102,9 @@ export const useDisplayState = () => {
     showKillsSummary, 
     setShowKillsSummary, 
     showAddKill, 
-    setShowAddKill 
+    setShowAddKill,
+    showSidebar, 
+    setShowSidebar
   }
 }
 

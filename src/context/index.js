@@ -53,7 +53,9 @@ export const DisplayStateProvider = ({ children }) => {
     showKillsSummary, 
     setShowKillsSummary, 
     showAddKill, 
-    setShowAddKill 
+    setShowAddKill ,
+    showSidebar, 
+    setShowSidebar
   } = useDisplayState()
   return (
     <DisplayStateContext.Provider value={{
@@ -62,7 +64,9 @@ export const DisplayStateProvider = ({ children }) => {
       showKillsSummary, 
       setShowKillsSummary, 
       showAddKill, 
-      setShowAddKill
+      setShowAddKill,
+      showSidebar, 
+      setShowSidebar
       }}>
       {children}
     </DisplayStateContext.Provider>
