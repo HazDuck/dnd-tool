@@ -8,13 +8,13 @@ export const Sidebar = () => {
   const { showSidebar } = useDisplayStateContextValue()
 
   return (
-    <>
+    <div className={`side-bar-modal ${showSidebar ? '' : 'show'}`}>
     {user && (
       <aside className={`rpgui-container framed-golden side-bar ${showSidebar ? '' : 'show'}`}>
         <Characters />
         <SignOut />
       </aside>
     )}
-    </>
+    </div>
   )
 }
