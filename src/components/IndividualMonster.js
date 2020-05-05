@@ -34,37 +34,47 @@ export const IndividualMonster = ({ monster, setSearchResults }) => {
   }
 
   return (
-    <div>
+    <div className="individual-monster">
       <h4>{monster.name}</h4>
-      <img src={monster.img} style={{"width": "250px", "height": "275px"}} alt={monster.name}/>
-      <div>
-        <button
-          className="rpgui-button small-button"
-          type="button"
-          onClick={()=>setQuantity(quantity + 1)}
-        >+</button>
-        <span>{quantity}</span>
-        <button
-          className="rpgui-button small-button"
-          type="button" 
-          onClick={()=>setQuantity(quantity - 1)}
-        >-</button>
+      <div className="individual-monster-inner">
+        <div className="rpgui-container framed monster-image-container">
+          <img 
+            src={monster.img} 
+            alt={monster.name}/>
+        </div>
+        <div className="contents-container">
+          <textarea
+            type="text"
+            placeholder="Kill notes"
+            value={notes}
+            onChange={e=>setNotes(e.target.value)}
+          />
+          <div className="buttons-container">
+            <div>
+              <button
+                className="rpgui-button small-button"
+                type="button"
+                onClick={()=>setQuantity(quantity + 1)}
+              >+</button>
+              <span>{quantity}</span>
+              <button
+                className="rpgui-button small-button"
+                type="button" 
+                onClick={()=>setQuantity(quantity - 1)}
+              >-</button>
+            </div>
+            <button
+              className="rpgui-button"
+              onClick={()=> {
+              addKill(selectedCharacter.characterId)
+              setSearchResults([])
+              setShowKillsSummary(true)
+              setShowAddKill(false)
+            }}
+            >Add</button>
+          </div>
+        </div>
       </div>
-      <textarea
-        type="text"
-        placeholder="Kill notes"
-        value={notes}
-        onChange={e=>setNotes(e.target.value)}
-      />
-      <button
-        className="rpgui-button"
-        onClick={()=> {
-        addKill(selectedCharacter.characterId)
-        setSearchResults([])
-        setShowKillsSummary(true)
-        setShowAddKill(false)
-      }}
-      >Add</button>
     </div>
   )
 }

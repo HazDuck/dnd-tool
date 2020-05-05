@@ -168,10 +168,6 @@ $base-margin: 8px;
           border: 10px #FFF solid;
         }
       }
-
-      .monster-text-container {
-
-      }
     }
   }
   
@@ -206,10 +202,6 @@ $base-margin: 8px;
         text-align: center;
       }
     }
-
-    .individual-kill-container-inner {
-
-    }
   }
 
   .add-kill {
@@ -217,6 +209,36 @@ $base-margin: 8px;
       display: flex;
       align-items: center;
       justify-content: flex-end;
+    }
+  }
+
+  .individual-monster {
+    .individual-monster-inner {
+      display: flex;
+    }
+
+    .monster-image-container {
+      padding: 0;
+      background: #FFF;
+      border-radius: 20px;
+      margin-right: $base-margin*2;
+
+      img {
+        width: 200px;
+        height: 210px;
+        object-fit: contain;
+        border: 10px #FFF solid;
+      }
+    }
+
+    .contents-container {
+      width: 100%;
+      
+      .buttons-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
     }
   }
 }
