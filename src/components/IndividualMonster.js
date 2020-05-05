@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelectedCharacterValue, useDisplayStateContextValue } from '../context'
 import { firebase } from '../firebase'
+import ReactImageFallback from 'react-image-fallback'
 
 
 export const IndividualMonster = ({ monster, setSearchResults }) => {
@@ -38,9 +39,11 @@ export const IndividualMonster = ({ monster, setSearchResults }) => {
       <h4>{monster.name}</h4>
       <div className="individual-monster-inner">
         <div className="rpgui-container framed monster-image-container">
-          <img 
+          <ReactImageFallback
             src={monster.img} 
-            alt={monster.name}/>
+            alt={monster.name}
+            fallbackImage="https://ctl.s6img.com/society6/img/nbp_KwJ89ob771zos4y6G4dZI4I/w_700/prints/~artwork/s6-original-art-uploads/society6/uploads/misc/f61fb90371e1424db35af946632c11ec/~~/d20-dice-mimic-pup-red1031296-prints.jpg"
+          />
         </div>
         <div className="contents-container">
           <textarea
