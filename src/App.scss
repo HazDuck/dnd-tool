@@ -106,7 +106,7 @@ $breakpoints: (
       width: 45px;
       height: auto;
   
-      @include media-query($medium-large) {
+      @include media-query($large) {
         display: none;
       }
     }
@@ -192,7 +192,7 @@ $breakpoints: (
   z-index: 100;
   left: 0;
   
-  @include media-query($medium-large) {
+  @include media-query($large) {
     width: fit-content;
     display: block;
     position: static;
@@ -272,7 +272,12 @@ $breakpoints: (
 
   .kills-summary-container {
     width: 100%;
-    margin: 0 $base-margin*2;
+
+    @include media-query($medium) {
+      flex-direction: row;
+      margin: 0 $base-margin*2;
+    }
+
     
     .kill-summary {
       margin: $base-margin 0;
@@ -409,7 +414,11 @@ $breakpoints: (
     .close-kills-button-container {
       display: flex;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: flex-start;
+
+      @include media-query($medium) {
+        justify-content: flex-end;
+      }
     }
   }
 
