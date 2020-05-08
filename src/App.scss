@@ -427,13 +427,23 @@ $breakpoints: (
 
     .individual-monster-inner {
       display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      @include media-query($medium) {
+        flex-direction: row;
+      }
     }
 
     .monster-image-container {
       padding: 0;
       background: #FFF;
       border-radius: 20px;
-      margin-right: $base-margin*2;
+      margin: 0 0 $base-margin*2 0;
+
+      @include media-query($medium) {
+        margin: 0 $base-margin*2 0 0;
+      }
 
       img {
         width: 200px;
