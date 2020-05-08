@@ -165,8 +165,9 @@ $breakpoints: (
   position: fixed;
   top: 100px;
   z-index: 100;
-
+  
   @include media-query($medium-large) {
+    width: fit-content;
     display: block;
     position: static;
     min-width: fit-content;

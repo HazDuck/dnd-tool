@@ -160,13 +160,13 @@ export const KillsSummary = () => {
                     </div>
                     <div>
                       <button
-                        className="rpgui-button golden"
+                        className="rpgui-button"
                         onClick={()=> {
                           setSelectedMonster(kill.monsterId)
                           setShowKillsSummary(false)
                           setShowKillsModal(true)
                         }}
-                      >Show full details</button>
+                      >More info</button>
                     </div>
                   </div>
                 </div>
