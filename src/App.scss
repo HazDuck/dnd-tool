@@ -267,6 +267,11 @@ $breakpoints: (
       margin: $base-margin 0;
       display: flex;
       align-items: center;
+      flex-direction: column;
+
+      @include media-query($medium) {
+        flex-direction: row;
+      }
 
       .kill-summary-info {
         display: flex;
@@ -274,10 +279,17 @@ $breakpoints: (
         align-items: center;
         justify-content: space-between;
         padding: 0 $base-margin*2;
+        flex-direction: column;
+
+        @include media-query($medium) {
+          flex-direction: row;
+        }
 
         div {
-          flex-grow: 1;
-          width: 33%;
+          @include media-query($medium) {
+            flex-grow: 1;
+            width: 33%;
+          }
         }
       }
 
