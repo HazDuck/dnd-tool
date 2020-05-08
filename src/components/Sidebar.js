@@ -11,10 +11,10 @@ export const Sidebar = () => {
     user && (
       <>
         <div className={`side-bar-modal ${showSidebar ? '' : 'show'}`}></div>
-          <aside className={`rpgui-container framed-golden side-bar ${showSidebar ? '' : 'show'}`}>
-            <Characters />
-            <SignOut />
-          </aside>
+        <aside className={`rpgui-container framed-golden side-bar ${showSidebar ? '' : 'show'}`}>
+          <Characters />
+          <SignOut />
+        </aside>
       </>
     )
   )
