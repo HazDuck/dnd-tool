@@ -84,36 +84,56 @@ $breakpoints: (
 .header {
   width: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 
-  .hamburger {
-    width: 45px;
-    height: auto;
-    position: fixed;
+  @include media-query($medium-large) {
+    flex-direction: row;
+  }
 
-    @include media-query($medium-large) {
+  .top-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .hamburger {
+      width: 45px;
+      height: auto;
+  
+      @include media-query($medium-large) {
+        display: none;
+      }
+    }
+  
+    .evil-wizard-container {
       display: none;
+    
+      @include media-query($small) {
+        display: block;
+        min-width: 420px;
+      }
     }
   }
 
-  .evil-wizard-container {
-    display: none;
-
-    @include media-query($large) {
-      display: block;
-    }
-  }
 
   .heading-container {
     margin: 0 auto; 
 
     h1 {
-      font-size: 250%
-    }
-
-    h2 {
       font-size: 200%;
-      text-transform: capitalize;
+      line-height: 1.4;
+      
+      @include media-query($medium) {
+        font-size: 250%
+      }
+    }
+    
+    h3 {
+      line-height: 1.4;
+      @include media-query($medium) {
+        font-size: 125%;
+      }
     }
   }
 
@@ -165,6 +185,7 @@ $breakpoints: (
   position: fixed;
   top: 100px;
   z-index: 100;
+  left: 0;
   
   @include media-query($medium-large) {
     width: fit-content;
