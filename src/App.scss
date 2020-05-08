@@ -95,8 +95,12 @@ $breakpoints: (
   .top-header-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 100%;
+
+    @include media-query($medium) {
+      width: auto;
+    }
 
     .hamburger {
       width: 45px;
@@ -222,6 +226,12 @@ $breakpoints: (
       }
     }
   }
+
+  .side-bar-close {
+    @include media-query($medium) {
+      display: none;
+    }
+  }
 }
 
 .main-container {
@@ -318,6 +328,12 @@ $breakpoints: (
     .kill-monster-info {
       display: flex;
       justify-content: space-between;
+      flex-direction: column;
+      align-items: center;
+    
+      @include media-query($large) {
+        flex-direction: row;
+      }
 
       .monster-image-container {
         padding: 0;

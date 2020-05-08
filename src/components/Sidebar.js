@@ -13,11 +13,15 @@ export const Sidebar = () => {
         <div className={`side-bar-modal ${showSidebar ? '' : 'show'}`}></div>
         <aside className={`rpgui-container framed-golden side-bar ${showSidebar ? '' : 'show'}`}>
           <Characters />
-          <SignOut />        
-          <hr className="golden"></hr>
-          <button 
-            onClick={()=>setShowSidebar(!showSidebar)}
-            className="rpgui-button">Close</button>
+          <SignOut />     
+          <div
+            className="sidebar-close"
+          >
+            <hr className="golden"></hr>
+            <button 
+              onClick={()=>setShowSidebar(!showSidebar)}
+              className="rpgui-button">Close</button>
+          </div>   
         </aside>
       </>
     )
