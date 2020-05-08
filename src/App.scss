@@ -272,6 +272,7 @@ $breakpoints: (
 
   .kills-summary-container {
     width: 100%;
+    margin: 0 $base-margin*2;
     
     .kill-summary {
       margin: $base-margin 0;
@@ -322,7 +323,12 @@ $breakpoints: (
     .close-kills-button-container {
       display: flex;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: flex-start;
+      
+      @include media-query($medium) {
+        justify-content: flex-end;
+        flex-direction: row;
+      }
     }
 
     .kill-monster-info {
@@ -333,6 +339,14 @@ $breakpoints: (
     
       @include media-query($large) {
         flex-direction: row;
+      }
+
+      .monster-text-container {
+        margin-top: $base-margin;
+
+        @include media-query($medium) {
+          margin-top: 0;
+        }
       }
 
       .monster-image-container {
@@ -356,10 +370,20 @@ $breakpoints: (
     .description-container {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
+      flex-direction: column;
+      
+      @include media-query($medium) {
+        align-items: center;
+        flex-direction: row;
+      }
 
       textarea {
-        height: 200px;
+        height: 400px;
+        
+        @include media-query($medium) {
+          height: 200px;
+        }
       }
     }
 

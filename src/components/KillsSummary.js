@@ -118,7 +118,7 @@ export const KillsSummary = () => {
       //     <LoadingBar loadingValue={loadingValue} data-testid="LoadingBarKillsSummary"/>
       //   </div>
       //   :
-        <div className="rpgui-container framed kills-summary-container" data-testid="KillsSummary">
+        <div className="kills-summary-container" data-testid="KillsSummary">
           <div className="rpgui-container framed-golden-2 selected-character">
           {/* characterselected sprite goes here */}
             <div className="selected-character-inner">
