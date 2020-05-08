@@ -96,6 +96,7 @@ $breakpoints: (
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
 
     .hamburger {
       width: 45px;
@@ -239,14 +240,23 @@ $breakpoints: (
     }
 
     h2 {
-      text-align: left;
       font-size: 168%;
+      
+      @include media-query($medium) {
+        text-align: left;
+      }
     }
 
     .selected-character-inner {
+      flex-direction: column;
+      align-items: center;
       width: 100%;
       display: flex;
-      justify-content: space-between;
+
+      @include media-query($medium) {
+        flex-direction: row;
+        justify-content: space-between;
+      }
     }
   }
 
