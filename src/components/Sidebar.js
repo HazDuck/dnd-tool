@@ -5,7 +5,7 @@ import { useUserValue, useDisplayStateContextValue } from '../context'
 
 export const Sidebar = () => {
   const { user, setUser} = useUserValue()
-  const { showSidebar } = useDisplayStateContextValue()
+  const { showSidebar, setShowSidebar } = useDisplayStateContextValue()
 
   return (
     user && (
@@ -13,7 +13,11 @@ export const Sidebar = () => {
         <div className={`side-bar-modal ${showSidebar ? '' : 'show'}`}></div>
         <aside className={`rpgui-container framed-golden side-bar ${showSidebar ? '' : 'show'}`}>
           <Characters />
-          <SignOut />
+          <SignOut />        
+          <hr className="golden"></hr>
+          <button 
+            onClick={()=>setShowSidebar(!showSidebar)}
+            className="rpgui-button">Close</button>
         </aside>
       </>
     )
