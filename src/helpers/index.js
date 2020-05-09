@@ -76,23 +76,3 @@ export const orderObjectKeys = unorderedCharacters => {
   )
   return orderedCharacters
 }
-
-// export const pixelateImages = (canvases) => {
-//   canvases.forEach(canvas => {
-//     const ctx = canvas.getContext('2d')
-//     const img = new Image()
-//     ctx.mozImageSmoothingEnabled = false;
-//     ctx.webkitImageSmoothingEnabled = false;
-//     ctx.imageSmoothingEnabled = false;
-//     img.src = canvas.dataset.monsterImage;
-//     return setTimeout(()=> pixelate(canvas, ctx, img), 200)
-//   })
-// }
-
-// const pixelate = (canvas, ctx, img) => {
-//   const size = .5
-//   const w = canvas.width * size
-//   const h = canvas.height * size
-//   ctx.drawImage(img, 0, 0, w, h);
-//   ctx.drawImage(canvas, 0, 0, w, h, 0, 0, canvas.width, canvas.height);
-// }
