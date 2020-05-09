@@ -3,7 +3,6 @@ import { dataCleanUp } from '../helpers'
 import { IndividualMonster } from './IndividualMonster'
 import { useDisplayStateContextValue } from '../context'
 
-
 export const AddKill = () => {
   const [ monsterData ] = useState(dataCleanUp())
   const [searchValue, setSearchValue] = useState('')
@@ -43,7 +42,8 @@ export const AddKill = () => {
       <button
         className="rpgui-button"
         onClick={()=> search(monsterData, searchValue)}
-      >Search
+      >
+        Search
       </button>
       {searchResults.length > 0 ? (
         searchResults.map(monster => (
@@ -53,9 +53,7 @@ export const AddKill = () => {
             setSearchResults={setSearchResults}
           /> 
         ))
-      )
-      :
-      showSearchMessage && (
+      ) : showSearchMessage && (
         <p>I have no record of such a beast...</p>
       )}
     </div>
