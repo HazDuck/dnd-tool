@@ -4,7 +4,7 @@ import { SignOut } from './SignOut'
 import { useUserValue, useDisplayStateContextValue } from '../context'
 
 export const Sidebar = () => {
-  const { user, setUser} = useUserValue()
+  const { user } = useUserValue()
   const { showSidebar, setShowSidebar } = useDisplayStateContextValue()
 
   return (
@@ -14,9 +14,7 @@ export const Sidebar = () => {
         <aside className={`rpgui-container framed-golden side-bar ${showSidebar ? '' : 'show'}`}>
           <Characters />
           <SignOut />     
-          <div
-            className="sidebar-close"
-          >
+          <div className="sidebar-close">
             <hr className="golden"></hr>
             <button 
               onClick={()=>setShowSidebar(!showSidebar)}
