@@ -5,7 +5,6 @@ import ReactImageFallback from 'react-image-fallback'
 
 
 export const IndividualMonster = ({ monster, setSearchResults }) => {
-
   const { selectedCharacter } = useSelectedCharacterValue()
   const [quantity, setQuantity] = useState(1)
   const [notes, setNotes] = useState('')
@@ -62,17 +61,19 @@ export const IndividualMonster = ({ monster, setSearchResults }) => {
               <button
                 className="rpgui-button small-button"
                 type="button" 
-                onClick={()=>setQuantity(quantity - 1)}
+                onClick={()=>
+                  setQuantity(quantity - 1)
+                }
               >-</button>
             </div>
             <button
               className="rpgui-button"
               onClick={()=> {
-              addKill(selectedCharacter.characterId)
-              setSearchResults([])
-              setShowKillsSummary(true)
-              setShowAddKill(false)
-            }}
+                addKill(selectedCharacter.characterId)
+                setSearchResults([])
+                setShowKillsSummary(true)
+                setShowAddKill(false)
+              }}
             >Add</button>
           </div>
         </div>
