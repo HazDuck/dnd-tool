@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { useSelectedCharacterValue, useCharactersValue, useSelectedMonsterValue, useUserValue } from '../context'
+import { 
+  useSelectedCharacterValue,
+  useCharactersValue, 
+  useSelectedMonsterValue } from '../context'
 import { firebase } from '../firebase'
 
 export const IndividualCharacter = ({ character, selectedCharacter }) => {
-  const { user, setUser} = useUserValue()
   const [deleteCharacterOverlay, setDeleteCharacterOverlay] = useState(false)
   const { characters, setCharacters } = useCharactersValue()
   const { setSelectedCharacter } = useSelectedCharacterValue()
   const { setSelectedMonster } = useSelectedMonsterValue()
 
-  
   useEffect(() => {
     if (!characters) {
       return
@@ -43,8 +44,9 @@ export const IndividualCharacter = ({ character, selectedCharacter }) => {
           setSelectedMonster('')
         }}>
           {character.name}
-          {/* {character.characterId == selectedCharacter.characterId ? <div className="rpgui-icon sword"></div> : ''} */}
-          {selectedCharacter && selectedCharacter.characterId ? character.characterId == selectedCharacter.characterId ? <div className="rpgui-icon sword"></div> : '' : ''}
+          {selectedCharacter && selectedCharacter.characterId ? 
+            character.characterId === selectedCharacter.characterId ? <div className="rpgui-icon sword"></div> : '' 
+            : ''}
         </span>
         <button 
           className="rpgui-button small-button"
