@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelectedCharacterValue, useDisplayStateContextValue } from '../context'
 import { IndividualKill } from './IndividualKill'
+import ReactImageFallback from 'react-image-fallback'
 
 export const Kills = ({ selectedMonster, killsData }) => {
   const { selectedCharacter } = useSelectedCharacterValue()
@@ -33,7 +34,11 @@ export const Kills = ({ selectedMonster, killsData }) => {
                 </div>
                 <div className="kill-monster-info">
                   <div className="rpgui-container framed monster-image-container">
-                    <img src={kill.img} alt={`${kill.name}`}/>
+                    <ReactImageFallback
+                      src={kill.img} 
+                      alt={kill.name}
+                      fallbackImage="https://ctl.s6img.com/society6/img/nbp_KwJ89ob771zos4y6G4dZI4I/w_700/prints/~artwork/s6-original-art-uploads/society6/uploads/misc/f61fb90371e1424db35af946632c11ec/~~/d20-dice-mimic-pup-red1031296-prints.jpg"
+                    />
                   </div>
                   <div className="rpgui-container framed-grey monster-text-container">
                     <h4>{kill.name}</h4>

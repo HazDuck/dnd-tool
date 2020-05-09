@@ -1,22 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useKills, useSelectedMonster } from '../hooks'
 import { useSelectedCharacterValue, useDisplayStateContextValue, useUserValue } from '../context'
-import { 
-  dataCleanUp
-  // pixelateImages 
-} from '../helpers'
+import { dataCleanUp} from '../helpers'
 import { Kills } from './Kills'
-// import { LoadingBar } from './LoadingBar'
 import { AddKill } from './AddKill'
+import ReactImageFallback from 'react-image-fallback'
 
 export const KillsSummary = () => {
   const { selectedCharacter } = useSelectedCharacterValue()
-  const { user, setUser} = useUserValue()
+  const { user } = useUserValue()
   const { kills } = useKills(selectedCharacter.characterId)
-  const [ monsterData ] = useState(dataCleanUp())
+  const [monsterData] = useState(dataCleanUp())
   const [killsData, setKillsData] = useState([])
-  // const [loadingValue, setLoadingValue] = useState(10)
-  // const [showLoading, setShowLoading] = useState(true)
   const [summaryData, setSummaryData] = useState([])
   const { selectedMonster, setSelectedMonster} = useSelectedMonster('')
   const [totalKills, setTotalKills] = useState('')
@@ -37,9 +32,6 @@ export const KillsSummary = () => {
   //map over the monsterData and if the monsterId on firebase matches the monsterData monsterId
   //merge the objects together so we can setKillsData and pass to the IndividualKill component
   const findKills = (monsterData, kills) => {
-    if (kills) {
-      // setShowLoading(false)
-    }
     const killsData = []
     kills.map(kill => {
       let killedMonster = monsterData.filter(monster => 
@@ -75,121 +67,92 @@ export const KillsSummary = () => {
 
   //update killsdata
   useEffect(() => {
-    // if (!kills.length > 0) {
-    //   return
-    // }
     if (JSON.stringify(findKills(monsterData, kills)) !== JSON.stringify(killsData)) {
       setKillsData(findKills(monsterData, kills))
     }
-    // setShowLoading(false)
   },[monsterData, kills, killsData])
-
-  //manages bar updating
-  // useEffect(() => {
-  //   if (!showLoading) {
-  //     return
-  //   }  else if (loadingValue === 100 ) {
-  //     return 
-  //   }
-  //   const fillBar = setInterval(() => setLoadingValue(loadingValue + 10), 1000)
-  //   return () => {
-  //     clearInterval(fillBar)
-  //   }
-  // }, [showLoading, loadingValue])
 
   //filter killsData by selected monster
   useEffect(() => {
     setSummaryData(calculateSummaryData(killsData))
   }, [killsData])
 
-  // //pixelate monster images
-  // useEffect(() => {
-  //   if (document.querySelectorAll('[data-monster-image]').length == 0) {
-  //     return 
-  //   }
-  //   pixelateImages(document.querySelectorAll('[data-monster-image]'))
-  // })
-
-  console.log(showKillsSummary)
-
   return (
     user && (
-      // showLoading ? 
-      //   <div className="rpgui-container framed">
-      //     <p>summoning...</p>
-      //     <LoadingBar loadingValue={loadingValue} data-testid="LoadingBarKillsSummary"/>
-      //   </div>
-      //   :
-        <div className="kills-summary-container" data-testid="KillsSummary">
-          <div className="rpgui-container framed-golden-2 selected-character">
-          {/* characterselected sprite goes here */}
-            <div className="selected-character-inner">
-              <div>
-                <h2>{selectedCharacter.name}</h2>
-                <h3>Total kills: {totalKills}</h3>
-              </div>
-              <button
-                className="rpgui-button"
-                onClick={()=>{
-                  if (!showKillsSummary && !showAddKill && showKillsModal) {
-                    setShowKillsModal(false)
-                    setShowKillsSummary(false)
-                    setShowAddKill(true)
-                  } else {
-                    setShowAddKill(!showAddKill)
-                    setShowKillsSummary(!showKillsSummary)
-                    setShowKillsModal(false)
-                  }
-                }}
-              >Add kill</button>
-            </div>
-          </div>
-          {showKillsSummary && (
+      <div className="kills-summary-container" data-testid="KillsSummary">
+        <div className="rpgui-container framed-golden-2 selected-character">
+        {/* characterselected sprite goes here */}
+          <div className="selected-character-inner">
             <div>
-              {summaryData.map((kill) => 
-                <div
-                  className="kill-summary"
-                  key={kill.monsterId}>
-                  <div className="rpgui-container framed monster-image-container">
-                    <img src={kill.img} alt={`${kill.name}`}/>
+              <h2>{selectedCharacter.name}</h2>
+              <h3>Total kills: {totalKills}</h3>
+            </div>
+            <button
+              className="rpgui-button"
+              onClick={()=>{
+                if (!showKillsSummary && !showAddKill && showKillsModal) {
+                  setShowKillsModal(false)
+                  setShowKillsSummary(false)
+                  setShowAddKill(true)
+                } else {
+                  setShowAddKill(!showAddKill)
+                  setShowKillsSummary(!showKillsSummary)
+                  setShowKillsModal(false)
+                }
+              }}
+            >Add kill</button>
+          </div>
+        </div>
+        {showKillsSummary && (
+          <div>
+            {summaryData.map((kill) => 
+              <div
+                className="kill-summary"
+                key={kill.monsterId}>
+                <div className="rpgui-container framed monster-image-container">
+                  <ReactImageFallback
+                    src={kill.img} 
+                    alt={kill.name}
+                    fallbackImage="https://ctl.s6img.com/society6/img/nbp_KwJ89ob771zos4y6G4dZI4I/w_700/prints/~artwork/s6-original-art-uploads/society6/uploads/misc/f61fb90371e1424db35af946632c11ec/~~/d20-dice-mimic-pup-red1031296-prints.jpg"
+                  />
+                </div>
+                <div className="kill-summary-info">
+                  <div>
+                    <h2>{kill.name}</h2>
                   </div>
-                  <div className="kill-summary-info">
-                    <div>
-                      <h2>{kill.name}</h2>
-                    </div>
-                    <div>
-                      <h2>Kills: {kill.quantity}</h2>
-                    </div>
-                    <div>
-                      <button
-                        className="rpgui-button"
-                        onClick={()=> {
-                          setSelectedMonster(kill.monsterId)
-                          setShowKillsSummary(false)
-                          setShowKillsModal(true)
-                        }}
-                      >More info</button>
-                    </div>
+                  <div>
+                    <h2>Kills: {kill.quantity}</h2>
+                  </div>
+                  <div>
+                    <button
+                      className="rpgui-button"
+                      onClick={()=> {
+                        setSelectedMonster(kill.monsterId)
+                        setShowKillsSummary(false)
+                        setShowKillsModal(true)
+                      }}
+                    >More info</button>
                   </div>
                 </div>
-              )}
-            </div>
-          )}
-          {showKillsModal && (
-            <Kills 
-            selectedMonster={selectedMonster} 
-            killsData={killsData} 
-            setShowKillsModal={setShowKillsModal}
+              </div>
+            )}
+          </div>
+        )}
+        {showKillsModal && (
+          <Kills 
+          selectedMonster={selectedMonster} 
+          killsData={killsData} 
+          setShowKillsModal={setShowKillsModal}
+          setShowKillsSummary={setShowKillsSummary}
+          />
+        )}
+        {showAddKill && (
+          <AddKill 
             setShowKillsSummary={setShowKillsSummary}
-            />
-          )}
-          {showAddKill && (
-            <AddKill 
-              setShowKillsSummary={setShowKillsSummary}
-              setShowAddKill={setShowAddKill}
-            />
-          )}
-        </div>
+            setShowAddKill={setShowAddKill}
+          />
+        )}
+      </div>
     )
   )
 }
