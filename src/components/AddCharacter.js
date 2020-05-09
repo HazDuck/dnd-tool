@@ -3,7 +3,7 @@ import { firebase } from '../firebase'
 import { useCharactersValue, useUserValue } from '../context'
 
 export const AddCharacter = ({ setAddCharacterOverlay }) => {
-  const { user, setUser} = useUserValue()
+  const { user } = useUserValue()
   const [characterName, setCharacterName] = useState('')
   const { characters, setCharacters } = useCharactersValue()
 
