@@ -15,7 +15,7 @@ export const IndividualCharacter = ({ character, selectedCharacter }) => {
       return
     }
     setSelectedCharacter(characters[0])
-  }, [])
+  }, [characters])
 
   const deleteCharacter = characterId => (
     firebase
