@@ -56,7 +56,7 @@ $large-breakpoint: 1024px;
 $large: 'large';
 
 body {
-  background: #000
+  background: #000;
 }
 
 $breakpoints: (
@@ -227,7 +227,8 @@ $breakpoints: (
     }
   }
 
-  .side-bar-close {
+  .sidebar-close {
+
     @include media-query($medium) {
       display: none;
     }
