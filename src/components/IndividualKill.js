@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import { firebase } from '../firebase'
-import { useKills } from '../hooks'
 import { useDisplayStateContextValue } from '../context'
 
 
-export const IndividualKill = ({kill, selectedCharacter}) => {
+export const IndividualKill = ({ kill }) => {
   const [deleteKillOverlay, setDeleteKillOverlay] = useState(false)
-  const { kills, setKills } = useKills(selectedCharacter.characterId)
   const [updatedKillNotes, setUpdatedKillNotes] = useState(kill.notes)
   const { setShowKillsSummary } = useDisplayStateContextValue()
 
@@ -40,7 +38,6 @@ export const IndividualKill = ({kill, selectedCharacter}) => {
       .doc(killId)
       .delete()
       .then(()=> {
-        // setKills([...kills])
         setShowKillsSummary(true)
       })
     
