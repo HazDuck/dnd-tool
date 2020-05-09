@@ -28,8 +28,7 @@ export const Characters = () => {
         </button>
 
         {addCharacterOverlay && 
-          <AddCharacter setAddCharacterOverlay={setAddCharacterOverlay}
-        />}
+          <AddCharacter setAddCharacterOverlay={setAddCharacterOverlay}/>}
       </section>
     )
   )
