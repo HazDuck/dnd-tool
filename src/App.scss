@@ -78,6 +78,10 @@ input, a, div :focus {
   display: block !important;
 }
 
+.no-padding {
+  padding: 0 !important;
+}
+
 .small-button {
   min-width: 38px;
   height: 30px;
@@ -274,13 +278,14 @@ input, a, div :focus {
       }
 
       .character-sprite {
-        background-image: url("/images/classes.png");
+        background-image: url(/images/classes.png);
         background-repeat: no-repeat;
         background-position: 0px 0px;
         width: 100px;
         height: 100px;
-        transform: scale(2);
         overflow: hidden;
+        background-size: 782px;
+        border: 14px solid #FFF;
       }
     }
   }

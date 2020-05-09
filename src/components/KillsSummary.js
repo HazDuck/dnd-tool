@@ -82,7 +82,9 @@ export const KillsSummary = () => {
       <div className="kills-summary-container" data-testid="KillsSummary">
         <div className="rpgui-container framed-golden-2 selected-character">
           <div className="selected-character-inner">
-            <div className="rpgui-container framed-golden character-sprite"></div>
+            <div className="rpgui-container framed-golden no-padding">
+              <div className="character-sprite"></div>
+            </div>
             <div>
               <h2>{selectedCharacter.name}</h2>
               <h3>Total kills: {totalKills}</h3>
