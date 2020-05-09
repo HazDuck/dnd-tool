@@ -110,6 +110,8 @@ export const KillsSummary = () => {
   //   pixelateImages(document.querySelectorAll('[data-monster-image]'))
   // })
 
+  console.log(showKillsSummary)
+
   return (
     user && (
       // showLoading ? 

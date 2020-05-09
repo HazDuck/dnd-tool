@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { firebase } from '../firebase'
 import { useKills } from '../hooks'
+import { useDisplayStateContextValue } from '../context'
+
 
 export const IndividualKill = ({kill, selectedCharacter}) => {
   const [deleteKillOverlay, setDeleteKillOverlay] = useState(false)
   const { kills, setKills } = useKills(selectedCharacter.characterId)
   const [updatedKillNotes, setUpdatedKillNotes] = useState(kill.notes)
+  const { setShowKillsSummary } = useDisplayStateContextValue()
 
   //grab the doc grab the quantity, go back to the doc and inc. Pass in value as the true/false for inc or dec.
   //use get in this rather than a realtime snapshot.
@@ -37,7 +40,8 @@ export const IndividualKill = ({kill, selectedCharacter}) => {
       .doc(killId)
       .delete()
       .then(()=> {
-        setKills([...kills])
+        // setKills([...kills])
+        setShowKillsSummary(true)
       })
     
     const updateKillNotes = (killId, updatedKillNotes) => 
