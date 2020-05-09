@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { firebase } from '../firebase';
+import { useCharactersValue } from '../context' 
 import 'firebase/auth';
-import { useUserValue, useCharactersValue } from '../context' 
 
 export const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
-  const { characters, setCharacters } = useCharactersValue()
+  const { setCharacters } = useCharactersValue()
 
   const loginIn = () => {
     firebase
