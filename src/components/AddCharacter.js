@@ -46,6 +46,8 @@ export const AddCharacter = ({ setAddCharacterOverlay }) => {
           Confirm
         </button>
         <span
+          tabIndex={0}
+          onKeyDown={()=>clearAddCharacter()}
           onClick={()=>clearAddCharacter()}
           className="rpgui-cursor-point cancel-button"
         >

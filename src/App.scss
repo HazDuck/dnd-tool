@@ -66,6 +66,10 @@ $breakpoints: (
   $small '(min-width: #{$small-breakpoint - 1})'
 );
 
+input, a, div :focus {
+  outline: 3px solid #296094;
+}
+
 .hide {
   display: none !important;
 }

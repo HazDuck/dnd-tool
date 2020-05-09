@@ -25,13 +25,20 @@ export const IndividualCharacter = ({ character, selectedCharacter }) => {
     .delete()
     .then(()=> {
       setCharacters([...characters])
-    })
+    })  
   )
 
   return (
     <div className="individual-character-container">
       <div className="individual-character-container-inner">
-        <span className="character-name rpgui-cursor-point"  onClick={()=>{
+        <span 
+          tabIndex={0}
+          className="character-name rpgui-cursor-point"  
+          onKeyDown={()=>{
+            setSelectedCharacter(character)
+            setSelectedMonster('')
+          }}
+          onClick={()=>{
           setSelectedCharacter(character)
           setSelectedMonster('')
         }}>
@@ -59,9 +66,12 @@ export const IndividualCharacter = ({ character, selectedCharacter }) => {
           >
             Delete
           </button>
-          <span 
+          <span
+            tabIndex={0}
             className="cancel-button rpgui-cursor-point"
-            onClick={()=>setDeleteCharacterOverlay(false)}>
+            onClick={()=>setDeleteCharacterOverlay(false)}
+            onKeyDown={()=>setDeleteCharacterOverlay(false)}
+            >
             Cancel
           </span>
         </div>
