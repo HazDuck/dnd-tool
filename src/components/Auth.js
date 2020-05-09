@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Signup } from './Signup'
 import { Login } from './Login'
 import { useUserValue } from '../context'
 
 export const Auth = () => {
-  const { user, setUser} = useUserValue()
+  const { user } = useUserValue()
   const [showSignup, setShowSignUp] = useState(false)
 
   return (
