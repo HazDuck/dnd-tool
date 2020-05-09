@@ -8,7 +8,7 @@ export const IndividualMonster = ({ monster, setSearchResults }) => {
   const { selectedCharacter } = useSelectedCharacterValue()
   const [quantity, setQuantity] = useState(1)
   const [notes, setNotes] = useState('')
-  const {setShowKillsSummary, setShowAddKill } = useDisplayStateContextValue()
+  const { setShowKillsSummary, setShowAddKill } = useDisplayStateContextValue()
 
   const timeDate = () => {
     const today = new Date();
