@@ -69,7 +69,6 @@ export const useKills = (selectedCharacterId) => {
     let data = firebase
       .firestore()
       .collection('kills')
-      .where('userId', '==', '12345')
 
     data = data.onSnapshot(snapshot => {
       const newKills = snapshot.docs.map(kill => ({

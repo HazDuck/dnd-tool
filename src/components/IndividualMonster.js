@@ -27,8 +27,7 @@ export const IndividualMonster = ({ monster, setSearchResults }) => {
       characterId: selectedCharacter,
       date: timeDate(),
       quantity: quantity,
-      notes: notes,
-      userId: '12345'
+      notes: notes
     })
     setNotes('')
     setQuantity(1)
