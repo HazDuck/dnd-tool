@@ -84,7 +84,7 @@ export const KillsSummary = () => {
           <div className="selected-character-inner">
             <div className="selected-character-info-container">
               <div className="rpgui-container framed-golden icon-container">
-                <div className="character-sprite icon-1"></div>
+                <div className={`character-sprite icon-${selectedCharacter.icon}`}></div>
               </div>
               <div>
                 <h2>{selectedCharacter.name}</h2>
