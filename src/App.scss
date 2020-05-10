@@ -1,3 +1,94 @@
+$icons: (
+  "0 0",
+  "-60px 0",
+  "-120px 0",
+  "-180px 0",
+  "-240px 0",
+  "-300px 0",
+  "-360px 0",
+  "-416px 0",
+  "0 -60px",
+  "-60px -60px",
+  "-120px -60px",
+  "-180px -60px",
+  "-240px -60px",
+  "-300px -60px",
+  "-360px -60px",
+  "-416px -60px",
+  "0 -120px",
+  "-60px -120px",
+  "-120px -120px",
+  "-180px -120px",
+  "-240px -120px",
+  "-300px -120px",
+  "-360px -120px",
+  "-416px -120px",
+  "0 -180px",
+  "-60px -180px",
+  "-120px -180px",
+  "-180px -180px",
+  "-240px -180px",
+  "-300px -180px",
+  "-360px -180px",
+  "-416px -180px",
+  "0 -240px",
+  "-60px -240px",
+  "-120px -240px",
+  "-180px -240px",
+  "-240px -240px",
+  "-300px -240px",
+  "-360px -240px",
+  "-416px -240px",
+  "0 -300px",
+  "-60px -300px",
+  "-120px -300px",
+  "-180px -300px",
+  "-240px -300px",
+  "-300px -300px",
+  "-360px -300px",
+  "-416px -300px",
+  "0 -360px",
+  "-60px -360px",
+  "-120px -360px",
+  "-180px -360px",
+  "-240px -360px",
+  "-300px -360px",
+  "-360px -360px",
+  "-416px -360px",
+  "0 -420px",
+  "-60px -420px",
+  "-120px -420px",
+  "-180px -420px",
+  "-240px -420px",
+  "-300px -420px",
+  "-360px -420px",
+  "-416px -420px",
+  "0 -477px",
+  "-60px -477px",
+  "-120px -477px",
+  "-180px -477px",
+  "-240px -477px",
+  "-300px -477px",
+  "-360px -477px",
+  "-416px -477px",
+  "0 -540px",
+  "-60px -540px",
+  "-120px -540px",
+  "-180px -540px",
+  "-240px -540px",
+  "-300px -540px",
+  "-360px -540px",
+  "-416px -540px",
+  "0 -596px",
+  "-60px -596px",
+  "-120px -596px",
+  "-180px -596px",
+  "-240px -596px",
+  "-300px -596px",
+  "-360px -596px",
+  "-417px -596px"
+);
+
 @import './assets/rpgui.css';
 
 /**
@@ -43,6 +134,12 @@
   }
 }
 
+@each $value in $icons {
+  .icon-#{index($icons, $value)} {
+    background-position: #{$value} ;
+  }
+}
+
 $base-margin: 8px;
 
 //Media queries
@@ -76,10 +173,6 @@ input, a, div :focus {
 
 .show {
   display: block !important;
-}
-
-.no-padding {
-  padding: 0 !important;
 }
 
 .small-button {
@@ -277,15 +370,39 @@ input, a, div :focus {
         justify-content: space-between;
       }
 
-      .character-sprite {
-        background-image: url(/images/classes.png);
-        background-repeat: no-repeat;
-        background-position: 0px 0px;
-        width: 100px;
-        height: 100px;
-        overflow: hidden;
-        background-size: 782px;
-        border: 14px solid #FFF;
+      .selected-character-info-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+
+        @include media-query($medium) {
+          flex-direction: row;
+        }
+
+        .character-sprite {
+          background-image: url(/images/classes.png);
+          background-repeat: no-repeat;
+          width: 60px;
+          height: 60px;
+          overflow: hidden;
+          background-size: 477px;
+          border: 3px solid #FFF;
+        }
+
+        // .icon-1 {
+        //   background-position: 0 -60px;
+        // }
+
+        .icon-container {
+          padding: 0 !important;
+          border-image-width: 10px !important;
+          border-width: 10px !important;
+
+          @include media-query($medium) {
+            margin-right: $base-margin*4;
+          }
+        }
       }
     }
   }
