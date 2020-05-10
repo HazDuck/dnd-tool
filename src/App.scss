@@ -285,6 +285,16 @@ input, a, div :focus {
   }
 }
 
+.character-sprite {
+  background-image: url(/images/classes.png);
+  background-repeat: no-repeat;
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  background-size: 477px;
+  border: 3px solid #FFF;
+}
+
 .side-bar {
   display: none; 
   width: 100%;
@@ -379,20 +389,6 @@ input, a, div :focus {
         @include media-query($medium) {
           flex-direction: row;
         }
-
-        .character-sprite {
-          background-image: url(/images/classes.png);
-          background-repeat: no-repeat;
-          width: 60px;
-          height: 60px;
-          overflow: hidden;
-          background-size: 477px;
-          border: 3px solid #FFF;
-        }
-
-        // .icon-1 {
-        //   background-position: 0 -60px;
-        // }
 
         .icon-container {
           padding: 0 !important;

@@ -6,6 +6,7 @@ export const AddCharacter = ({ setAddCharacterOverlay }) => {
   const { user } = useUserValue()
   const [characterName, setCharacterName] = useState('')
   const { characters, setCharacters } = useCharactersValue()
+  const [icon, setIcon] =useState(1)
 
   const clearAddCharacter = () => {
     setCharacterName('')
@@ -19,7 +20,8 @@ export const AddCharacter = ({ setAddCharacterOverlay }) => {
     .add({
       archived: false,
       name: characterName,
-      userId: user.uid
+      userId: user.uid,
+      icon: icon
     })
     .then(()=> {
       //trigger firebase by spreading the chars
@@ -37,6 +39,18 @@ export const AddCharacter = ({ setAddCharacterOverlay }) => {
         onChange={e=>setCharacterName(e.target.value)}
         required
       />
+      <div className="rpgui-container framed-golden icon-container">
+        <div className={`character-sprite icon-${icon}`}></div>
+      </div>
+      <button
+        className="rpgui-button"
+        onClick={()=>setIcon(icon + 1)}
+      >Next</button>
+      <span>{icon}/88</span>
+      <button
+        className="rpgui-button"
+        onClick={()=>setIcon(icon - 1)}
+      >Prev</button>
       <div>
         <button
           type="button"
