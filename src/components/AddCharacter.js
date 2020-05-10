@@ -39,18 +39,20 @@ export const AddCharacter = ({ setAddCharacterOverlay }) => {
         onChange={e=>setCharacterName(e.target.value)}
         required
       />
-      <div className="rpgui-container framed-golden icon-container">
-        <div className={`character-sprite icon-${icon}`}></div>
+      <div>
+        <div className="rpgui-container framed-golden add-character-icon-container">
+          <div className={`character-sprite icon-${icon}`}></div>
+        </div>
+        <span>{icon}/88</span>
       </div>
       <button
-        className="rpgui-button"
-        onClick={()=>setIcon(icon + 1)}
-      >Next</button>
-      <span>{icon}/88</span>
-      <button
-        className="rpgui-button"
+        className="rpgui-button small-button"
         onClick={()=>setIcon(icon - 1)}
-      >Prev</button>
+      >&lt;</button>
+      <button
+        className="rpgui-button small-button"
+        onClick={()=>setIcon(icon + 1)}
+      >&gt;</button>
       <div>
         <button
           type="button"

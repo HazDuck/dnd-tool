@@ -339,10 +339,19 @@ input, a, div :focus {
   }
 
   .sidebar-close {
-
     @include media-query($medium) {
       display: none;
     }
+  }
+}
+
+.add-character-container {
+  .add-character-icon-container {
+    padding: 0;
+    padding: 0;
+    border-image-width: 12px;
+    border-width: 10px;
+    width: fit-content;
   }
 }
 

@@ -14,6 +14,8 @@ export const SignOut = () => {
   )
 
   return (
+    <>
+    <hr className="golden"></hr>
     <button
       onClick={()=> {
         setSelectedCharacter('')
@@ -21,5 +23,6 @@ export const SignOut = () => {
       }}
       className="rpgui-button">
     Sign Out</button>
+    </>
   )
 }
