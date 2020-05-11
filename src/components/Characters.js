@@ -3,32 +3,50 @@ import { AddCharacter } from './AddCharacter';
 import { useCharactersValue, useSelectedCharacterValue } from '../context'
 import { IndividualCharacter } from './IndividualCharacter';
 
-export const Characters = () => {
+export const Characters = ({ setShowSidebar, showSidebar }) => {
   const [addCharacterOverlay, setAddCharacterOverlay] = useState(false)
   const { characters } = useCharactersValue()
   const { selectedCharacter } = useSelectedCharacterValue()  
+  const [showCharacters, setShowCharacters] = useState(true)
 
   return (
     characters && (
       <section>
-        <div>
-          {characters.map((character) => (
-            <IndividualCharacter 
-              key={character.characterId} 
-              character={character} 
-              selectedCharacter={selectedCharacter} />
-          ))}
-        </div>
+        {showCharacters && (
+          <div>
+            {characters.map((character) => (
+              <IndividualCharacter 
+                key={character.characterId} 
+                character={character} 
+                selectedCharacter={selectedCharacter} />
+            ))}
+          </div>
+        )}
         <button
           type="button"
           className="rpgui-button add-character-button"
-          onClick={()=>setAddCharacterOverlay(!addCharacterOverlay)}
+          onClick={()=>{
+            setAddCharacterOverlay(!addCharacterOverlay)
+            setShowCharacters(false)
+          }}
         >
           Add character
         </button>
 
         {addCharacterOverlay && 
-          <AddCharacter setAddCharacterOverlay={setAddCharacterOverlay}/>}
+          <AddCharacter 
+            setAddCharacterOverlay={setAddCharacterOverlay} 
+            setShowCharacters={setShowCharacters}/>}
+
+        <div className="sidebar-close">
+          <button 
+            onClick={()=>{
+              setShowCharacters(true)
+              setShowSidebar(!showSidebar)
+            }}
+            className="rpgui-button"
+          >Close</button>
+        </div> 
       </section>
     )
   )

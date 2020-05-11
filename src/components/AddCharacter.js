@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { firebase } from '../firebase'
 import { useCharactersValue, useUserValue } from '../context'
 
-export const AddCharacter = ({ setAddCharacterOverlay }) => {
+export const AddCharacter = ({ setAddCharacterOverlay, setShowCharacters }) => {
   const { user } = useUserValue()
   const [characterName, setCharacterName] = useState('')
   const { characters, setCharacters } = useCharactersValue()
@@ -57,14 +57,20 @@ export const AddCharacter = ({ setAddCharacterOverlay }) => {
         <button
           type="button"
           className="rpgui-button"
-          onClick={()=>addCharacter(characterName)}
+          onClick={()=>{
+            addCharacter(characterName)
+            setShowCharacters(true)
+          }}
         >
           Confirm
         </button>
         <span
           tabIndex={0}
           onKeyDown={()=>clearAddCharacter()}
-          onClick={()=>clearAddCharacter()}
+          onClick={()=>{
+            setShowCharacters(true)
+            clearAddCharacter()
+          }}
           className="rpgui-cursor-point cancel-button"
         >
           Cancel
