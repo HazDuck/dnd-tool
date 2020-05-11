@@ -50,10 +50,6 @@ export const useSelectedCharacter = () => {
   window.localStorage.setItem('selectedCharacter', JSON.stringify(selectedCharacter))
   return { selectedCharacter, setSelectedCharacter }
 }
-// const [selectedCharacter, setSelectedCharacter] = useState()
-// return { selectedCharacter, setSelectedCharacter } 
-// }
-
 
 //----------------------------------------------------------//
 
