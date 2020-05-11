@@ -86,3 +86,46 @@ export const UserProvider = ({ children }) => {
   )
 }
 export const useUserValue = () => useContext(UserContext)
+
+//-----------------------------------------------------------------------//
+
+export const AppContext = createContext() 
+export const AppProvider = ({ children }) => {
+  const { user, setUser } = useUser()
+  const { 
+    showKillsModal, 
+    setShowKillsModal, 
+    showKillsSummary, 
+    setShowKillsSummary, 
+    showAddKill, 
+    setShowAddKill ,
+    showSidebar, 
+    setShowSidebar
+  } = useDisplayState()
+  const { selectedMonster, setSelectedMonster } = useSelectedMonster()
+  const { selectedCharacter, setSelectedCharacter } = useSelectedCharacter()
+  const { characters, setCharacters } = useCharacters()
+  return (
+    <AppContext.Provider value={{ 
+      user,
+      setUser,
+      showKillsModal, 
+      setShowKillsModal, 
+      showKillsSummary, 
+      setShowKillsSummary, 
+      showAddKill, 
+      setShowAddKill,
+      showSidebar, 
+      setShowSidebar,
+      selectedMonster, 
+      setSelectedMonster,
+      selectedCharacter, 
+      setSelectedCharacter, 
+      characters, 
+      setCharacters
+        }}>
+      {children}
+    </AppContext.Provider>
+  )
+}
+export const useAppValue = () => useContext(AppContext)

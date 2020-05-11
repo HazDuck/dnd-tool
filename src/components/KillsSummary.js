@@ -1,27 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { useKills, useSelectedMonster } from '../hooks'
-import { useSelectedCharacterValue, useDisplayStateContextValue, useUserValue } from '../context'
+import { useAppValue } from '../context'
 import { dataCleanUp} from '../helpers'
 import { Kills } from './Kills'
 import { AddKill } from './AddKill'
 import ReactImageFallback from 'react-image-fallback'
 
 export const KillsSummary = () => {
-  const { selectedCharacter } = useSelectedCharacterValue()
-  const { user } = useUserValue()
-  const { kills } = useKills(selectedCharacter.characterId)
-  const [monsterData] = useState(dataCleanUp())
-  const [killsData, setKillsData] = useState([])
-  const [summaryData, setSummaryData] = useState([])
-  const { selectedMonster, setSelectedMonster} = useSelectedMonster('')
-  const [totalKills, setTotalKills] = useState('')
+  //app context
   const { 
+    selectedCharacter, 
+    user, 
     showKillsModal, 
     setShowKillsModal, 
     showKillsSummary, 
     setShowKillsSummary, 
     showAddKill, 
-    setShowAddKill } = useDisplayStateContextValue()
+    setShowAddKill } = useAppValue()
+  //hooks
+  const { kills } = useKills(selectedCharacter.characterId)
+  const { selectedMonster, setSelectedMonster} = useSelectedMonster('')
+  //local state
+  const [monsterData] = useState(dataCleanUp())
+  const [killsData, setKillsData] = useState([])
+  const [summaryData, setSummaryData] = useState([])
+  const [totalKills, setTotalKills] = useState('')
 
   const calculateTotalKills = kills => kills.reduce((total, kill) => total + parseInt(kill.quantity), 0)
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { CharactersProvider, SelectedCharacterProvider, SelectedMonsterProvider, DisplayStateProvider, UserProvider } from './context'
+import { AppProvider, CharactersProvider, SelectedCharacterProvider, SelectedMonsterProvider, DisplayStateProvider, UserProvider } from './context'
 import { Header } from './components/Header';
 import { Auth } from './components/Auth'
 import { Content } from './components/Content'
@@ -7,25 +7,27 @@ import { Content } from './components/Content'
 const App = () => {
 
   return (
-    <UserProvider>
-      <DisplayStateProvider>
-        <SelectedCharacterProvider>
-          <CharactersProvider>
-            <SelectedMonsterProvider>
-              <div className="rpgui-content">
-                <div className="rpgui-container framed">
-                  <Header />
-                  <div className="main-container">
-                    <Auth />
-                    <Content />
+    <AppProvider>
+      <UserProvider>
+        <DisplayStateProvider>
+          <SelectedCharacterProvider>
+            <CharactersProvider>
+              <SelectedMonsterProvider>
+                <div className="rpgui-content">
+                  <div className="rpgui-container framed">
+                    <Header />
+                    <div className="main-container">
+                      <Auth />
+                      <Content />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </SelectedMonsterProvider>
-          </CharactersProvider>
-        </SelectedCharacterProvider>
-      </DisplayStateProvider>
-    </UserProvider>
+              </SelectedMonsterProvider>
+            </CharactersProvider>
+          </SelectedCharacterProvider>
+        </DisplayStateProvider>
+      </UserProvider>
+    </AppProvider>
   );
 }
 

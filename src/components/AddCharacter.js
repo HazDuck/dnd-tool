@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { firebase } from '../firebase'
-import { useCharactersValue, useUserValue } from '../context'
+import { useAppValue } from '../context'
 
 export const AddCharacter = ({ setAddCharacterOverlay, setShowCharacters }) => {
-  const { user } = useUserValue()
+  const { characters, setCharacters, user} = useAppValue()
   const [characterName, setCharacterName] = useState('')
-  const { characters, setCharacters } = useCharactersValue()
   const [icon, setIcon] =useState(1)
 
   const clearAddCharacter = () => {
