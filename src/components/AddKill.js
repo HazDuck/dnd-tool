@@ -4,7 +4,7 @@ import { IndividualMonster } from './IndividualMonster'
 import { useAppValue } from '../context'
 
 export const AddKill = () => {
-  const [ monsterData ] = useState(dataCleanUp())
+  const [monsterData] = useState(dataCleanUp())
   const [searchValue, setSearchValue] = useState('')
   const [searchResults, setSearchResults] = useState([])
   const [showSearchMessage, setShowSearchMessage] = useState(false)
