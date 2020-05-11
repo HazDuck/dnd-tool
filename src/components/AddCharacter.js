@@ -47,11 +47,17 @@ export const AddCharacter = ({ setAddCharacterOverlay, setShowCharacters }) => {
       </div>
       <button
         className="rpgui-button small-button"
-        onClick={()=>setIcon(icon - 1)}
+        onClick={()=>{
+          if (icon > 1) {
+            setIcon(icon - 1)}
+          }}
       >&lt;</button>
       <button
         className="rpgui-button small-button"
-        onClick={()=>setIcon(icon + 1)}
+        onClick={()=>{
+          if (icon < 88) {
+            setIcon(icon + 1)}
+          }}
       >&gt;</button>
       <div>
         <button
