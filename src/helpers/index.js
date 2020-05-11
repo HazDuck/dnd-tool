@@ -12,6 +12,14 @@ export const dataCleanUp = () => {
     const giveGeneralDragonDescription = 
     monster.name.includes('Dragon') && !excludedDragonTypes.some(dragonType => 
       containsExcludedMonsterType(monster.name, dragonType)) ? true : false
+
+    const showGeneralDragonImage = () => {
+      if (monster.name.includes('Ancient ')) {
+        return monster.name.replace('Ancient ', '')
+      } else if (monster.name.includes('Adult' && 'Dragon')) {
+        return monster.name.replace('Adult ', '')
+      } 
+    }
     
     return monster = {
       monsterId: index,
@@ -26,10 +34,11 @@ export const dataCleanUp = () => {
       monster.entries[0].entries[0].entries ? 
       monster.entries[0].entries[0].entries[0] : undefined,
       img: `https://5e.tools/img/${
-        monster.images &&
+        monster.images && 
         monster.images[0] &&
         monster.images[0].href ? 
-        monster.images[0].href.path : undefined
+        monster.images[0].href.path : 
+        `bestiary/MM/${showGeneralDragonImage()}.jpg`
       }`
     }
   })
