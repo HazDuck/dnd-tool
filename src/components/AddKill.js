@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { dataCleanUp } from '../helpers'
 import { IndividualMonster } from './IndividualMonster'
-import { useAppValue } from '../context'
+import { useDisplayStateContextValue } from '../context'
 
 export const AddKill = () => {
-  const [monsterData] = useState(dataCleanUp())
+  const [ monsterData ] = useState(dataCleanUp())
   const [searchValue, setSearchValue] = useState('')
   const [searchResults, setSearchResults] = useState([])
   const [showSearchMessage, setShowSearchMessage] = useState(false)
-  const { setShowAddKill, setShowKillsSummary } = useAppValue()
+  const { setShowAddKill, setShowKillsSummary } = useDisplayStateContextValue()
 
   const search = (monsterData, searchValue) => {
     const searchResults = monsterData.filter(monster =>
