@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { 
   useSelectedCharacterValue,
   useCharactersValue, 
-  useSelectedMonsterValue } from '../context'
+  useSelectedMonsterValue,
+  useDisplayStateContextValue } from '../context'
 import { firebase } from '../firebase'
 
 export const IndividualCharacter = ({ character, selectedCharacter }) => {
@@ -10,6 +11,7 @@ export const IndividualCharacter = ({ character, selectedCharacter }) => {
   const { characters, setCharacters } = useCharactersValue()
   const { setSelectedCharacter } = useSelectedCharacterValue()
   const { setSelectedMonster } = useSelectedMonsterValue()
+  const { setShowKillsModal, setShowKillsSummary } = useDisplayStateContextValue()
 
   useEffect(() => {
     if (!characters) {
@@ -38,10 +40,14 @@ export const IndividualCharacter = ({ character, selectedCharacter }) => {
           onKeyDown={()=>{
             setSelectedCharacter(character)
             setSelectedMonster('')
+            setShowKillsModal(false)
+            setShowKillsSummary(true)
           }}
           onClick={()=>{
-          setSelectedCharacter(character)
-          setSelectedMonster('')
+            setSelectedCharacter(character)
+            setSelectedMonster('')
+            setShowKillsModal(false)
+            setShowKillsSummary(true)
         }}>
           {character.name}
           {selectedCharacter && selectedCharacter.characterId ? 

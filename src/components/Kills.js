@@ -6,7 +6,7 @@ import ReactImageFallback from 'react-image-fallback'
 export const Kills = ({ selectedMonster, killsData }) => {
   const { selectedCharacter } = useSelectedCharacterValue()
   const [filteredKillsData, setFilteredKillsData] = useState([])
-  const { setShowKillsModal, setShowKillsSummary } = useDisplayStateContextValue()
+  const { showKillsModal, setShowKillsModal, setShowKillsSummary } = useDisplayStateContextValue()
 
   useEffect(() => {
     if (!killsData.length > 0) {
@@ -16,7 +16,7 @@ export const Kills = ({ selectedMonster, killsData }) => {
   }, [killsData, selectedMonster])
 
   return (
-    filteredKillsData.length > 0 && (
+    (filteredKillsData.length > 0 && showKillsModal) &&  (
       <div>
         {filteredKillsData.map((kill, index) => {
           if (index === 0) {
