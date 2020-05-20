@@ -1,10 +1,10 @@
 import React from 'react'
 import { firebase } from '../firebase';
-import { useSelectedCharacterValue } from '../context'
+import { useAppValue } from '../context'
 import 'firebase/auth';
 
 export const SignOut = () => {
-  const { setSelectedCharacter } = useSelectedCharacterValue()
+  const { setSelectedCharacter } = useAppValue()
 
   const signOut = () => (
     firebase

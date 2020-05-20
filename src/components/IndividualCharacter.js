@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { 
-  useSelectedCharacterValue,
-  useCharactersValue, 
-  useSelectedMonsterValue,
-  useDisplayStateContextValue } from '../context'
+import { useAppValue } from '../context'
 import { firebase } from '../firebase'
 
 export const IndividualCharacter = ({ character, selectedCharacter }) => {
   const [deleteCharacterOverlay, setDeleteCharacterOverlay] = useState(false)
-  const { characters, setCharacters } = useCharactersValue()
-  const { setSelectedCharacter } = useSelectedCharacterValue()
-  const { setSelectedMonster } = useSelectedMonsterValue()
-  const { setShowKillsModal, setShowKillsSummary } = useDisplayStateContextValue()
+  const { setShowKillsModal, setShowKillsSummary, characters, setCharacters, setSelectedCharacter, setSelectedMonster } = useAppValue()
 
   useEffect(() => {
     if (!characters) {

@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { useSelectedCharacterValue, useDisplayStateContextValue } from '../context'
+import { useAppValue } from '../context'
 import { firebase } from '../firebase'
 import ReactImageFallback from 'react-image-fallback'
 
 
 export const IndividualMonster = ({ monster, setSearchResults }) => {
-  const { selectedCharacter } = useSelectedCharacterValue()
   const [quantity, setQuantity] = useState(1)
   const [notes, setNotes] = useState('')
-  const { setShowKillsSummary, setShowAddKill } = useDisplayStateContextValue()
+  const { setShowKillsSummary, setShowAddKill, selectedCharacter } = useAppValue()
 
   const timeDate = () => {
     const today = new Date();

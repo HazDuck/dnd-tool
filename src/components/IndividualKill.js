@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { firebase } from '../firebase'
-import { useDisplayStateContextValue } from '../context'
+import { useAppValue } from '../context'
 
 
 export const IndividualKill = ({ kill }) => {
   const [deleteKillOverlay, setDeleteKillOverlay] = useState(false)
   const [updatedKillNotes, setUpdatedKillNotes] = useState(kill.notes)
-  const { setShowKillsSummary } = useDisplayStateContextValue()
+  const { setShowKillsSummary } = useAppValue()
 
   //grab the doc grab the quantity, go back to the doc and inc. Pass in value as the true/false for inc or dec.
   //use get in this rather than a realtime snapshot.
