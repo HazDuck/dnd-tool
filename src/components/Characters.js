@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { AddCharacter } from './AddCharacter';
-import { useCharactersValue, useSelectedCharacterValue } from '../context'
+import { useAppValue } from '../context'
 import { IndividualCharacter } from './IndividualCharacter';
 
 export const Characters = ({ setShowSidebar, showSidebar }) => {
   const [addCharacterOverlay, setAddCharacterOverlay] = useState(false)
-  const { characters } = useCharactersValue()
-  const { selectedCharacter } = useSelectedCharacterValue()  
+  const { characters } = useAppValue()
+  const { selectedCharacter } = useAppValue()  
   const [showCharacters, setShowCharacters] = useState(true)
 
   return (

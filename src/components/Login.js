@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { firebase } from '../firebase';
-import { useCharactersValue } from '../context' 
+import { useAppValue } from '../context'
 import 'firebase/auth';
 
 export const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
-  const { setCharacters } = useCharactersValue()
+  const { setCharacters } = useAppValue()
 
   const loginIn = () => {
     firebase
@@ -32,7 +32,7 @@ export const Login = () => {
         required
       />
       <input
-        type="text"
+        type="password"
         placeholder="Password"
         value={password}
         onChange={e=>setPassword(e.target.value)}

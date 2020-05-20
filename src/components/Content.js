@@ -1,10 +1,10 @@
 import React from 'react' 
-import { useSelectedCharacterValue } from '../context'
+import { useAppValue } from '../context'
 import { Sidebar } from './Sidebar';
 import { KillsSummary } from './KillsSummary'
 
 export const Content = () => {
-  const { selectedCharacter } = useSelectedCharacterValue()
+  const { selectedCharacter } = useAppValue()
 
   return (
     <>

@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useSelectedCharacterValue, useDisplayStateContextValue } from '../context'
+import { useAppValue } from '../context'
 import { IndividualKill } from './IndividualKill'
 import ReactImageFallback from 'react-image-fallback'
 
 export const Kills = ({ selectedMonster, killsData }) => {
-  const { selectedCharacter } = useSelectedCharacterValue()
   const [filteredKillsData, setFilteredKillsData] = useState([])
-  const { showKillsModal, setShowKillsModal, setShowKillsSummary } = useDisplayStateContextValue()
+  const { showKillsModal, setShowKillsModal, setShowKillsSummary, selectedCharacter } = useAppValue()
 
   useEffect(() => {
     if (!killsData.length > 0) {

@@ -1,11 +1,10 @@
 import React from 'react'
 import { Characters } from './Characters';
 import { SignOut } from './SignOut'
-import { useUserValue, useDisplayStateContextValue } from '../context'
+import { useAppValue } from '../context'
 
 export const Sidebar = () => {
-  const { user } = useUserValue()
-  const { showSidebar, setShowSidebar } = useDisplayStateContextValue()
+  const { showSidebar, setShowSidebar, user } = useAppValue()
 
   return (
     user && (

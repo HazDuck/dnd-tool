@@ -1,9 +1,8 @@
 import React from 'react'
-import { useUserValue, useDisplayStateContextValue } from '../context'
+import { useAppValue } from '../context'
 
 export const Header = () => {
-  const { user } = useUserValue()
-  const { setShowSidebar, showSidebar } = useDisplayStateContextValue()
+  const { setShowSidebar, showSidebar, user } = useAppValue()
   
   return (
     <header className="header">
